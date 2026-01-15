@@ -1,5 +1,4 @@
 import Navigation from './components/Navigation';
-import './test-deployment.css'; // Test deployment trigger
 import HeroSection from './components/HeroSection';
 import TimelineSection from './components/TimelineSection';
 import ImageGallery from './components/ImageGallery';
