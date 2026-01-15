@@ -10,7 +10,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: process.env.NODE_ENV === 'production' ? '/SNT4EVER/' : '/',
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
