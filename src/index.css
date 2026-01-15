@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --primary: 60 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 40%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 60 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 9%;
+    --ring: 60 100% 50%;
+    --radius: 0.5rem;
+    
+    --font-sans: 'Neue Haas Grotesk', 'Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Plex Mono', 'Fira Code', 'Courier New', monospace;
+  }
+
+  body {
+    @apply bg-black text-white;
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+    font-family: var(--font-sans);
+  }
+
+  p, span, div {
+    font-family: var(--font-sans);
+  }
+
+  code, pre {
+    font-family: var(--font-mono);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #FFEE00;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E6D800;
+  }
+}
+
+@layer components {
+  .container-snt {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-yellow {
+    color: #FFEE00;
+  }
+
+  .bg-yellow {
+    background-color: #FFEE00;
+    color: #000000;
+  }
+
+  .border-yellow {
+    border-color: #FFEE00;
+  }
+
+  .hover-text-yellow:hover {
+    color: #FFEE00;
+  }
+
+  .hover-bg-yellow:hover {
+    background-color: #FFEE00;
+    color: #000000;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .nav-link {
+    @apply text-white hover:text-yellow transition-colors duration-200 font-medium;
+  }
+
+  .nav-link-active {
+    @apply text-yellow;
+  }
+
+  .btn-primary {
+    @apply bg-yellow text-black font-semibold px-6 py-3 rounded hover:bg-yellow/90 transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply border border-yellow text-yellow font-semibold px-6 py-3 rounded hover:bg-yellow hover:text-black transition-colors duration-200;
+  }
+
+  .card-dark {
+    @apply bg-black border border-white/10;
+  }
+
+  .text-body {
+    @apply text-2xl leading-relaxed;
+  }
+
+  .text-heading {
+    @apply font-bold;
+  }
+
+  .marquee-container {
+    @apply overflow-hidden whitespace-nowrap;
+  }
+
+  .marquee-content {
+    @apply inline-block animate-marquee;
+  }
+
+  .lift-hover {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+
+  .glow-yellow {
+    box-shadow: 0 0 20px rgba(255, 238, 0, 0.3);
+  }
+
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
