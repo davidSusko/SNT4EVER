@@ -60,7 +60,7 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
         // Check if stepper should be sticky based on original position
         if (stepperElement && originalTopPosition !== null) {
           const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const currentStepperTop = currentScrollTop + 64; // 64px = header height
+          //const currentStepperTop = currentScrollTop + 64; // 64px = header height
           
           // Should be sticky if scrolled past original position
           const shouldBeSticky = inStorySection && currentScrollTop >= originalTopPosition - 64;
