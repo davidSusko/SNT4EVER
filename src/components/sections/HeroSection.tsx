@@ -11,7 +11,7 @@ const HeroSection = () => {
     <section className="min-h-screen flex flex-col justify-center items-center pt-16 relative overflow-hidden bg-black">
       {/* Animated Marquee */}
       <div className="w-full bg-yellow py-4 mb-12">
-        <Marquee speed="normal" direction="left" pauseOnHover={true}>
+        <Marquee speed="fast" direction="left" pauseOnHover={true}>
           <span className="text-black font-bold text-2xl">
             {marqueeText}
           </span>
