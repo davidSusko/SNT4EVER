@@ -36,14 +36,14 @@ const Footer = () => {
       items: [
         { name: 'Lead Photographer', role: 'Jordi Pérez', instagram: '@jordiperez' },
         { name: 'Photo Editor', role: 'Elena Ramírez', instagram: '@elenaphoto' },
-        { name: 'Archive Photos', role: 'Sant Andreu Archive', instagram: '@santandreuhistory' },
+        { name: 'Archive Photos', role: 'Sants Archive', instagram: '@santandreuhistory' },
         { name: 'Event Photography', role: 'Flash Photography', instagram: '@flashphoto' },
       ]
     },
   ];
 
   const collaborators = [
-    'Skate Shop Sant Andreu',
+    'Skate Shop Sants',
     'BCN Skate Co.',
     'Urban Sports Foundation',
     'City Council Barcelona',
@@ -164,7 +164,7 @@ const Footer = () => {
               <MapPin className="h-6 w-6 text-yellow mx-auto mb-3" />
               <p className="text-white font-medium mb-1">Location</p>
               <p className="text-muted-foreground">
-                Sant Andreu Skate Plaza
+                Sants Skate Plaza
                 <br />
                 Barcelona, Spain
               </p>

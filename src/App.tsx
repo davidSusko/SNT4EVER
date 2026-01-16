@@ -21,7 +21,7 @@ function App() {
               Archive
             </h2>
             <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-12">
-              Explore our collection of historical photos, videos, and documents that tell the story of Sant Andreu Skate Plaza.
+              Explore our collection of historical photos, videos, and documents that tell the story of Sants Skate Plaza.
             </p>
             
             {/* Image Gallery */}
@@ -46,7 +46,7 @@ function App() {
               <h3 className="text-2xl font-bold text-white mb-8">Video Archive</h3>
               <VideoGallery 
                 videos={[
-                  { id: 'dQw4w9WgXcQ', title: 'The Making of Sant Andreu Plaza', year: 1983 },
+                  { id: 'dQw4w9WgXcQ', title: 'The Making of Sants Plaza', year: 1983 },
                   { id: 'dQw4w9WgXcQ', title: 'Barcelona Skate Scene 1997', year: 1997 },
                   { id: 'dQw4w9WgXcQ', title: 'International Skate Competition', year: 2007 },
                 ]}

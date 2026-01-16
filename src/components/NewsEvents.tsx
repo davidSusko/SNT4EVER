@@ -23,7 +23,7 @@ const NewsEvents: React.FC = () => {
       date: '2024-02-15',
       excerpt: 'Help us maintain and improve the skate plaza. All skill levels welcome - bring your tools and enthusiasm!',
       type: 'event',
-      location: 'Sant Andreu Skate Plaza',
+      location: 'Sants Skate Plaza',
       image: '/images/repair-day.jpg'
     },
     {
@@ -41,14 +41,14 @@ const NewsEvents: React.FC = () => {
       date: '2024-03-20',
       excerpt: 'Join us for the biggest skate event of the year! Competitions, music, food trucks, and community celebration.',
       type: 'event',
-      location: 'Sant Andreu Skate Plaza',
+      location: 'Sants Skate Plaza',
       image: '/images/skate-jam.jpg'
     },
     {
       id: '4',
       title: 'Documentary Release: Plaza Dreams',
       date: '2024-01-15',
-      excerpt: 'Watch the story of Sant Andreu Skate Plaza through the eyes of the community that built and preserved it.',
+      excerpt: 'Watch the story of Sants Skate Plaza through the eyes of the community that built and preserved it.',
       type: 'news',
       link: 'https://youtube.com/watch?v=plaza-dreams',
       image: '/images/documentary.jpg'
@@ -59,7 +59,7 @@ const NewsEvents: React.FC = () => {
       date: '2024-02-08',
       excerpt: 'Free skate lessons for kids aged 8-16. Professional instructors provide guidance for all skill levels.',
       type: 'event',
-      location: 'Sant Andreu Skate Plaza',
+      location: 'Sants Skate Plaza',
       image: '/images/youth-workshop.jpg'
     },
     {

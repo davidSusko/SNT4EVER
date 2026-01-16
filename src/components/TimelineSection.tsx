@@ -39,7 +39,7 @@ const TimelineSection = () => {
     {
       year: '2018',
       title: 'Community Action',
-      content: 'SNT (Skateboarders National Team) was formed to organize repair efforts, events, and advocacy. The association officially registered and began working with local authorities.',
+      content: 'SNT (Sants4Ever) was formed to organize repair efforts, events, and advocacy. The association officially registered and began working with local authorities.',
       type: 'events',
       events: [
         'First community repair day',

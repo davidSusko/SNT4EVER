@@ -5,21 +5,23 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
 
-> 🛹 Modern recreation of snt4ever.com - A non-profit association dedicated to preserving Sant Andreu Skate Plaza in Barcelona
+> 🛹 Modern recreation of snt4ever.com - A non-profit association dedicated to preserving Sants Skate Plaza in Barcelona
 
 ## 🎯 About
 
-SNT4EVER is a complete recreation of the original snt4ever.com website using modern web technologies. The project represents a cultural and sports association dedicated to preserving and maintaining the Skate Plaza of Sant Andreu as a vital community space in Barcelona.
+SNT4EVER is a complete recreation of the original snt4ever.com website using modern web technologies. The project represents a cultural and sports association dedicated to preserving and maintaining the Skate Plaza of Sants as a vital community space in Barcelona.
 
 ## ✨ Features
 
 ### 🎨 **Design & UX**
+
 - **Authentic Design**: Faithful recreation of the original website's dark theme with yellow accent (#FFEE00)
 - **Responsive Layout**: Fully responsive design that works seamlessly on desktop, tablet, and mobile
 - **Modern Typography**: Professional typography system with Neue Haas Grotesk and Plex Sans fonts
 - **Smooth Animations**: Micro-interactions and smooth scrolling with Framer Motion
 
 ### 🏗️ **Technical Implementation**
+
 - **React 19**: Latest React version with modern hooks and concurrent features
 - **TypeScript**: Full type safety throughout the application
 - **Vite**: Lightning-fast development and optimized builds
@@ -27,6 +29,7 @@ SNT4EVER is a complete recreation of the original snt4ever.com website using mod
 - **Tailwind CSS**: Utility-first CSS framework for rapid styling
 
 ### 📱 **Core Components**
+
 - **Navigation**: Fixed header with mobile-responsive hamburger menu
 - **Hero Section**: Animated marquee with mission statement and call-to-action buttons
 - **Timeline**: Interactive chronological content from 1983-2018 with mixed media
@@ -38,23 +41,27 @@ SNT4EVER is a complete recreation of the original snt4ever.com website using mod
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/sanzcortes/SNT4EVER.git
    cd SNT4EVER
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -102,18 +109,21 @@ SNT4EVER/
 The project follows a comprehensive design system based on the original snt4ever.com:
 
 ### Colors
+
 - **Background**: Black (`#000000`)
-- **Primary**: Yellow (`#FFEE00`) 
+- **Primary**: Yellow (`#FFEE00`)
 - **Foreground**: White (`#FFFFFF`)
 - **Muted**: White with 60% opacity
 
 ### Typography
+
 - **Sans Font**: Neue Haas Grotesk, Plex Sans, system fonts
 - **Mono Font**: Plex Mono, Fira Code, monospace
 - **Headings**: Bold weights
 - **Body**: Regular weight, 1.4rem size for optimal readability
 
 ### Layout
+
 - **Container**: Max-width 7xl with responsive padding
 - **Grid**: 12-column system with responsive breakpoints
 - **Spacing**: Consistent scale using Tailwind CSS spacing units
@@ -129,6 +139,7 @@ The project follows a comprehensive design system based on the original snt4ever
 ## 📦 Dependencies
 
 ### Core Dependencies
+
 - `react@^19.2.0` - UI library
 - `react-dom@^19.2.0` - React DOM renderer
 - `framer-motion@^12.26.2` - Animation library
@@ -138,10 +149,12 @@ The project follows a comprehensive design system based on the original snt4ever
 - `tailwind-merge@^3.4.0` - CSS class merging
 
 ### UI Components
+
 - `@radix-ui/*` - Accessible component primitives
 - `tailwindcss-animate@^1.0.7` - Tailwind animations
 
 ### Development Dependencies
+
 - `vite@^7.2.4` - Build tool
 - `typescript@~5.9.3` - Type system
 - `@vitejs/plugin-react@^5.1.1` - React plugin for Vite
@@ -153,17 +166,20 @@ The project follows a comprehensive design system based on the original snt4ever
 The application builds to static files in the `dist/` directory and can be deployed to any static hosting service:
 
 ### Netlify
+
 1. Connect your GitHub repository to Netlify
 2. Set build command: `npm run build`
 3. Set publish directory: `dist`
 4. Deploy automatically on push
 
 ### Vercel
+
 1. Connect your GitHub repository to Vercel
 2. Vercel will automatically detect the Vite configuration
 3. Deploy automatically on push
 
 ### GitHub Pages
+
 1. Run `npm run build`
 2. Deploy the `dist` folder to `gh-pages` branch
 
@@ -194,7 +210,7 @@ This project is open source and available under the [MIT License](LICENSE).
 - **Website**: [snt4ever.com](https://snt4ever.com)
 - **Email**: info@snt4ever.com
 - **Instagram**: [@snt4ever](https://instagram.com/snt4ever)
-- **Location**: Sant Andreu Skate Plaza, Barcelona, Spain
+- **Location**: Sants Skate Plaza, Barcelona, Spain
 
 ---
 
