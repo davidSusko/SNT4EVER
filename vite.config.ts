@@ -10,7 +10,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "https://github.com/sanzcortes/SNT4EVER",
+  base: "/SNT4EVER/",
   build: {
     outDir: "dist",
     assetsDir: "assets",
