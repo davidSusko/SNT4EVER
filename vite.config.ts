@@ -10,14 +10,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/SNT4EVER/",
+  base: "https://sanzcortes.github.io/SNT4EVER/",
   build: {
     outDir: "dist",
     assetsDir: "assets",
     rollupOptions: {
       input: {
-        main: path.resolve(__dirname, "index.html")
-      }
-    }
+        main: path.resolve(__dirname, "index.html"),
+      },
+    },
   },
 });
