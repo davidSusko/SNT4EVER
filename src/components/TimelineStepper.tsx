@@ -1,7 +1,7 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Check, ChevronRight } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { Check } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface TimelineYear {
   year: number;
@@ -12,7 +12,7 @@ interface TimelineYear {
 
 interface TimelineStepperProps {
   years: TimelineYear[];
-  activeYear: number;
+  activeYear: number | null;
   onYearChange?: (year: number) => void;
 }
 
@@ -21,6 +21,7 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
   const [isSticky, setIsSticky] = useState(false);
   const [isInSection, setIsInSection] = useState(false);
   const [stepperHeight, setStepperHeight] = useState(0);
+  const [originalTopPosition, setOriginalTopPosition] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,21 +31,54 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
       if (storySection) {
         const storyRect = storySection.getBoundingClientRect();
         
-        // Check if user is within the story section (more generous detection)
-        const inStorySection = storyRect.top < window.innerHeight && storyRect.bottom > -100;
+        // Check if user is within the story section (more precise detection)
+        const inStorySection = storyRect.top < window.innerHeight + 200 && storyRect.bottom > -200;
         setIsInSection(inStorySection);
         
-        // Store height for placeholder when in section
-        if (stepperElement && stepperHeight === 0 && stepperElement.getBoundingClientRect().height > 0 && inStorySection) {
+        // Store height and original position when first visible
+        if (stepperElement && stepperElement.getBoundingClientRect().height > 0 && inStorySection) {
           const currentStepperRect = stepperElement.getBoundingClientRect();
-          setStepperHeight(currentStepperRect.height);
+          
+          // Store height only once
+          if (stepperHeight === 0) {
+            setStepperHeight(currentStepperRect.height);
+          }
+          
+          // Store original top position only once
+          if (!originalTopPosition) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const originalPos = currentStepperRect.top + scrollTop;
+            setOriginalTopPosition(originalPos);
+            console.log('Original position set:', {
+              rectTop: currentStepperRect.top,
+              scrollTop,
+              originalPos
+            });
+          }
         }
         
-        // Check if stepper should be sticky (only when in section)
-        if (stepperElement) {
-          const currentStepperRect = stepperElement.getBoundingClientRect();
-          const shouldBeSticky = inStorySection && currentStepperRect.top <= 64; // 64px = header height
+        // Check if stepper should be sticky based on original position
+        if (stepperElement && originalTopPosition !== null) {
+          const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const currentStepperTop = currentScrollTop + 64; // 64px = header height
+          
+          // Should be sticky if scrolled past original position
+          const shouldBeSticky = inStorySection && currentScrollTop >= originalTopPosition - 64;
+          
+          console.log('Sticky Debug:', {
+            currentScrollTop,
+            originalTopPosition,
+            shouldBeSticky,
+            inStorySection,
+            condition: currentScrollTop >= originalTopPosition - 64
+          });
+          
           setIsSticky(shouldBeSticky);
+        } else {
+          console.log('Sticky Debug: No stepper element or original position not set', {
+            hasStepper: !!stepperElement,
+            originalTopPosition
+          });
         }
         
         // Calculate progress within the section (only when in section)
@@ -53,6 +87,9 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
             (window.innerHeight - storyRect.top) / (storyRect.height + window.innerHeight)
           ));
           setScrollProgress(progress);
+        } else {
+          // Reset progress when not in section
+          setScrollProgress(0);
         }
       }
     };
@@ -60,7 +97,7 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [stepperHeight]);
+  }, [stepperHeight, originalTopPosition]);
 
   const handleYearClick = (year: number) => {
     onYearChange?.(year);
@@ -74,52 +111,67 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
     });
   };
 
-  const getActiveIndex = () => {
-    return years.findIndex(y => y.year === activeYear);
-  };
+  const getActiveIndex = useCallback(() => {
+    if (!activeYear || years.length === 0) return 0;
+    const index = years.findIndex(y => y.year === activeYear);
+    return index >= 0 ? index : 0;
+  }, [years, activeYear]);
+
+  useEffect(() => {
+    // Ensure that if scrolling up again there is no active year in any of the indexes then it means that we out of of section and we need to 'reset' the conditions
+    if (activeYear === null) {
+      setIsSticky(false);
+      setScrollProgress(0);
+    }
+  }, [activeYear]);
+
+  useEffect(() => {
+    // Reset original position when leaving section completely
+    if (!isInSection) {
+      setOriginalTopPosition(null);
+    }
+  }, [isInSection]);
+
 
   return (
-    <AnimatePresence>
-      {isInSection && (
-        <>
-          {/* Placeholder to prevent content jump */}
-          {isSticky && stepperHeight > 0 && (
-            <div style={{ height: stepperHeight }} />
-          )}
-          
+    <>
+      {/* Always render when within the TimelineSection */}
+      {/* Placeholder to prevent content jump */}
+      {isSticky && stepperHeight > 0 && (
+        <div style={{ height: stepperHeight }} />
+      )}
+      
           <motion.div 
-        id="timeline-stepper"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.3 }}
-        className={`w-full transition-all duration-300 ${
-          isSticky 
-            ? 'fixed top-16 left-0 right-0 z-40 bg-black/95 backdrop-blur-md border-b border-white/10' 
-            : 'relative'
-        }`}
-      >
-        <div className={`container-snt py-4 ${isSticky ? 'py-3' : ''}`}>
-        {/* Progress Indicator */}
-        <div className={`mb-6 ${isSticky ? 'mb-4' : ''}`}>
-          <div className="flex items-center justify-between text-sm text-white/60 mb-2">
-            <span>Timeline Progress</span>
-            <span>{Math.round(scrollProgress * 100)}%</span>
-          </div>
-          <div className="w-full bg-white/10 rounded-full h-2">
-            <motion.div
-              className="bg-yellow h-2 rounded-full"
-              style={{ width: `${scrollProgress * 100}%` }}
-            />
-          </div>
-        </div>
+            id="timeline-stepper"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ 
+              opacity: isInSection && scrollProgress < 0.96 ? 1 : 0,
+              y: isInSection && scrollProgress < 0.96 ? 0 : -20,
+              height: isInSection && scrollProgress < 0.96 ? 'auto' : 0
+            }}
+            transition={{ 
+              duration: 0.3,
+              ease: [0.4, 0, 0.2, 1] // Smooth cubic-bezier for both directions
+            }}
+            style={{ overflow: 'hidden' }}
+            className={`w-full transition-all duration-300 ${
+              isSticky 
+                ? 'fixed top-16 left-0 right-0 z-40 bg-black/95 backdrop-blur-md border-b border-white/10' 
+                : 'relative'
+            }`}
+          >
+            <div className={`container-snt py-4 ${isSticky ? 'py-3' : ''}`}>
 
         {/* Horizontal Year Navigation */}
         <div className="relative">
-          <div className="flex items-center justify-between gap-2 md:gap-4 overflow-x-auto pb-2">
-            {years.map((yearData, index) => {
-              const isActive = yearData.year === activeYear;
-              const isCompleted = yearData.isComplete;
+          {years.length > 0 ? (
+            <div className="flex items-center justify-between gap-2 md:gap-4 overflow-x-auto pb-2">
+              {years.map((yearData, index) => {
+                const isActive = yearData.year === activeYear;
+                const isCompleted = yearData.isComplete;
+                
+                // Add fallback for when activeYear is null - use the first year as default
+                const fallbackActive = !activeYear && index === 0;
               
               return (
                 <motion.div
@@ -129,19 +181,19 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
                   className="flex-shrink-0"
                 >
                   <Button
-                    variant={isActive ? "default" : "ghost"}
+                    variant={(isActive || fallbackActive) ? "default" : "ghost"}
                     size="sm"
                     onClick={() => handleYearClick(yearData.year)}
                     className={`relative overflow-hidden group flex-col ${
                       isSticky ? 'h-16 w-16 md:h-18 md:w-18' : 'h-20 w-20 md:w-24 md:h-24'
                     } p-2 ${
-                      isActive 
+                      (isActive || fallbackActive)
                         ? 'bg-yellow text-black hover:bg-yellow/90' 
                         : 'text-white/60 hover:text-white hover:bg-white/5'
                     }`}
                   >
-                    {/* Active indicator */}
-                    {isActive && (
+                      {/* Active indicator */}
+                      {(isActive || fallbackActive) && (
                       <motion.div
                         layoutId="activeTimeline"
                         className="absolute inset-0 bg-yellow"
@@ -154,13 +206,13 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
                       {/* Year Status */}
                       <div className={`flex-shrink-0 ${
                         isSticky ? 'w-4 h-4' : 'w-6 h-6 md:w-8 md:h-8'
-                      } rounded-full flex items-center justify-center mb-1 ${
-                        isActive 
-                          ? 'bg-black text-yellow' 
-                          : isCompleted 
-                            ? 'bg-green-500/20 text-green-400 border border-green-400/30'
-                            : 'bg-white/10 text-white/40'
-                      }`}>
+                        } rounded-full flex items-center justify-center mb-1 ${
+                          (isActive || fallbackActive)
+                            ? 'bg-black text-yellow' 
+                            : isCompleted 
+                              ? 'bg-green-500/20 text-green-400 border border-green-400/30'
+                              : 'bg-white/10 text-white/40'
+                        }`}>
                         {isCompleted ? (
                           <Check className={`${
                             isSticky ? 'h-2 w-2' : 'h-3 w-3 md:h-4 md:w-4'
@@ -177,32 +229,41 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
                         isSticky ? 'text-xs' : 'text-xs md:text-sm'
                       }`}>{yearData.year}</div>
                       {!isSticky && yearData.title && (
-                        <div className={`text-xs mt-1 text-center ${isActive ? 'text-black/70' : 'text-white/40'}`}>
+                        <div className={`text-xs mt-1 text-center ${(isActive || fallbackActive) ? 'text-black/70' : 'text-white/40'}`}>
                           {yearData.title.length > 12 ? yearData.title.substring(0, 12) + '...' : yearData.title}
                         </div>
                       )}
                     </div>
                   </Button>
-                </motion.div>
-              );
-            })}
-          </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center text-white/40 py-8">
+              <p className="text-sm">No timeline events available</p>
+            </div>
+          )}
 
-          {/* Connection line */}
-          <div className={`absolute ${
-            isSticky ? 'top-8' : 'top-10'
-          } left-0 right-0 h-0.5 bg-white/10 -z-10`} />
+          {/* Connection line - only show if we have multiple years */}
+          {years.length > 1 && (
+            <div className={`absolute ${
+              isSticky ? 'top-8' : 'top-10'
+            } left-0 right-0 h-0.5 bg-white/10 -z-10`} />
+          )}
           
-          {/* Active position indicator */}
-          <motion.div
-            className={`absolute ${
-              isSticky ? 'top-6' : 'top-8'
-            } w-1 h-4 bg-yellow rounded-full`}
-            animate={{
-              left: `${(getActiveIndex() / (years.length - 1)) * 100}%`
-            }}
-            transition={{ type: "spring", bounce: 0.3, duration: 0.8 }}
-          />
+          {/* Active position indicator - only show if we have multiple years */}
+          {years.length > 1 && (
+            <motion.div
+              className={`absolute ${
+                isSticky ? 'top-6' : 'top-8'
+              } w-1 h-4 bg-yellow rounded-full`}
+              animate={{
+                left: `${(getActiveIndex() / (years.length - 1)) * 100}%`
+              }}
+              transition={{ type: "spring", bounce: 0.3, duration: 0.8 }}
+            />
+          )}
         </div>
 
         {/* Navigation hint - only show when not sticky */}
@@ -215,9 +276,7 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
         )}
           </div>
         </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+    </>
   );
 };
 

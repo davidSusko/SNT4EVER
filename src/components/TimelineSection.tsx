@@ -9,7 +9,7 @@ import image2 from '@/assets/sants_new.png';
 import image3 from '@/assets/snt_landscape_1983.jpg';
 
 const TimelineSection = () => {
-  const [activeYear, setActiveYear] = useState<number>(1983);
+  const [activeYear, setActiveYear] = useState<number|null>(null);
   const [visibleYears, setVisibleYears] = useState<Set<number>>(new Set([1983]));
 
   const timelineEvents = [
@@ -77,6 +77,8 @@ const TimelineSection = () => {
   useEffect(() => {
     const handleScroll = () => {
       const eventElements = document.querySelectorAll('[data-timeline-year]');
+      let closestYear: number | null = null;
+      let closestDistance = Infinity;
       
       eventElements.forEach((element) => {
         const rect = element.getBoundingClientRect();
@@ -84,20 +86,30 @@ const TimelineSection = () => {
         
         // Mark year as visible if it's in viewport
         if (rect.top < window.innerHeight && rect.bottom > 0) {
+          console.log(`Marking year ${year} as visible`);
           setVisibleYears(prev => new Set(prev).add(year));
           
-          // Set as active year if it's the most centered
+          // Find the closest year to the center
           const elementCenter = rect.top + rect.height / 2;
           const windowCenter = window.innerHeight / 2;
           const distance = Math.abs(elementCenter - windowCenter);
           
-          if (distance < window.innerHeight / 3) {
-            setActiveYear(year);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestYear = year;
           }
         }
       });
+      
+      // Set the closest year as active if it's within a reasonable range
+      if (closestYear && closestDistance < window.innerHeight / 2) {
+        console.log(`Setting active year to ${closestYear} (distance: ${closestDistance})`);
+        setActiveYear(closestYear);
+      } else if (closestYear === null) {
+        // Only set to null if no elements are visible at all
+        setActiveYear(null);
+      }
     };
-
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
@@ -113,7 +125,7 @@ const TimelineSection = () => {
                'Historical content',
     isComplete: visibleYears.has(parseInt(event.year))
   }));
-
+  console.log('Active Year:', activeYear);  
   return (
     <section className="section-padding bg-black" id="story">
       <div className="container-snt">
