@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Play, ExternalLink, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
+import image1 from '@/assets/snt_bench_new.png';
+import image2 from '@/assets/sants_new.png';
+import image3 from '@/assets/snt_landscape_1983.jpg';
 
 const TimelineSection = () => {
   const timelineEvents = [
@@ -9,20 +12,20 @@ const TimelineSection = () => {
       year: '1983',
       title: 'Architecture & Design',
       content: 'The original plaza design was created as part of Barcelona\'s urban renewal project. The architectural vision aimed to create a multifunctional public space that would serve the community for decades.',
-      type: 'history',
-      image: '/images/1983-plaza.jpg'
+      type: 'gallery',
+      images: [image1, image2, image3]
     },
     {
       year: '1997',
       title: 'Birth of Skate Culture',
-      content: 'Local skaters discovered the plaza\'s perfect concrete surfaces and began transforming it into a skate destination. This marked the beginning of Sant Andreu as a legendary spot in Barcelona\'s skate scene.',
+      content: 'Local skaters discovered the plaza\'s perfect concrete surfaces and began transforming it into a skate destination. This marked the beginning of Sants as a legendary spot in Barcelona\'s skate scene.',
       type: 'video',
       videoId: 'dQw4w9WgXcQ' // Example YouTube ID
     },
     {
       year: '2007',
       title: 'International Recognition',
-      content: 'Sant Andreu Skate Plaza gained international fame as skate magazines and professionals from around the world discovered its unique features and vibrant community.',
+      content: 'Sants Skate Plaza gained international fame as skate magazines and professionals from around the world discovered its unique features and vibrant community.',
       type: 'gallery',
       images: ['/images/2007-1.jpg', '/images/2007-2.jpg', '/images/2007-3.jpg']
     },
@@ -84,7 +87,7 @@ const TimelineSection = () => {
               Our Story
             </h2>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              From architectural vision to cultural landmark, follow the journey of Sant Andreu Skate Plaza
+              From architectural vision to cultural landmark, follow the journey of Sants skate plaza and the community that fights to preserve it.
             </p>
           </motion.div>
 
@@ -122,18 +125,14 @@ const TimelineSection = () => {
                       {/* Video Content */}
                       {event.type === 'video' && event.videoId && (
                         <div className="aspect-video mb-8 rounded-lg overflow-hidden bg-black/50">
-                          <div className="w-full h-full flex items-center justify-center">
-                            <Button
-                              variant="secondary"
-                              size="lg"
-                              className="flex items-center gap-2"
-                              onClick={() => window.open(`https://www.youtube.com/watch?v=${event.videoId}`, '_blank')}
-                            >
-                              <Play className="h-5 w-5" />
-                              Watch Video
-                              <ExternalLink className="h-4 w-4" />
-                            </Button>
-                          </div>
+                          <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/mZctJpnGNyI?si=y8Jn4n_h1BLKGnEq" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerPolicy="strict-origin-when-cross-origin" 
+                            allowFullScreen></iframe>
                         </div>
                       )}
 
@@ -145,8 +144,11 @@ const TimelineSection = () => {
                               key={imgIndex}
                               className="aspect-square bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer"
                             >
-                              <span className="text-sm text-muted-foreground">Image {imgIndex + 1}</span>
-                            </div>
+                              <img
+                                src={event.images![imgIndex]}
+                                alt={`Image ${imgIndex + 1} for ${event.title}`}
+                                className="object-cover w-full h-full rounded-lg"
+                              />                            </div>
                           ))}
                         </div>
                       )}

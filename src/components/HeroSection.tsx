@@ -33,14 +33,16 @@ const HeroSection = () => {
           {/* Mission Statement */}
           <div className="text-2xl md:text-3xl lg:text-4xl text-white mb-12 leading-relaxed">
             <p className="mb-6">
-              Somos una asociación sin ánimo de lucro creada para{' '}
-              <span className="text-yellow">preservar y mantener el Skate Plaza de Sant Andreu</span>{' '}
-              como un espacio cultural y deportivo.
+              SNT4EVER es una asociación de skaters de Barcelona que 
+              trabaja para <span className="text-yellow">preservar y dinamizar </span> 
+              la plaza dels Paisos Catalans, conocida como Sants, un espacio mítico 
+              del skateboarding. 
             </p>
             <p className="text-lg md:text-xl text-muted-foreground">
-              We are a non-profit association created to{' '}
-              <span className="text-yellow">preserve and maintain the Sant Andreu Skate Plaza</span>{' '}
-              as a cultural and sports space.
+              Actuamos como puente entre el ayuntamiento, vecinos y patinadores, 
+              <span className="text-yellow"> promoviendo el diálogo y la integración </span>
+              de la cultura del skateboarding en el barrio a través de colaboraciones con 
+              asociaciones locales y escuelas.
             </p>
           </div>
 
