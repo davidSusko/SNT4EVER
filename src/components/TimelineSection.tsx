@@ -2,11 +2,16 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar } from 'lucide-react';
+import TimelineStepper from './TimelineStepper';
+import { useState, useEffect } from 'react';
 import image1 from '@/assets/snt_bench_new.png';
 import image2 from '@/assets/sants_new.png';
 import image3 from '@/assets/snt_landscape_1983.jpg';
 
 const TimelineSection = () => {
+  const [activeYear, setActiveYear] = useState<number>(1983);
+  const [visibleYears, setVisibleYears] = useState<Set<number>>(new Set([1983]));
+
   const timelineEvents = [
     {
       year: '1983',
@@ -69,6 +74,46 @@ const TimelineSection = () => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const eventElements = document.querySelectorAll('[data-timeline-year]');
+      
+      eventElements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const year = parseInt(element.getAttribute('data-timeline-year') || '0');
+        
+        // Mark year as visible if it's in viewport
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          setVisibleYears(prev => new Set(prev).add(year));
+          
+          // Set as active year if it's the most centered
+          const elementCenter = rect.top + rect.height / 2;
+          const windowCenter = window.innerHeight / 2;
+          const distance = Math.abs(elementCenter - windowCenter);
+          
+          if (distance < window.innerHeight / 3) {
+            setActiveYear(year);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Prepare timeline stepper data
+  const timelineStepperData = timelineEvents.map(event => ({
+    year: parseInt(event.year),
+    title: event.title,
+    subtitle: event.type === 'gallery' ? `${event.images?.length || 0} photos` : 
+               event.type === 'video' ? 'Video content' : 
+               event.type === 'events' ? `${event.events?.length || 0} events` : 
+               'Historical content',
+    isComplete: visibleYears.has(parseInt(event.year))
+  }));
+
   return (
     <section className="section-padding bg-black" id="story">
       <div className="container-snt">
@@ -91,11 +136,24 @@ const TimelineSection = () => {
             </p>
           </motion.div>
 
+          {/* Timeline Stepper */}
+          <motion.div
+            variants={itemVariants}
+            className="mb-16"
+          >
+            <TimelineStepper 
+              years={timelineStepperData}
+              activeYear={activeYear}
+              onYearChange={setActiveYear}
+            />
+          </motion.div>
+
           {/* Timeline Events */}
           <div className="space-y-24">
             {timelineEvents.map((event, index) => (
               <motion.div
                 key={event.year}
+                data-timeline-year={event.year}
                 variants={itemVariants}
                 className={`flex flex-col lg:flex-row gap-12 items-center ${
                   index % 2 === 1 ? 'lg:flex-row-reverse' : ''
