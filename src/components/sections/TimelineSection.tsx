@@ -2,58 +2,15 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar } from 'lucide-react';
-import TimelineStepper from './TimelineStepper';
+import TimelineStepper from '@/components/common/TimelineStepper';
 import { useState, useEffect } from 'react';
-import image1 from '@/assets/snt_bench_new.png';
-import image2 from '@/assets/sants_new.png';
-import image3 from '@/assets/snt_landscape_1983.jpg';
+import { TIMELINE_EVENTS } from '@/constants';
 
 const TimelineSection = () => {
   const [activeYear, setActiveYear] = useState<number|null>(null);
   const [visibleYears, setVisibleYears] = useState<Set<number>>(new Set([1983]));
 
-  const timelineEvents = [
-    {
-      year: '1983',
-      title: 'Architecture & Design',
-      content: 'The original plaza design was created as part of Barcelona\'s urban renewal project. The architectural vision aimed to create a multifunctional public space that would serve the community for decades.',
-      type: 'gallery',
-      images: [image1, image2, image3]
-    },
-    {
-      year: '1997',
-      title: 'Birth of Skate Culture',
-      content: 'Local skaters discovered the plaza\'s perfect concrete surfaces and began transforming it into a skate destination. This marked the beginning of Sants as a legendary spot in Barcelona\'s skate scene.',
-      type: 'video',
-      videoId: 'dQw4w9WgXcQ' // Example YouTube ID
-    },
-    {
-      year: '2007',
-      title: 'International Recognition',
-      content: 'Sants Skate Plaza gained international fame as skate magazines and professionals from around the world discovered its unique features and vibrant community.',
-      type: 'gallery',
-      images: ['/images/2007-1.jpg', '/images/2007-2.jpg', '/images/2007-3.jpg']
-    },
-    {
-      year: '2012',
-      title: 'Deterioration Begins',
-      content: 'Construction projects around the plaza began affecting the surface quality. The community noticed cracks and wear that threatened the skating experience and public safety.',
-      type: 'history',
-      image: '/images/2012-damage.jpg'
-    },
-    {
-      year: '2018',
-      title: 'Community Action',
-      content: 'SNT (Sants4Ever) was formed to organize repair efforts, events, and advocacy. The association officially registered and began working with local authorities.',
-      type: 'events',
-      events: [
-        'First community repair day',
-        'Skate jam fundraiser',
-        'Meeting with city council',
-        'Association official registration'
-      ]
-    }
-  ];
+  const timelineEvents = TIMELINE_EVENTS;
 
   const containerVariants = {
     hidden: { opacity: 0 },

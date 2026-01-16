@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import Marquee from './Marquee';
+import Marquee from '@/components/common/Marquee';
+import { SOCIAL_LINKS } from '@/constants';
 
 const HeroSection = () => {
   const marqueeText = "The project ★ The project ★ The project ★ The project ★ The project ★ ";
@@ -56,7 +57,7 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               className="btn-primary group"
-              onClick={() => window.open('https://www.change.org/p/salvemos-el-skate-plaza-de-sant-andreu', '_blank')}
+              onClick={() => window.open(SOCIAL_LINKS.changeOrg, '_blank')}
             >
               Firma la petición
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

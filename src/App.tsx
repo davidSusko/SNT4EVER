@@ -1,10 +1,11 @@
-import Navigation from './components/Navigation';
-import HeroSection from './components/HeroSection';
-import TimelineSection from './components/TimelineSection';
-import ImageGallery from './components/ImageGallery';
-import { VideoGallery } from './components/YouTubePlayer';
-import NewsEvents from './components/NewsEvents';
-import Footer from './components/Footer';
+import Navigation from './components/layout/Navigation';
+import HeroSection from './components/sections/HeroSection';
+import TimelineSection from './components/sections/TimelineSection';
+import ImageGallery from './components/sections/ImageGallery';
+import { VideoGallery } from './components/sections/YouTubePlayer';
+import NewsEvents from './components/sections/NewsEvents';
+import Footer from './components/layout/Footer';
+import { ARCHIVE_IMAGES, ARCHIVE_VIDEOS } from '@/constants';
 
 function App() {
   return (
@@ -28,14 +29,7 @@ function App() {
             <div className="mb-16">
               <h3 className="text-2xl font-bold text-white mb-8">Photo Archive</h3>
               <ImageGallery 
-                images={[
-                  { id: '1', src: '/images/archive1.jpg', alt: 'Early days of the plaza', caption: 'Original construction in 1983', year: 1983 },
-                  { id: '2', src: '/images/archive2.jpg', alt: 'Skaters in the 90s', caption: 'First generation skaters', year: 1997 },
-                  { id: '3', src: '/images/archive3.jpg', alt: 'Competition 2007', caption: 'International competition', year: 2007 },
-                  { id: '4', src: '/images/archive4.jpg', alt: 'Plaza renovation', caption: 'Community repair efforts', year: 2018 },
-                  { id: '5', src: '/images/archive5.jpg', alt: 'Recent events', caption: 'Annual skate jam', year: 2023 },
-                  { id: '6', src: '/images/archive6.jpg', alt: 'Aerial view', caption: 'Plaza from above', year: 2022 },
-                ]}
+                images={ARCHIVE_IMAGES}
                 layout="masonry"
                 columns={3}
               />
@@ -45,11 +39,7 @@ function App() {
             <div>
               <h3 className="text-2xl font-bold text-white mb-8">Video Archive</h3>
               <VideoGallery 
-                videos={[
-                  { id: 'dQw4w9WgXcQ', title: 'The Making of Sants Plaza', year: 1983 },
-                  { id: 'dQw4w9WgXcQ', title: 'Barcelona Skate Scene 1997', year: 1997 },
-                  { id: 'dQw4w9WgXcQ', title: 'International Skate Competition', year: 2007 },
-                ]}
+                videos={ARCHIVE_VIDEOS}
               />
             </div>
           </div>

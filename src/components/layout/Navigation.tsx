@@ -2,20 +2,10 @@ import { useState } from 'react';
 import { Menu, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { NAVIGATION_ITEMS } from '@/constants';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const menuItems = [
-    { label: 'The plans', href: '#plans' },
-    { label: 'Our story', href: '#story' },
-    { label: 'Archive', href: '#archive' },
-    { label: 'News/Events', href: '#news' },
-    { label: 'Docs', href: '#docs' },
-    { label: 'Join us!', href: '#join' },
-    { label: 'Contact', href: '#contact' },
-    { label: 'Shop', href: '#shop', isSpecial: true },
-  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-white/10">
@@ -31,7 +21,7 @@ const Navigation = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          {menuItems.map((item) => (
+          {NAVIGATION_ITEMS.map((item) => (
             <a
               key={item.label}
               href={item.href}
@@ -60,7 +50,7 @@ const Navigation = () => {
             </SheetTrigger>
             <SheetContent side="right" className="bg-black border-white/10 text-white">
               <div className="flex flex-col space-y-6 mt-8">
-                {menuItems.map((item) => (
+                {NAVIGATION_ITEMS.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}

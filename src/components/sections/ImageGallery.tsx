@@ -2,20 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { X, ZoomIn } from 'lucide-react';
-
-interface GalleryImage {
-  id: string;
-  src: string;
-  alt: string;
-  caption?: string;
-  year?: number;
-}
-
-interface ImageGalleryProps {
-  images: GalleryImage[];
-  layout?: 'grid' | 'masonry' | 'carousel';
-  columns?: 1 | 2 | 3 | 4;
-}
+import type { GalleryImage, ImageGalleryProps } from '@/types';
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ 
   images, 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Volume2, VolumeX } from 'lucide-react';
+import type { VideoGalleryProps } from '@/types';
 
 interface YouTubePlayerProps {
   videoId: string;
@@ -129,7 +130,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
 };
 
 // Video Gallery Component
-export const VideoGallery: React.FC<{ videos: Array<{ id: string; title: string; year?: number }> }> = ({ videos }) => {
+export const VideoGallery: React.FC<VideoGalleryProps> = ({ videos }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {videos.map((video) => (
