@@ -30,10 +30,16 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
       
       if (storySection) {
         const storyRect = storySection.getBoundingClientRect();
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Check if user is within the story section (more precise detection)
+        // Check if user is within story section (more precise detection)
         const inStorySection = storyRect.top < window.innerHeight + 200 && storyRect.bottom > -200;
-        setIsInSection(inStorySection);
+        
+        // Calculate all state values first, then batch update
+        let newStepperHeight = stepperHeight;
+        let newOriginalTop = originalTopPosition;
+        let newIsSticky = isSticky;
+        let newProgress = scrollProgress;
         
         // Store height and original position when first visible
         if (stepperElement && stepperElement.getBoundingClientRect().height > 0 && inStorySection) {
@@ -41,63 +47,57 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
           
           // Store height only once
           if (stepperHeight === 0) {
-            setStepperHeight(currentStepperRect.height);
+            newStepperHeight = currentStepperRect.height;
           }
           
           // Store original top position only once
           if (!originalTopPosition) {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const originalPos = currentStepperRect.top + scrollTop;
-            setOriginalTopPosition(originalPos);
+            newOriginalTop = currentStepperRect.top + currentScrollTop;
             console.log('Original position set:', {
               rectTop: currentStepperRect.top,
-              scrollTop,
-              originalPos
+              scrollTop: currentScrollTop,
+              originalPos: newOriginalTop
             });
           }
         }
         
         // Check if stepper should be sticky based on original position
-        if (stepperElement && originalTopPosition !== null) {
-          const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          //const currentStepperTop = currentScrollTop + 64; // 64px = header height
-          
+        if (stepperElement && newOriginalTop !== null) {
           // Should be sticky if scrolled past original position
-          const shouldBeSticky = inStorySection && currentScrollTop >= originalTopPosition - 64;
+          newIsSticky = inStorySection && currentScrollTop >= newOriginalTop - 64;
           
           console.log('Sticky Debug:', {
             currentScrollTop,
-            originalTopPosition,
-            shouldBeSticky,
+            originalTopPosition: newOriginalTop,
+            shouldBeSticky: newIsSticky,
             inStorySection,
-            condition: currentScrollTop >= originalTopPosition - 64
-          });
-          
-          setIsSticky(shouldBeSticky);
-        } else {
-          console.log('Sticky Debug: No stepper element or original position not set', {
-            hasStepper: !!stepperElement,
-            originalTopPosition
+            condition: currentScrollTop >= newOriginalTop - 64
           });
         }
         
-        // Calculate progress within the section (only when in section)
+        // Calculate progress within section (only when in section)
         if (inStorySection) {
-          const progress = Math.max(0, Math.min(1, 
+          newProgress = Math.max(0, Math.min(1, 
             (window.innerHeight - storyRect.top) / (storyRect.height + window.innerHeight)
           ));
-          setScrollProgress(progress);
         } else {
-          // Reset progress when not in section
-          setScrollProgress(0);
+          newProgress = 0;
+          newOriginalTop = null; // Reset when leaving section
         }
+        
+        // Batch all state updates together
+        setIsInSection(inStorySection);
+        setStepperHeight(newStepperHeight);
+        setOriginalTopPosition(newOriginalTop);
+        setIsSticky(newIsSticky);
+        setScrollProgress(newProgress);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [stepperHeight, originalTopPosition]);
+  }, [stepperHeight, originalTopPosition, isSticky, scrollProgress]);
 
   const handleYearClick = (year: number) => {
     onYearChange?.(year);
@@ -117,20 +117,7 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
     return index >= 0 ? index : 0;
   }, [years, activeYear]);
 
-  useEffect(() => {
-    // Ensure that if scrolling up again there is no active year in any of the indexes then it means that we out of of section and we need to 'reset' the conditions
-    if (activeYear === null) {
-      setIsSticky(false);
-      setScrollProgress(0);
-    }
-  }, [activeYear]);
 
-  useEffect(() => {
-    // Reset original position when leaving section completely
-    if (!isInSection) {
-      setOriginalTopPosition(null);
-    }
-  }, [isInSection]);
 
 
   return (
