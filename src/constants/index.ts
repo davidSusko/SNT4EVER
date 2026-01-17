@@ -18,14 +18,14 @@ export const ASSET_PATHS: AssetPaths = {
 };
 
 export const NAVIGATION_ITEMS = [
-  { label: 'The plans', href: '#plans' },
-  { label: 'Our story', href: '#story' },
-  { label: 'Archive', href: '#archive' },
-  { label: 'News/Events', href: '#news' },
-  { label: 'Docs', href: '#docs' },
-  { label: 'Join us!', href: '#join' },
-  { label: 'Contact', href: '#contact' },
-  { label: 'Shop', href: '#shop', isSpecial: true },
+  { label: 'The plans', href: '#plans', id: 'plans' },
+  { label: 'Our story', href: '#story', id: 'story' },
+  { label: 'Archive', href: '#archive', id: 'archive' },
+  { label: 'News/Events', href: '#news', id: 'news' },
+  { label: 'Docs', href: '#docs', id: 'docs' },
+  { label: 'Join us!', href: '#join', id: 'join' },
+  { label: 'Contact', href: '#contact', id: 'contact' },
+  { label: 'Shop', href: '#shop', id: 'shop', isSpecial: true },
 ];
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [

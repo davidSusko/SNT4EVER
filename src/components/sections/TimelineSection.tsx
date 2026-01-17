@@ -131,9 +131,24 @@ const TimelineSection = () => {
                 {/* Year Display */}
                 <div className="lg:w-1/4">
                   <div className="text-center lg:text-right">
-                    <span className="text-6xl md:text-7xl lg:text-8xl font-bold text-yellow/20">
+                    <motion.span
+                      className={`text-6xl md:text-7xl lg:text-8xl font-bold transition-colors duration-500 ${
+                        activeYear === parseInt(event.year) 
+                          ? 'text-yellow animate-year-glow' 
+                          : 'text-yellow/20'
+                      }`}
+                      initial={{ opacity: 0.6, scale: 0.8 }}
+                      animate={{ 
+                        opacity: activeYear === parseInt(event.year) ? 1 : 0.6,
+                        scale: activeYear === parseInt(event.year) ? 1 : 0.8
+                      }}
+                      transition={{ 
+                        duration: 0.3,
+                        ease: "easeInOut"
+                      }}
+                    >
                       {event.year}
-                    </span>
+                    </motion.span>
                   </div>
                 </div>
 

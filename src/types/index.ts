@@ -34,6 +34,7 @@ export interface TimelineStepperData {
 export interface NavigationItem {
   label: string;
   href: string;
+  id: string;
   isSpecial?: boolean;
 }
 
