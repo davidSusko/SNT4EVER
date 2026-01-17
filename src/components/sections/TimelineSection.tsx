@@ -98,10 +98,10 @@ const TimelineSection = () => {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-yellow">
-              Our Story
+              Nuestra Historia
             </h2>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              From architectural vision to cultural landmark, follow the journey of Sants skate plaza and the community that fights to preserve it.
+              Desde la visión arquitectónica hasta el hito cultural, sigue el viaje de la Plaça dels Països Catalans y la comunidad que lucha por preservarla.
             </p>
           </motion.div>
 

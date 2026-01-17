@@ -11,6 +11,11 @@ export const ASSET_PATHS: AssetPaths = {
     sntBench: '/src/assets/images/snt_bench.png',
     sntDestroyed: '/src/assets/images/snt_destroyed.png',
     localsBuilding: '/src/assets/images/localsBuilding.png',
+    // Placeholder images for timeline events (add actual images when available)
+    deterioration2012: '/images/2012-deterioration.jpg',
+    goldenEra: '/images/golden-era.jpg',
+    diyMaintenance: '/images/diy-maintenance.jpg',
+    snt4everFoundation: '/images/snt4ever-foundation.jpg',
   },
   videos: {
     // Add video paths when available
@@ -31,47 +36,78 @@ export const NAVIGATION_ITEMS = [
 export const TIMELINE_EVENTS: TimelineEvent[] = [
   {
     year: '1983',
-    title: 'Architecture & Design',
-    content: 'The original plaza design was created as part of Barcelona\'s urban renewal project. The architectural vision aimed to create a multifunctional public space that would serve the community for decades.',
+    title: 'El Nacimiento de la "Plaza Dura"',
+    content: 'Diseñada por los arquitectos Albert Viaplana y Helio Piñón, la plaza se presenta como una ruptura con el urbanismo tradicional. Ante la imposibilidad de plantar árboles sobre la losa ferroviaria, se crea una superficie mineral de granito y metal. En 1983 recibe el Premio FAD de Arquitectura, consolidándose como un referente internacional de la arquitectura moderna.',
     type: 'gallery',
     images: [
+      ASSET_PATHS.images.sntLandscape1983,
       ASSET_PATHS.images.sntBenchNew,
-      ASSET_PATHS.images.santsNew,
-      ASSET_PATHS.images.sntLandscape1983
+      ASSET_PATHS.images.santsNew
     ]
   },
   {
-    year: '1997',
-    title: 'Birth of Skate Culture',
-    content: 'Local skaters discovered the plaza\'s perfect concrete surfaces and began transforming it into a skate destination. This marked the beginning of Sants as a legendary spot in Barcelona\'s skate scene.',
-    type: 'video',
-    videoId: 'mZctJpnGNyI'
+    year: '1985',
+    title: 'El Descubrimiento',
+    content: 'Mientras Barcelona se preparaba para los Juegos Olímpicos, los primeros skaters locales descubrieron que el granito pulido y las formas abstractas de la plaza eran perfectas para patinar. Lo que fue diseñado como un espacio de tránsito se convirtió en un laboratorio de trucos, comenzando el uso de los bancos de granito originales.',
+    type: 'events',
+    events: [
+      'Primeras ruedas sobre granito pulido',
+      'Apropiación del espacio arquitectónico',
+      'Uso original de los bancos de granito',
+      'Transformación de tránsito a laboratorio skate'
+    ]
   },
   {
-    year: '2007',
-    title: 'International Recognition',
-    content: 'Sants Skate Plaza gained international fame as skate magazines and professionals from around the world discovered its unique features and vibrant community.',
-    type: 'gallery',
-    images: ['/images/2007-1.jpg', '/images/2007-2.jpg', '/images/2007-3.jpg']
+    year: '2000',
+    title: 'La Era Dorada',
+    content: 'Sants se convirtió en el epicentro mundial del skate. Patinadores de todo el mundo viajaban a Barcelona (la "Mecca del skate") y Sants era una parada obligatoria. El desgaste natural del granito y roturas accidentales crearon obstáculos únicos como el "Up-Ledge", volviéndose legendarios en la escena global.',
+    type: 'events',
+    events: [
+      'Aparición en vídeos de marcas internacionales',
+      'Destino mundial para skaters profesionales',
+      'Creación del legendario "Up-Ledge"',
+      'Consolidación como spot icónico global'
+    ]
   },
   {
     year: '2012',
-    title: 'Deterioration Begins',
-    content: 'Construction projects around the plaza began affecting the surface quality. The community noticed cracks and wear that threatened the skating experience and public safety.',
+    title: 'Deterioro y Olvido Institucional',
+    content: 'Las obras de la llegada del AVE degradaron el entorno. Se realizaron parches de hormigón y se eliminaron elementos originales. Ante la falta de mantenimiento por parte del Ayuntamiento o Adif, los patinadores locales empezaron a cuidar el espacio de forma informal, limpiando y reparando lo que podían.',
     type: 'history',
-    image: '/images/2012-damage.jpg'
+    image: ASSET_PATHS.images.deterioration2012
   },
   {
-    year: '2018',
-    title: 'Community Action',
-    content: 'SNT (Sants4Ever) was formed to organize repair efforts, events, and advocacy. The association officially registered and began working with local authorities.',
+    year: '2019',
+    title: 'Mantenimiento DIY',
+    content: 'Los locales de Sants llevaron cemento, masilla y herramientas para arreglar los bordillos de granito destrozados. Se recuperaron bancos que estaban fuera de uso. El spot ya no era solo un lugar para patinar, era un espacio autogestionado por la comunidad local.',
     type: 'events',
     events: [
-      'First community repair day',
-      'Skate jam fundraiser',
-      'Meeting with city council',
-      'Association official registration'
+      'Reparaciones con cemento y herramientas propias',
+      'Recuperación de bancos originales',
+      'Limpieza y mantenimiento informal',
+      'Construcción de comunidad autogestionada'
     ]
+  },
+  {
+    year: '2021',
+    title: 'El Nacimiento de SNT4EVER',
+    content: 'El 4 de enero de 2021 se registra oficialmente la Asociación SNT4EVER. Tras los anuncios de una nueva remodelación integral, el grupo se organiza para negociar con las instituciones y evitar la expulsión del skate. Se recogen miles de firmas y se consigue que el skate sea reconocido como un uso legítimo de la plaza.',
+    type: 'video',
+    videoId: '_LtYmEHNkHQ'
+  },
+  {
+    year: '2022',
+    title: 'Documentación del Legado',
+    content: 'Estreno del documental "En Resumen" que narra la historia de la plaza desde los ojos de quienes la han patinado durante décadas, subrayando su valor como patrimonio inmaterial de Barcelona. Una obra que preserva la memoria colectiva y lucha de la comunidad SNT.',
+    type: 'video',
+    videoId: 'bpNrTu-dQR8'
+  },
+  {
+    year: '2024',
+    title: 'Remodelación y Compromiso',
+    content: 'Febrero 2025: Cierre total de la plaza por las obras de Adif. SNT4EVER logra el compromiso municipal de que la nueva plaza (prevista para 2026) respetará los elementos icónicos. Se inaugura "Skate-Sants" en la Rambla de Sants como alternativa temporal durante las obras.',
+    type: 'video',
+    videoId: 'egDfjgsWVnk'
   }
 ];
 
