@@ -1,20 +1,26 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import Marquee from './Marquee';
-
+import Marquee from '@/components/common/Marquee';
+import { SOCIAL_LINKS } from '@/constants';
+import logo from '@/assets/images/SELLO-SNT.png';
 const HeroSection = () => {
-  const marqueeText = "The project ★ The project ★ The project ★ The project ★ The project ★ ";
-  
+  const marqueeText = "The project";
+  const marqueObject =  
+  <>
+  <span className="text-black font-bold text-2xl">
+            {marqueeText}
+          </span>
+          <img src={logo} alt="SNT Logo" className="h-8 mx-4 inline-block invert" />
+        </>;
+
   return (
     <section className="min-h-screen flex flex-col justify-center items-center pt-16 relative overflow-hidden bg-black">
       {/* Animated Marquee */}
       <div className="w-full bg-yellow py-4 mb-12">
-        <Marquee speed="normal" direction="left" pauseOnHover={true}>
-          <span className="text-black font-bold text-2xl">
-            {marqueeText}
-          </span>
-        </Marquee>
+        <Marquee speed="fast" direction="left" pauseOnHover={true}>
+          {Array(10).fill(marqueObject)}
+          </Marquee>
       </div>
 
       {/* Main Content */}
@@ -56,7 +62,7 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               className="btn-primary group"
-              onClick={() => window.open('https://www.change.org/p/salvemos-el-skate-plaza-de-sant-andreu', '_blank')}
+              onClick={() => window.open(SOCIAL_LINKS.changeOrg, '_blank')}
             >
               Firma la petición
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -88,6 +94,7 @@ const HeroSection = () => {
       <div className="absolute top-20 left-10 w-20 h-20 bg-yellow/10 rounded-full blur-xl" />
       <div className="absolute bottom-20 right-10 w-32 h-32 bg-yellow/10 rounded-full blur-2xl" />
       <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-yellow/5 rounded-full blur-lg" />
+    
     </section>
   );
 };

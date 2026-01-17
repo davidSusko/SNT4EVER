@@ -11,41 +11,56 @@ interface MarqueeProps {
 
 const Marquee: React.FC<MarqueeProps> = ({
   children,
-  speed = 'normal',
+  speed = 'fast',
   direction = 'left',
   pauseOnHover = true,
   className = ''
 }) => {
-  const getSpeedDuration = () => {
+  // Velocity-based animation: pixels per second
+  const getPixelsPerSecond = () => {
     switch (speed) {
       case 'slow':
-        return 40;
+        return 50; // pixels per second
       case 'fast':
-        return 15;
+        return 500; // pixels per second
       default:
-        return 25;
+        return 100; // pixels per second
     }
   };
 
+  // Calculate duration based on distance (100vw) and velocity
+  const getDuration = () => {
+    const pixelsPerSecond = getPixelsPerSecond();
+    const distancePercentage = 100; // moving 100% of width
+    // Assuming ~1920px at 100%, adjust based on typical viewport
+    const estimatedPixels = (distancePercentage / 100) * 1920;
+    return estimatedPixels / pixelsPerSecond;
+  };
+
   const getAnimationDirection = () => {
-    return direction === 'left' ? [-50, 0] : [0, -50];
+    return direction === 'left' ? [0, -100] : [-100, 0];
   };
 
   return (
     <div className={`w-full overflow-hidden ${className}`}>
       <motion.div
         className="flex whitespace-nowrap"
+        initial={{
+          x: direction === 'left' ? 0 : -100,
+        }}
         animate={{
           x: getAnimationDirection(),
         }}
         transition={{
-          duration: getSpeedDuration(),
+          duration: getDuration(),
           repeat: Infinity,
           ease: "linear",
+          repeatType: "loop",
         }}
         whileHover={pauseOnHover ? { animationPlayState: 'paused' } : {}}
       >
-        {/* Double the content for seamless loop */}
+        {/* Triple the content for seamless loop, especially at fast speeds */}
+        <div className="inline-block">{children}</div>
         <div className="inline-block">{children}</div>
         <div className="inline-block">{children}</div>
       </motion.div>

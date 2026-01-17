@@ -2,20 +2,14 @@ import { useState } from 'react';
 import { Menu, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { NAVIGATION_ITEMS } from '@/constants';
+import { useActiveSection } from '@/hooks';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const menuItems = [
-    { label: 'The plans', href: '#plans' },
-    { label: 'Our story', href: '#story' },
-    { label: 'Archive', href: '#archive' },
-    { label: 'News/Events', href: '#news' },
-    { label: 'Docs', href: '#docs' },
-    { label: 'Join us!', href: '#join' },
-    { label: 'Contact', href: '#contact' },
-    { label: 'Shop', href: '#shop', isSpecial: true },
-  ];
+  
+  const sectionIds = NAVIGATION_ITEMS.map(item => item.id);
+  const activeSection = useActiveSection(sectionIds);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-white/10">
@@ -31,14 +25,28 @@ const Navigation = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          {menuItems.map((item) => (
+          {NAVIGATION_ITEMS.map((item) => (
             <a
-              key={item.label}
+              key={item.id}
               href={item.href}
-              className={`nav-link text-sm ${
-                item.isSpecial ? 'bg-yellow text-black px-3 py-1 rounded-full hover:bg-yellow/90' : ''
+              className={`nav-link text-sm transition-all duration-300 relative ${
+                item.isSpecial 
+                  ? 'bg-yellow text-black px-3 py-1 rounded-full hover:bg-yellow/90' 
+                  : activeSection === item.id
+                    ? 'text-yellow font-semibold'
+                      : 'text-white hover:text-yellow'
               }`}
             >
+              {/* Active indicator */}
+              {activeSection === item.id && !item.isSpecial && (
+                <span 
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-yellow rounded-full transition-all duration-300"
+                  style={{
+                    width: '100%',
+                    opacity: 1
+                  }}
+                />
+              )}
               {item.label}
             </a>
           ))}
@@ -59,16 +67,24 @@ const Navigation = () => {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-black border-white/10 text-white">
-              <div className="flex flex-col space-y-6 mt-8">
-                {menuItems.map((item) => (
+               <div className="flex flex-col space-y-6 mt-8">
+                {NAVIGATION_ITEMS.map((item) => (
                   <a
-                    key={item.label}
+                    key={item.id}
                     href={item.href}
-                    className={`text-lg font-medium hover:text-yellow transition-colors ${
-                      item.isSpecial ? 'bg-yellow text-black px-3 py-2 rounded-lg text-center' : ''
-                    }`}
+                    className={`text-lg font-medium transition-all duration-300 relative ${
+                      item.isSpecial 
+                        ? 'bg-yellow text-black px-3 py-2 rounded-lg text-center' 
+                        : activeSection === item.id
+                          ? 'text-yellow font-semibold'
+                            : 'text-white hover:text-yellow'
+                      }`}
                     onClick={() => setIsOpen(false)}
                   >
+                    {/* Active indicator */}
+                    {activeSection === item.id && !item.isSpecial && (
+                      <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-yellow rounded-full" />
+                    )}
                     {item.label}
                   </a>
                 ))}

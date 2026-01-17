@@ -2,58 +2,15 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar } from 'lucide-react';
-import TimelineStepper from './TimelineStepper';
+import TimelineStepper from '@/components/common/TimelineStepper';
 import { useState, useEffect } from 'react';
-import image1 from '@/assets/snt_bench_new.png';
-import image2 from '@/assets/sants_new.png';
-import image3 from '@/assets/snt_landscape_1983.jpg';
+import { TIMELINE_EVENTS } from '@/constants';
 
 const TimelineSection = () => {
   const [activeYear, setActiveYear] = useState<number|null>(null);
   const [visibleYears, setVisibleYears] = useState<Set<number>>(new Set([1983]));
 
-  const timelineEvents = [
-    {
-      year: '1983',
-      title: 'Architecture & Design',
-      content: 'The original plaza design was created as part of Barcelona\'s urban renewal project. The architectural vision aimed to create a multifunctional public space that would serve the community for decades.',
-      type: 'gallery',
-      images: [image1, image2, image3]
-    },
-    {
-      year: '1997',
-      title: 'Birth of Skate Culture',
-      content: 'Local skaters discovered the plaza\'s perfect concrete surfaces and began transforming it into a skate destination. This marked the beginning of Sants as a legendary spot in Barcelona\'s skate scene.',
-      type: 'video',
-      videoId: 'dQw4w9WgXcQ' // Example YouTube ID
-    },
-    {
-      year: '2007',
-      title: 'International Recognition',
-      content: 'Sants Skate Plaza gained international fame as skate magazines and professionals from around the world discovered its unique features and vibrant community.',
-      type: 'gallery',
-      images: ['/images/2007-1.jpg', '/images/2007-2.jpg', '/images/2007-3.jpg']
-    },
-    {
-      year: '2012',
-      title: 'Deterioration Begins',
-      content: 'Construction projects around the plaza began affecting the surface quality. The community noticed cracks and wear that threatened the skating experience and public safety.',
-      type: 'history',
-      image: '/images/2012-damage.jpg'
-    },
-    {
-      year: '2018',
-      title: 'Community Action',
-      content: 'SNT (Sants4Ever) was formed to organize repair efforts, events, and advocacy. The association officially registered and began working with local authorities.',
-      type: 'events',
-      events: [
-        'First community repair day',
-        'Skate jam fundraiser',
-        'Meeting with city council',
-        'Association official registration'
-      ]
-    }
-  ];
+  const timelineEvents = TIMELINE_EVENTS;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -141,10 +98,10 @@ const TimelineSection = () => {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-yellow">
-              Our Story
+              Nuestra Historia
             </h2>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              From architectural vision to cultural landmark, follow the journey of Sants skate plaza and the community that fights to preserve it.
+              Desde la visión arquitectónica hasta el hito cultural, sigue el viaje de la Plaça dels Països Catalans y la comunidad que lucha por preservarla.
             </p>
           </motion.div>
 
@@ -174,9 +131,24 @@ const TimelineSection = () => {
                 {/* Year Display */}
                 <div className="lg:w-1/4">
                   <div className="text-center lg:text-right">
-                    <span className="text-6xl md:text-7xl lg:text-8xl font-bold text-yellow/20">
+                    <motion.span
+                      className={`text-6xl md:text-7xl lg:text-8xl font-bold transition-colors duration-500 ${
+                        activeYear === parseInt(event.year) 
+                          ? 'text-yellow animate-year-glow' 
+                          : 'text-yellow/20'
+                      }`}
+                      initial={{ opacity: 0.6, scale: 0.8 }}
+                      animate={{ 
+                        opacity: activeYear === parseInt(event.year) ? 1 : 0.6,
+                        scale: activeYear === parseInt(event.year) ? 1 : 0.8
+                      }}
+                      transition={{ 
+                        duration: 0.3,
+                        ease: "easeInOut"
+                      }}
+                    >
                       {event.year}
-                    </span>
+                    </motion.span>
                   </div>
                 </div>
 
