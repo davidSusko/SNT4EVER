@@ -1,5 +1,12 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useEffect, useState } from 'react';
 
 interface TimelineYear {
@@ -105,7 +112,14 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
     const eventElements = document.querySelectorAll('[data-timeline-year]');
     eventElements.forEach(el => {
       if (el.getAttribute('data-timeline-year') === year.toString()) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const isDesktop = window.innerWidth >= 768;
+        const headerOffset = isDesktop ? 92 : 56;
+        const totalOffset = headerOffset + (stepperHeight || 100) + 32; // 32px extra space
+
+        window.scrollTo({
+          top: el.getBoundingClientRect().top + window.scrollY - totalOffset,
+          behavior: 'smooth'
+        });
       }
     });
   };
@@ -137,8 +151,8 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
         }}
         style={{ overflow: 'hidden' }}
         className={`w-full transition-all duration-300 ${isSticky
-            ? 'fixed top-24 left-0 right-0 z-40 bg-black/95 backdrop-blur-md border-b border-white/10'
-            : 'relative'
+          ? 'fixed top-14 md:top-24 left-0 right-0 z-40 bg-black/95 backdrop-blur-md border-b border-white/10'
+          : 'relative'
           }`}
       >
         <div className={`container-snt py-4 ${isSticky ? 'py-3' : ''}`}>
@@ -150,21 +164,25 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
                 {/* Desktop: Clean dropdown selector */}
                 <div className="hidden md:block">
                   <div className="flex items-center gap-4">
-                    <select
-                      value={activeYear || years[0]?.year || ''}
-                      onChange={(e) => handleYearClick(parseInt(e.target.value))}
-                      className="flex-1 bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow focus:ring-1 focus:ring-yellow transition-colors"
+                    <Select
+                      value={(activeYear || years[0]?.year || '').toString()}
+                      onValueChange={(val) => handleYearClick(parseInt(val))}
                     >
-                      {years.map((yearData) => (
-                        <option
-                          key={yearData.year}
-                          value={yearData.year}
-                          className="bg-black text-white"
-                        >
-                          {yearData.year} - {yearData.title}
-                        </option>
-                      ))}
-                    </select>
+                      <SelectTrigger className="flex-1 h-12 bg-black border-2 border-yellow rounded-lg px-4 text-white text-base focus:ring-1 focus:ring-yellow transition-colors">
+                        <SelectValue placeholder="Select year" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-black border-2 border-yellow text-white">
+                        {years.map((yearData) => (
+                          <SelectItem
+                            key={yearData.year}
+                            value={yearData.year.toString()}
+                            className="focus:bg-yellow focus:text-black cursor-pointer pl-3"
+                          >
+                            {yearData.year} - {yearData.title}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
 
                     <Button
                       onClick={() => {
@@ -172,7 +190,7 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
                         const nextIndex = (currentIndex + 1) % years.length;
                         handleYearClick(years[nextIndex].year);
                       }}
-                      className="bg-yellow text-black hover:bg-yellow/90 px-4"
+                      className="bg-yellow text-black hover:bg-yellow/90 px-4 h-12"
                     >
                       Next →
                     </Button>
@@ -189,16 +207,16 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
                           <button
                             onClick={() => handleYearClick(yearData.year)}
                             className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${isActive
-                                ? 'bg-yellow shadow-lg shadow-yellow/50'
-                                : isCompleted
-                                  ? 'bg-green-500/50 hover:bg-green-500/70'
-                                  : 'bg-white/20 hover:bg-white/30'
+                              ? 'bg-yellow shadow-lg shadow-yellow/50'
+                              : isCompleted
+                                ? 'bg-green-500/50 hover:bg-green-500/70'
+                                : 'bg-white/20 hover:bg-white/30'
                               }`}
                             aria-label={`Go to ${yearData.year}`}
                           />
                           <span className={`text-xs transition-colors ${isActive
-                              ? 'text-yellow font-bold'
-                              : 'text-white/40'
+                            ? 'text-yellow font-bold'
+                            : 'text-white/40'
                             }`}>
                             {yearData.year.toString().slice(-2)}
                           </span>
@@ -211,21 +229,25 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
                 {/* Mobile: Vertical dropdown */}
                 <div className="md:hidden">
                   <div className="flex items-center gap-2">
-                    <select
-                      value={activeYear || years[0]?.year || ''}
-                      onChange={(e) => handleYearClick(parseInt(e.target.value))}
-                      className="flex-1 bg-black/50 border border-white/20 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-yellow focus:ring-1 focus:ring-yellow"
+                    <Select
+                      value={(activeYear || years[0]?.year || '').toString()}
+                      onValueChange={(val) => handleYearClick(parseInt(val))}
                     >
-                      {years.map((yearData) => (
-                        <option
-                          key={yearData.year}
-                          value={yearData.year}
-                          className="bg-black text-white"
-                        >
-                          {yearData.year} - {yearData.title}
-                        </option>
-                      ))}
-                    </select>
+                      <SelectTrigger className="flex-1 h-10 bg-black border-2 border-yellow rounded-lg px-3 text-white text-sm focus:ring-1 focus:ring-yellow transition-colors">
+                        <SelectValue placeholder="Select year" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-black border-2 border-yellow text-white">
+                        {years.map((yearData) => (
+                          <SelectItem
+                            key={yearData.year}
+                            value={yearData.year.toString()}
+                            className="focus:bg-yellow focus:text-black cursor-pointer text-sm pl-2"
+                          >
+                            {yearData.year} - {yearData.title}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
 
                     <Button
                       onClick={() => {
@@ -250,16 +272,16 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
                           <button
                             onClick={() => handleYearClick(yearData.year)}
                             className={`w-2 h-2 rounded-full transition-all duration-300 hover:scale-125 ${isActive
-                                ? 'bg-yellow shadow-lg shadow-yellow/50'
-                                : isCompleted
-                                  ? 'bg-green-500/50 hover:bg-green-500/70'
-                                  : 'bg-white/20 hover:bg-white/30'
+                              ? 'bg-yellow shadow-lg shadow-yellow/50'
+                              : isCompleted
+                                ? 'bg-green-500/50 hover:bg-green-500/70'
+                                : 'bg-white/20 hover:bg-white/30'
                               }`}
                             aria-label={`Go to ${yearData.year}`}
                           />
                           <span className={`text-xs transition-colors ${isActive
-                              ? 'text-yellow font-bold'
-                              : 'text-white/40'
+                            ? 'text-yellow font-bold'
+                            : 'text-white/40'
                             }`}>
                             {yearData.year.toString().slice(-2)}
                           </span>
