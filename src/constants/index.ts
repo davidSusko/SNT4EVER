@@ -30,7 +30,6 @@ export const NAVIGATION_ITEMS = [
   { label: 'Docs', href: '#docs', id: 'docs' },
   { label: 'Join us!', href: '#join', id: 'join' },
   { label: 'Contact', href: '#contact', id: 'contact' },
-  { label: 'Shop', href: '#shop', id: 'shop', isSpecial: true },
 ];
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [
