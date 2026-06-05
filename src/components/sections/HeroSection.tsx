@@ -13,9 +13,9 @@ const HeroSection = () => {
   );
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center pt-32 md:pt-40 relative overflow-hidden bg-black">
+    <section className="min-h-screen flex flex-col justify-center items-center pt-24 md:pt-40 relative overflow-hidden bg-black">
       {/* Animated Marquee */}
-      <div className="w-full bg-yellow py-1 md:py-2 mb-16 mt-8 md:mt-12 flex items-center overflow-hidden">
+      <div className="hidden w-full bg-yellow py-1 md:py-2 mb-16 mt-8 md:mt-12 md:flex items-center overflow-hidden">
         <Marquee speed="slow" direction="right" pauseOnHover={false}>
           {Array(10).fill(null).map((_, i) => renderMarqueeItem(i))}
         </Marquee>

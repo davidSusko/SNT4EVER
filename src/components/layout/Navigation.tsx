@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Menu, ShoppingCart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ShoppingCart, Plus, ArrowDown } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import Marquee from '@/components/common/Marquee';
 import { NAVIGATION_ITEMS } from '@/constants';
 import { useActiveSection } from '@/hooks';
 import logo from '@/assets/images/ICON-SNT-HEADER.png';
@@ -13,8 +13,8 @@ const Navigation = () => {
   const activeSection = useActiveSection(sectionIds);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-75 font-mono">
-      <nav className="container-snt h-24 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 md:bg-black md:bg-opacity-75 bg-yellow font-mono">
+      <nav className="container-snt h-24 hidden md:flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
           <a href="/" className="flex items-center">
@@ -37,20 +37,27 @@ const Navigation = () => {
             <ShoppingCart className="h-5 w-5" />
           </a>
         </div>
+      </nav>
 
-        {/* Mobile Navigation */}
-        <div className="md:hidden flex items-center space-x-4">
-          {/* Cart Icon */}
-          <Button variant="ghost" size="icon" className="text-white hover:text-yellow">
-            <ShoppingCart className="h-5 w-5" />
-          </Button>
+      {/* Mobile Navigation */}
+      <div className="md:hidden flex items-center justify-between h-14 w-full relative overflow-hidden border-b-2 border-black">
+        <div className="flex-1 overflow-hidden h-full flex items-center">
+          <Marquee speed="slow" direction="right" pauseOnHover={false}>
+            {Array(10).fill(null).map((_, i) => (
+              <span key={i} className="inline-flex items-center gap-3 mx-3 text-black font-bold text-3xl shrink-0 whitespace-nowrap leading-none tracking-tight">
+                The project
+                <ArrowDown className="h-6 w-6" strokeWidth={3} />
+              </span>
+            ))}
+          </Marquee>
+        </div>
 
-          {/* Hamburger Menu */}
+        <div className="h-14 w-14 bg-black flex-shrink-0 flex items-center justify-center z-10 border-l-2 border-black">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-white hover:text-yellow">
-                <Menu className="h-5 w-5" />
-              </Button>
+              <button className="flex items-center justify-center w-full h-full text-yellow hover:text-white transition-colors focus:outline-none">
+                <Plus className="h-8 w-8" strokeWidth={3} />
+              </button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-black border-white/10 text-white">
               <div className="flex flex-col space-y-6 mt-8">
@@ -58,7 +65,7 @@ const Navigation = () => {
                   <a
                     key={item.id}
                     href={item.href}
-                    className={`text-lg font-medium transition-all duration-300 relative ${item.isSpecial
+                    className={`text-4xl font-medium transition-all duration-300 relative ${item.isSpecial
                       ? 'bg-yellow text-black px-3 py-2 rounded-lg text-center'
                       : activeSection === item.id
                         ? 'text-yellow font-semibold'
@@ -84,7 +91,7 @@ const Navigation = () => {
             </SheetContent>
           </Sheet>
         </div>
-      </nav>
+      </div>
     </header>
   );
 };
