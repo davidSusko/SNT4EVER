@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, MapPin, ExternalLink } from 'lucide-react';
+import SectionMarquee from '@/components/common/SectionMarquee';
 
 interface NewsItem {
   id: string;
@@ -110,8 +111,12 @@ const NewsEvents: React.FC = () => {
   };
 
   return (
-    <section className="section-padding bg-black" id="news">
-      <div className="container-snt">
+    <section className="bg-black" id="news">
+      <SectionMarquee 
+        text="News & Events" 
+        className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
+      />
+      <div className="container-snt pt-24 pb-24">
         <motion.div
           initial="hidden"
           whileInView="visible"

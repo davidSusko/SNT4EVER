@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Calendar } from 'lucide-react';
+import { Calendar, Maximize2 } from 'lucide-react';
 import TimelineStepper from '@/components/common/TimelineStepper';
+import SectionMarquee from '@/components/common/SectionMarquee';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useState, useEffect } from 'react';
 import { TIMELINE_EVENTS } from '@/constants';
 
@@ -73,19 +75,29 @@ const TimelineSection = () => {
   }, []);
 
   // Prepare timeline stepper data
-  const timelineStepperData = timelineEvents.map(event => ({
-    year: parseInt(event.year),
-    title: event.title,
-    subtitle: event.type === 'gallery' ? `${event.images?.length || 0} photos` : 
-               event.type === 'video' ? 'Video content' : 
-               event.type === 'events' ? `${event.events?.length || 0} events` : 
-               'Historical content',
-    isComplete: visibleYears.has(parseInt(event.year))
-  }));
+  const timelineStepperData = timelineEvents.reduce((acc: any[], event) => {
+    const year = parseInt(event.year);
+    if (!acc.find(item => item.year === year)) {
+      acc.push({
+        year,
+        title: event.title,
+        subtitle: event.type === 'gallery' ? `${event.images?.length || 0} photos` : 
+                   event.type === 'video' ? 'Video content' : 
+                   event.type === 'events' ? `${event.events?.length || 0} events` : 
+                   'Historical content',
+        isComplete: visibleYears.has(year)
+      });
+    }
+    return acc;
+  }, []);
   console.log('Active Year:', activeYear);  
   return (
-    <section className="section-padding bg-black" id="story">
-      <div className="container-snt">
+    <section className="bg-black" id="story">
+      <SectionMarquee 
+        text="Our History" 
+        className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
+      />
+      <div className="container-snt pt-24 pb-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -165,12 +177,12 @@ const TimelineSection = () => {
                       </p>
 
                       {/* Video Content */}
-                      {event.type === 'video' && event.videoId && (
+                      {event.videoId && (
                         <div className="aspect-video mb-8 rounded-lg overflow-hidden bg-black/50">
                           <iframe 
                             width="100%" 
                             height="100%" 
-                            src="https://www.youtube.com/embed/mZctJpnGNyI?si=y8Jn4n_h1BLKGnEq" 
+                            src={`https://www.youtube.com/embed/${event.videoId}`} 
                             title="YouTube video player" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                             referrerPolicy="strict-origin-when-cross-origin" 
@@ -179,19 +191,62 @@ const TimelineSection = () => {
                       )}
 
                       {/* Gallery Content */}
-                      {event.type === 'gallery' && event.images && (
+                      {event.images && (
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                           {event.images.map((_, imgIndex) => (
-                            <div
-                              key={imgIndex}
-                              className="aspect-square bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer"
-                            >
-                              <img
-                                src={event.images![imgIndex]}
-                                alt={`Image ${imgIndex + 1} for ${event.title}`}
-                                className="object-cover w-full h-full rounded-lg"
-                              />                            </div>
+                            <Dialog key={imgIndex}>
+                              <DialogTrigger asChild>
+                                <div className="group relative aspect-square bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-all cursor-pointer overflow-hidden">
+                                  <img
+                                    src={event.images![imgIndex]}
+                                    alt={`Image ${imgIndex + 1} for ${event.title}`}
+                                    className="object-cover w-full h-full rounded-lg transition-transform duration-500 group-hover:scale-110"
+                                  />
+                                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
+                                    <Maximize2 className="text-white w-8 h-8" />
+                                  </div>
+                                </div>
+                              </DialogTrigger>
+                              <DialogContent className="max-w-4xl p-1 bg-black/90 border-white/10">
+                                <div className="relative w-full h-[80vh] flex items-center justify-center bg-black rounded-sm overflow-hidden">
+                                  <img
+                                    src={event.images![imgIndex]}
+                                    alt={`Enlarged image ${imgIndex + 1} for ${event.title}`}
+                                    className="max-w-full max-h-full object-contain"
+                                  />
+                                </div>
+                              </DialogContent>
+                            </Dialog>
                           ))}
+                        </div>
+                      )}
+
+                      {/* Single Image Content */}
+                      {event.image && (
+                        <div className="mb-8">
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <div className="group relative w-full bg-white/5 rounded-lg flex items-center justify-center hover:bg-white/10 transition-all cursor-pointer overflow-hidden">
+                                <img
+                                  src={event.image}
+                                  alt={`Image for ${event.title}`}
+                                  className="object-cover w-full max-h-[400px] rounded-lg transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
+                                  <Maximize2 className="text-white w-8 h-8" />
+                                </div>
+                              </div>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-4xl p-1 bg-black/90 border-white/10">
+                              <div className="relative w-full h-[80vh] flex items-center justify-center bg-black rounded-sm overflow-hidden">
+                                <img
+                                  src={event.image}
+                                  alt={`Enlarged image for ${event.title}`}
+                                  className="max-w-full max-h-full object-contain"
+                                />
+                              </div>
+                            </DialogContent>
+                          </Dialog>
                         </div>
                       )}
 
