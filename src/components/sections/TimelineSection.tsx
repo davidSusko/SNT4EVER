@@ -1,14 +1,16 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Calendar, Maximize2 } from 'lucide-react';
+import { Maximize2 } from 'lucide-react';
 import TimelineStepper from '@/components/common/TimelineStepper';
 import SectionMarquee from '@/components/common/SectionMarquee';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useState, useEffect } from 'react';
 import { TIMELINE_EVENTS } from '@/constants';
+import { useTranslation } from "react-i18next";
 
 const TimelineSection = () => {
+  const { t } = useTranslation();
   const [activeYear, setActiveYear] = useState<number|null>(null);
   const [visibleYears, setVisibleYears] = useState<Set<number>>(new Set([1983]));
 
@@ -110,11 +112,9 @@ const TimelineSection = () => {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-yellow">
-              Nuestra Historia
-            </h2>
+              {t('jsx_nuestra_historia')}</h2>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Desde la visión arquitectónica hasta el hito cultural, sigue el viaje de la Plaça dels Països Catalans y la comunidad que lucha por preservarla.
-            </p>
+              {t('jsx_desde_la_visi_n_arquitect_nica')}</p>
           </motion.div>
 
           {/* Timeline Stepper */}
@@ -168,13 +168,23 @@ const TimelineSection = () => {
                 <div className="lg:w-3/4">
                   <Card className="card-dark border-white/10 overflow-hidden">
                     <CardContent className="p-8 md:p-12">
-                      <h3 className="text-3xl md:text-4xl font-bold mb-6 text-yellow">
-                        {event.title}
-                      </h3>
-                      
-                      <p className="text-lg md:text-xl text-white mb-8 leading-relaxed">
-                        {event.content}
-                      </p>
+                      {/* Header */}
+                      <div className="mb-6 md:mb-10 text-center md:text-left">
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          className="inline-block px-4 py-2 bg-yellow text-black font-bold rounded-full mb-4 md:mb-6 text-sm md:text-base shadow-lg shadow-yellow/20"
+                        >
+                          {event.year}
+                        </motion.div>
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight">
+                          {t(`timeline.${event.year}.title`, { defaultValue: event.title })}
+                        </h3>
+                        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                          {t(`timeline.${event.year}.content`, { defaultValue: event.content })}
+                        </p>
+                      </div>
 
                       {/* Video Content */}
                       {event.videoId && (
@@ -252,16 +262,29 @@ const TimelineSection = () => {
 
                       {/* Events List */}
                       {event.type === 'events' && event.events && (
-                        <div className="space-y-3 mb-8">
-                          {event.events.map((eventItem, eventIndex) => (
-                            <div
-                              key={eventIndex}
-                              className="flex items-center gap-3 text-white bg-white/5 rounded-lg p-3"
-                            >
-                              <Calendar className="h-4 w-4 text-yellow flex-shrink-0" />
-                              <span>{eventItem}</span>
-                            </div>
-                          ))}
+                        <div className="bg-black/50 rounded-xl p-4 md:p-6 lg:p-8 border border-white/10 backdrop-blur-sm h-full flex flex-col justify-center mb-8">
+                          <h4 className="text-xl md:text-2xl font-bold text-yellow mb-4 md:mb-6">
+                            {t('jsx_key_moments', { defaultValue: 'Momentos Clave' })}
+                          </h4>
+                          <ul className="space-y-3 md:space-y-4">
+                            {event.events.map((item, i) => (
+                              <motion.li
+                                key={i}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                className="flex items-start text-white/80 group text-sm md:text-base"
+                              >
+                                <span className="text-yellow mr-3 md:mr-4 mt-1 group-hover:scale-125 transition-transform">
+                                  ✦
+                                </span>
+                                <span className="leading-relaxed">
+                                  {t(`timeline.${event.year}.events.${i}`, { defaultValue: item })}
+                                </span>
+                              </motion.li>
+                            ))}
+                          </ul>
                         </div>
                       )}
 
@@ -272,8 +295,7 @@ const TimelineSection = () => {
                         className="btn-secondary"
                         onClick={() => window.open('#archive', '_self')}
                       >
-                        View Archive
-                      </Button>
+                        {t('jsx_view_archive')}</Button>
                     </CardContent>
                   </Card>
                 </div>

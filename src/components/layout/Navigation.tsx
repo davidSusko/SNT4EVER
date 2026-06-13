@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ShoppingCart, Plus, ArrowDown } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Marquee from '@/components/common/Marquee';
 import { NAVIGATION_ITEMS } from '@/constants';
 import { useActiveSection } from '@/hooks';
 import logo from '@/assets/images/ICON-SNT-HEADER.png';
+import { LanguageSelector } from '@/components/common/LanguageSelector';
 
 const Navigation = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showProjectLink, setShowProjectLink] = useState(false);
@@ -122,10 +125,11 @@ const Navigation = () => {
                 } transition-colors cursor-pointer`}
                 onClick={(e) => handleNavClick(e, item.href)}
               >
-                {item.label}
+                {t(`nav.${item.id}`)}
               </a>
             );
           })}
+          <LanguageSelector />
           <a href="#cart" className="text-white hover:text-gray-300 ml-2">
             <ShoppingCart className="h-5 w-5" />
           </a>
@@ -174,16 +178,13 @@ const Navigation = () => {
                     {activeSection === item.id && !item.isSpecial && (
                       <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-yellow rounded-full" />
                     )}
-                    {item.label}
+                    {t(`nav.${item.id}`)}
                   </a>
                 ))}
+              </div>
 
-                {/* Language Toggle */}
-                <div className="pt-4 border-t border-white/10">
-                  <button className="text-sm text-muted-foreground hover:text-yellow transition-colors">
-                    English
-                  </button>
-                </div>
+              <div className="mt-8 flex justify-center border-t border-white/10 pt-4">
+                <LanguageSelector />
               </div>
             </SheetContent>
           </Sheet>

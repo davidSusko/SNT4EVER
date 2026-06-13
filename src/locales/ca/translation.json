@@ -1,0 +1,123 @@
+{
+  "nav": {
+    "hero": "El projecte",
+    "story": "La nostra història",
+    "archive": "Arxiu",
+    "news": "Notícies i Esdeveniments",
+    "docs": "Documents",
+    "join": "Uneix-te!",
+    "contact": "Contacte"
+  },
+  "jsx_archive": "Arxiu",
+  "jsx_explore_our_collection_of_hist": "Explora la nostra col·lecció de fotos històriques, vídeos i documents que expliquen la història de la Skate Plaza de Sants.",
+  "jsx_photo_archive": "Arxiu Fotogràfic",
+  "jsx_video_archive": "Arxiu de Vídeo",
+  "jsx_join_us": "Uneix-te a nosaltres!",
+  "jsx_become_a_member_of_snt_and_hel": "Fes-te membre de SNT i ajuda'ns a preservar la plaça per a les futures generacions.",
+  "jsx__nete_a_la_asociaci_n": "Uneix-te a l'associació",
+  "jsx_contact": "Contacte",
+  "jsx_get_in_touch_with_us_for_colla": "Posa't en contacte amb nosaltres per a col·laboracions, donacions o qualsevol dubte sobre el projecte.",
+  "jsx_next": "Següent →",
+  "jsx_no_timeline_events_available": "No hi ha esdeveniments disponibles",
+  "jsx_click_any_year_to_jump_to_that": "Fes clic a qualsevol any per saltar a aquesta secció de la línia del temps",
+  "jsx_collaborators": "Col·laboradors",
+  "jsx_info_snt4ever_com": "info@snt4ever.com",
+  "jsx_location": "Ubicació",
+  "jsx_sants_skate_plaza": "Sants Skate Plaza",
+  "jsx_barcelona_spain": "Barcelona, Espanya",
+  "jsx_social": "Social",
+  "jsx__snt4ever": "@snt4ever",
+  "jsx_snt4ever_all_rights_reserved": "SNT4EVER. Tots els drets reservats.",
+  "jsx_privacy_policy": "Política de privadesa",
+  "jsx_terms_of_service": "Condicions del servei",
+  "jsx_cookies": "Galetes",
+  "jsx_made_with_in_barcelona_spain": "Fet amb ❤️ a Barcelona",
+  "jsx_snt4ever_es_una_asociaci_n_for": "SNT4EVER és una associació formada per skaters de Barcelona que han dinamitzat l'espai de l'estació de Sants de manera totalment independent. Ara es constitueix com a associació entre l'ajuntament, els veïns i els patinadors de la plaça, per a ",
+  "jsx_salvar_una_plaza_m_tica_dentro": "salvar una plaça mítica dins el món de l'skateboarding i iniciar el diàleg",
+  "jsx_entre_el_ayuntamiento_y_los_sk": "entre l'ajuntament i els skaters. A més de promoure la cultura urbana, en concret la de l'skateboarding, entre les diferents associacions del barri, escoles i tothom qui estigui interessat a col·laborar amb nosaltres.",
+  "jsx_firma_la_petici_n": "Signa la petició",
+  "jsx_desde_1983_defendiendo_el_skat": "Des de 1983 defensant l'skate a Barcelona • Since 1983 defending skate in Barcelona",
+  "jsx_news_events": "Notícies i Esdeveniments",
+  "jsx_stay_updated_with_the_latest_h": "Estigues al dia de les últimes novetats, esdeveniments i notícies de SNT i la comunitat de skate.",
+  "jsx_all": "Tot",
+  "jsx_news": "Notícies",
+  "jsx_events": "Esdeveniments",
+  "jsx_image": "Imatge",
+  "jsx_load_more_news": "Carregar Més Notícies",
+  "jsx_stay_connected": "Estigues Connectat",
+  "jsx_subscribe_to_our_newsletter_fo": "Subscriu-te a la nostra newsletter per rebre actualitzacions setmanals sobre esdeveniments, notícies i maneres de donar suport a la plaça.",
+  "jsx_subscribe": "Subscriu-te",
+  "jsx_nuestra_historia": "La Nostra Història",
+  "jsx_desde_la_visi_n_arquitect_nica": "Des de la visió arquitectònica fins a la fita cultural, segueix el viatge de la Plaça dels Països Catalans i la comunitat que lluita per preservar-la.",
+  "jsx_view_archive": "Veure l'Arxiu",
+  "jsx_click_to_play_youtube": "Fes clic per reproduir • YouTube",
+  "jsx_youtube": "YouTube",
+  "jsx_close": "Tancar",
+  "timeline": {
+    "1983": {
+      "title": "El Naixement de la \"Plaça Dura\"",
+      "content": "Dissenyada pels arquitectes Albert Viaplana i Helio Piñón, la plaça es presenta com una ruptura amb l'urbanisme tradicional. Davant la impossibilitat de plantar arbres sobre la llosa ferroviària, es crea una superfície mineral de granit i metall. L'any 1983 rep el Premi FAD d'Arquitectura, consolidant-se com un referent internacional de l'arquitectura moderna."
+    },
+    "1985": {
+      "title": "El Descobriment",
+      "content": "Mentre Barcelona es preparava per als Jocs Olímpics, els primers skaters locals van descobrir que el granit polit i les formes abstractes de la plaça eren perfectes per patinar. El que va ser dissenyat com un espai de trànsit es va convertir en un laboratori de trucs, començant l'ús dels bancs de granit originals.",
+      "events": [
+        "Apropiació de l'espai arquitectònic",
+        "Ús original dels bancs de granit"
+      ]
+    },
+    "1997": {
+      "title": "Video Effort",
+      "content": "Enregistraments d'un dels vídeos d'skate independents de l'època que demostren que als anys 90 ja hi havia un gran nivell de patí en aquesta plaça. I que la vida prové de moltes generacions enrere."
+    },
+    "2000": {
+      "title": "L'Era Daurada",
+      "content": "Sants es va convertir en l'epicentre mundial de l'skate. Patinadors d'arreu del món viatjaven a Barcelona (la \"Meca de l'skate\") i Sants era una parada obligatòria. El desgast natural del granit i els trencaments accidentals van crear obstacles únics com l'\"Up-Ledge\", tornant-se llegendaris a l'escena global.",
+      "events": [
+        "Aparició en vídeos de marques internacionals",
+        "Destí mundial per a skaters professionals",
+        "Creació del llegendari \"Up-Ledge\"",
+        "Consolidació com a spot icònic global"
+      ]
+    },
+    "2012": {
+      "title": "Deteriorament i Oblit Institucional",
+      "content": "Les obres de l'arribada de l'AVE van degradar l'entorn. Es van fer pedaços de formigó i es van eliminar elements originals. Davant la manca de manteniment per part de l'Ajuntament o Adif, els patinadors locals van començar a cuidar l'espai de manera informal, netejant i reparant allò que podien."
+    },
+    "2018": {
+      "title": "Manteniment DIY",
+      "content": "Els locals de Sants van portar ciment, massilla i eines per arreglar les vores de granit destrossades. Es van recuperar bancs que estaven fora d'ús. L'spot ja no era només un lloc per patinar, era un espai autogestionat per la comunitat local.",
+      "events": [
+        "Reparacions amb ciment i eines pròpies",
+        "Neteja i manteniment informal",
+        "Construcció de comunitat autogestionada"
+      ]
+    },
+    "2021": {
+      "title": "El Naixement de SNT4EVER",
+      "content": "Veient que l'amenaça de destrucció de la plaça per al nou pla d'urbanisme de l'Ajuntament era imminent, els locals s'organitzen. Neix oficialment el moviment SNT4EVER com una plataforma per donar veu als skaters, protegir el patrimoni arquitectònic i cultural de la plaça, i dialogar amb les institucions.",
+      "events": [
+        "Creació oficial de l'associació",
+        "Inici de campanyes de conscienciació",
+        "Primers contactes formals amb l'Ajuntament"
+      ]
+    },
+    "2022": {
+      "title": "Documentació del Llegat",
+      "content": "S'inicia el projecte d'arxiu fotogràfic i documental. Es recopilen dècades de material visual per demostrar el valor cultural de la plaça. SNT4EVER comença a guanyar visibilitat als mitjans de comunicació i xarxes socials com a defensors de l'espai públic."
+    },
+    "2024": {
+      "title": "Remodelació i Compromís",
+      "content": "Comencen les obres de la nova estació. Després d'intenses negociacions, SNT4EVER aconsegueix que el projecte arquitectònic final inclogui una \"Skate Plaza\" que respecta els materials i la disposició de la plaça original, demostrant que el diàleg entre skaters i institucions és possible i necessari.",
+      "events": [
+        "Acord amb l'Ajuntament i arquitectes",
+        "Integració de l'skate al nou disseny urbà",
+        "Preservació d'elements clau (granit i metall)"
+      ]
+    },
+    "2018_2": {
+      "title": "Creació de la primera rèplica de les taules",
+      "content": "A partir d'aquest moment, veient que per molt que intentàvem arreglar el poc que quedava i que continuaven destrossant els bancs, vam decidir que volíem que la plaça durés per sempre. Vam decidir documentar i fer plànols per buscar un fabricant de granit i un ferrer i refer les taules de la plaça. Per finançar-ho vam organitzar el primer campionat DIY de tot l'Estat. Patrocinat per les marques de skate més icòniques, vam construir la primera taula i tot el moviment SNT4EVER va començar a consolidar-se i fer soroll."
+    }
+  }
+}

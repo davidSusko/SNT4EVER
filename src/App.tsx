@@ -7,8 +7,11 @@ import NewsEvents from './components/sections/NewsEvents';
 import SectionMarquee from '@/components/common/SectionMarquee';
 import Footer from './components/layout/Footer';
 import { ARCHIVE_IMAGES, ARCHIVE_VIDEOS, SOCIAL_LINKS } from '@/constants';
+import { useTranslation } from "react-i18next";
+
 
 function App() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-black text-white">
       <Navigation />
@@ -24,15 +27,13 @@ function App() {
           />
           <div className="container-snt pt-24 pb-24">
             <h2 className="text-4xl md:text-5xl font-bold text-yellow mb-8 text-center">
-              Archive
-            </h2>
+              {t('jsx_archive')}</h2>
             <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-12">
-              Explore our collection of historical photos, videos, and documents that tell the story of Sants Skate Plaza.
-            </p>
+              {t('jsx_explore_our_collection_of_hist')}</p>
             
             {/* Image Gallery */}
             <div className="mb-16 min-h-[500px]">
-              <h3 className="text-2xl font-bold text-white mb-8">Photo Archive</h3>
+              <h3 className="text-2xl font-bold text-white mb-8">{t('jsx_photo_archive')}</h3>
               <ImageGallery 
                 images={ARCHIVE_IMAGES}
                 layout="masonry"
@@ -42,7 +43,7 @@ function App() {
             
             {/* Video Gallery */}
             <div>
-              <h3 className="text-2xl font-bold text-white mb-8">Video Archive</h3>
+              <h3 className="text-2xl font-bold text-white mb-8">{t('jsx_video_archive')}</h3>
               <VideoGallery 
                 videos={ARCHIVE_VIDEOS}
               />
@@ -55,18 +56,15 @@ function App() {
         <section id="join" className="scroll-mt-14 md:scroll-mt-24 section-padding bg-black">
           <div className="container-snt">
             <h2 className="text-4xl md:text-5xl font-bold text-yellow mb-8 text-center">
-              Join Us!
-            </h2>
+              {t('jsx_join_us')}</h2>
             <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-8">
-              Become a member of SNT and help us preserve the skate plaza for future generations.
-            </p>
+              {t('jsx_become_a_member_of_snt_and_hel')}</p>
             <div className="text-center">
               <button 
                 className="btn-primary"
                 onClick={() => window.open(SOCIAL_LINKS.joinForm, '_blank')}
               >
-                Únete a la asociación
-              </button>
+                {t('jsx__nete_a_la_asociaci_n')}</button>
             </div>
           </div>
         </section>
@@ -74,11 +72,9 @@ function App() {
         <section id="contact" className="section-padding bg-gray-950">
           <div className="container-snt">
             <h2 className="text-4xl md:text-5xl font-bold text-yellow mb-8 text-center">
-              Contact
-            </h2>
+              {t('jsx_contact')}</h2>
             <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto">
-              Get in touch with us for collaborations, donations, or any questions about the project.
-            </p>
+              {t('jsx_get_in_touch_with_us_for_colla')}</p>
           </div>
         </section>
       </main>

@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { Separator } from '@/components/ui/separator';
 import { Instagram, Mail, MapPin } from 'lucide-react';
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const footerSections = [
     {
       title: 'Directiva',
@@ -128,8 +130,7 @@ const Footer = () => {
             className="mb-12"
           >
             <h3 className="text-2xl font-bold text-yellow mb-6 text-center">
-              Collaborators
-            </h3>
+              {t('jsx_collaborators')}</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {collaborators.map((collaborator) => (
                 <div
@@ -151,36 +152,32 @@ const Footer = () => {
           >
             <div className="text-center">
               <Mail className="h-6 w-6 text-yellow mx-auto mb-3" />
-              <p className="text-white font-medium mb-1">Contact</p>
+              <p className="text-white font-medium mb-1">{t('jsx_contact')}</p>
               <a
                 href="mailto:info@snt4ever.com"
                 className="text-muted-foreground hover:text-yellow transition-colors"
               >
-                info@snt4ever.com
-              </a>
+                {t('jsx_info_snt4ever_com')}</a>
             </div>
             
             <div className="text-center">
               <MapPin className="h-6 w-6 text-yellow mx-auto mb-3" />
-              <p className="text-white font-medium mb-1">Location</p>
+              <p className="text-white font-medium mb-1">{t('jsx_location')}</p>
               <p className="text-muted-foreground">
-                Sants Skate Plaza
-                <br />
-                Barcelona, Spain
-              </p>
+                {t('jsx_sants_skate_plaza')}<br />
+                {t('jsx_barcelona_spain')}</p>
             </div>
             
             <div className="text-center">
               <Instagram className="h-6 w-6 text-yellow mx-auto mb-3" />
-              <p className="text-white font-medium mb-1">Social</p>
+              <p className="text-white font-medium mb-1">{t('jsx_social')}</p>
               <a
                 href="https://instagram.com/snt4ever"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-yellow transition-colors"
               >
-                @snt4ever
-              </a>
+                {t('jsx__snt4ever')}</a>
             </div>
           </motion.div>
 
@@ -191,23 +188,18 @@ const Footer = () => {
           >
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-muted-foreground">
-                © {new Date().getFullYear()} SNT4EVER. All rights reserved.
-              </p>
+                © {new Date().getFullYear()} {t('jsx_snt4ever_all_rights_reserved')}</p>
               <div className="flex gap-6 text-sm">
                 <a href="#privacy" className="text-muted-foreground hover:text-yellow transition-colors">
-                  Privacy Policy
-                </a>
+                  {t('jsx_privacy_policy')}</a>
                 <a href="#terms" className="text-muted-foreground hover:text-yellow transition-colors">
-                  Terms of Service
-                </a>
+                  {t('jsx_terms_of_service')}</a>
                 <a href="#cookies" className="text-muted-foreground hover:text-yellow transition-colors">
-                  Cookies
-                </a>
+                  {t('jsx_cookies')}</a>
               </div>
             </div>
             <p className="text-xs text-muted-foreground mt-4">
-              Made with ❤️ in Barcelona, Spain
-            </p>
+              {t('jsx_made_with_in_barcelona_spain')}</p>
           </motion.div>
         </motion.div>
       </div>
