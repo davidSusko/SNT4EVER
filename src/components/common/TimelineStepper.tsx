@@ -48,12 +48,12 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
         let newProgress = scrollProgress;
 
         // Store height and original position when first visible
-        if (stepperElement && stepperElement.getBoundingClientRect().height > 0 && inStorySection) {
+        if (stepperElement && stepperElement.scrollHeight > 0 && inStorySection) {
           const currentStepperRect = stepperElement.getBoundingClientRect();
 
-          // Store height only once
+          // Store height only once, using scrollHeight to bypass height animation
           if (stepperHeight === 0) {
-            newStepperHeight = currentStepperRect.height;
+            newStepperHeight = stepperElement.scrollHeight;
           }
 
           // Store original top position only once
@@ -69,15 +69,16 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
 
         // Check if stepper should be sticky based on original position
         if (stepperElement && newOriginalTop !== null) {
-          // Should be sticky if scrolled past original position
-          newIsSticky = inStorySection && currentScrollTop >= newOriginalTop - 64;
+          // Should be sticky if scrolled past original position taking header into account
+          const headerHeight = window.innerWidth >= 768 ? 96 : 56;
+          newIsSticky = inStorySection && currentScrollTop >= newOriginalTop - headerHeight;
 
           console.log('Sticky Debug:', {
             currentScrollTop,
             originalTopPosition: newOriginalTop,
             shouldBeSticky: newIsSticky,
             inStorySection,
-            condition: currentScrollTop >= newOriginalTop - 64
+            condition: currentScrollTop >= newOriginalTop - headerHeight
           });
         }
 
@@ -109,19 +110,19 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
     onYearChange?.(year);
 
     // Find and scroll to the corresponding timeline event
-    const eventElements = document.querySelectorAll('[data-timeline-year]');
-    eventElements.forEach(el => {
-      if (el.getAttribute('data-timeline-year') === year.toString()) {
-        const isDesktop = window.innerWidth >= 768;
-        const headerOffset = isDesktop ? 92 : 56;
-        const totalOffset = headerOffset + (stepperHeight || 100) + 32; // 32px extra space
+    const eventElements = Array.from(document.querySelectorAll('[data-timeline-year]'));
+    const targetElement = eventElements.find(el => el.getAttribute('data-timeline-year') === year.toString());
+    
+    if (targetElement) {
+      const isDesktop = window.innerWidth >= 768;
+      const headerOffset = isDesktop ? 96 : 56;
+      const totalOffset = headerOffset + (stepperHeight || 100) + 32; // 32px extra space
 
-        window.scrollTo({
-          top: el.getBoundingClientRect().top + window.scrollY - totalOffset,
-          behavior: 'smooth'
-        });
-      }
-    });
+      window.scrollTo({
+        top: targetElement.getBoundingClientRect().top + window.scrollY - totalOffset,
+        behavior: 'smooth'
+      });
+    }
   };
 
 

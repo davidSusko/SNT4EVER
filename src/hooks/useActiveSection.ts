@@ -4,40 +4,37 @@ export const useActiveSection = (sectionIds: string[]) => {
   const [activeSection, setActiveSection] = useState<string>('');
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries.filter(entry => entry.isIntersecting);
-        
-        if (visibleEntries.length > 0) {
-          // Find the entry that is most in the center of the viewport
-          const mostCentered = visibleEntries.reduce((prev, current) => {
-            const prevDistance = Math.abs(prev.intersectionRatio - 0.5);
-            const currentDistance = Math.abs(current.intersectionRatio - 0.5);
-            return currentDistance < prevDistance ? current : prev;
-          });
-          
-          const sectionId = mostCentered.target.id;
-          setActiveSection(sectionId);
+    const handleScroll = () => {
+      // The offset from the top where we consider a section "active".
+      // E.g., when the top of the section hits the top 30% of the screen.
+      const offset = window.innerHeight * 0.3;
+      
+      let currentActiveId = '';
+      
+      // Iterate through sections in order
+      for (const id of sectionIds) {
+        const element = document.getElementById(id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // If the top of the element has passed the offset line
+          if (rect.top <= offset) {
+            currentActiveId = id;
+          }
         }
-      },
-      {
-        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-        rootMargin: '-10% 0px -60% 0px' // Account for fixed header
       }
-    );
-
-    const sectionElements = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
-    
-    sectionElements.forEach(element => {
-      if (element) observer.observe(element);
-    });
-
-    return () => {
-      sectionElements.forEach(element => {
-        if (element) observer.unobserve(element);
-      });
+      
+      // If none are past the offset, we are probably at the very top.
+      // But the first section (hero) usually starts at top: 0, so it will be caught.
+      if (currentActiveId && currentActiveId !== activeSection) {
+        setActiveSection(currentActiveId);
+      }
     };
-  }, [sectionIds]);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check immediately on mount
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sectionIds, activeSection]);
 
   return activeSection;
 };

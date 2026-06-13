@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ShoppingCart, Plus, ArrowDown } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Marquee from '@/components/common/Marquee';
@@ -8,12 +8,37 @@ import logo from '@/assets/images/ICON-SNT-HEADER.png';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const sectionIds = NAVIGATION_ITEMS.map(item => item.id);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const sectionIds = ['hero', ...NAVIGATION_ITEMS.map(item => item.id)];
   const activeSection = useActiveSection(sectionIds);
 
+  const getMarqueeText = () => {
+    switch (activeSection) {
+      case 'story':
+        return 'Our History';
+      case 'archive':
+        return 'Archive';
+      case 'news':
+        return 'News & Events';
+      default:
+        return 'The Project';
+    }
+  };
+
+  const marqueeText = getMarqueeText();
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 md:bg-black md:bg-opacity-75 bg-yellow font-mono">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 md:bg-black ${isScrolled ? 'md:bg-opacity-100' : 'md:bg-opacity-75'} bg-yellow font-mono`}>
       <nav className="container-snt h-24 hidden md:flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
@@ -45,7 +70,7 @@ const Navigation = () => {
           <Marquee speed="slow" direction="right" pauseOnHover={false}>
             {Array(10).fill(null).map((_, i) => (
               <span key={i} className="inline-flex items-center gap-3 mx-3 text-black font-bold text-3xl shrink-0 whitespace-nowrap leading-none tracking-tight">
-                The project
+                {marqueeText}
                 <ArrowDown className="h-6 w-6" strokeWidth={3} />
               </span>
             ))}

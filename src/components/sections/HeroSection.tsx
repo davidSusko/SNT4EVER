@@ -1,25 +1,14 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ArrowDown } from 'lucide-react';
-import Marquee from '@/components/common/Marquee';
+import SectionMarquee from '@/components/common/SectionMarquee';
 import { SOCIAL_LINKS } from '@/constants';
 
 const HeroSection = () => {
-  const renderMarqueeItem = (index: number) => (
-    <span key={index} className="inline-flex items-center gap-4 mx-4 text-black font-bold text-5xl md:text-6xl lg:text-6xl shrink-0 whitespace-nowrap leading-none tracking-tight">
-      The project
-      <ArrowDown className="h-12 w-12 md:h-16 md:w-16 lg:h-18 lg:w-18" strokeWidth={3} />
-    </span>
-  );
-
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center pt-24 md:pt-40 relative overflow-hidden bg-black">
+    <section id="hero" className="min-h-screen flex flex-col justify-center items-center pt-24 md:pt-40 relative overflow-hidden bg-black">
       {/* Animated Marquee */}
-      <div className="hidden w-full bg-yellow py-1 md:py-2 mb-16 mt-8 md:mt-12 md:flex items-center overflow-hidden">
-        <Marquee speed="slow" direction="right" pauseOnHover={false}>
-          {Array(10).fill(null).map((_, i) => renderMarqueeItem(i))}
-        </Marquee>
-      </div>
+      <SectionMarquee text="The project" />
 
       {/* Main Content */}
       <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-12 text-center z-10">
@@ -50,7 +39,12 @@ const HeroSection = () => {
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
 
-            <Button variant="outline" size="lg" className="btn-secondary">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="btn-secondary"
+              onClick={() => window.open(SOCIAL_LINKS.joinForm, '_blank')}
+            >
               Únete a la asociación
             </Button>
           </motion.div>

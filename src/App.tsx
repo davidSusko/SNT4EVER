@@ -4,8 +4,9 @@ import TimelineSection from './components/sections/TimelineSection';
 import ImageGallery from './components/sections/ImageGallery';
 import { VideoGallery } from './components/sections/YouTubePlayer';
 import NewsEvents from './components/sections/NewsEvents';
+import SectionMarquee from '@/components/common/SectionMarquee';
 import Footer from './components/layout/Footer';
-import { ARCHIVE_IMAGES, ARCHIVE_VIDEOS } from '@/constants';
+import { ARCHIVE_IMAGES, ARCHIVE_VIDEOS, SOCIAL_LINKS } from '@/constants';
 
 function App() {
   return (
@@ -16,8 +17,12 @@ function App() {
         <TimelineSection />
         
         {/* Additional sections can be added here */}
-        <section id="archive" className="section-padding bg-black">
-          <div className="container-snt">
+        <section id="archive" className="bg-black">
+          <SectionMarquee 
+            text="Archive" 
+            className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
+          />
+          <div className="container-snt pt-24 pb-24">
             <h2 className="text-4xl md:text-5xl font-bold text-yellow mb-8 text-center">
               Archive
             </h2>
@@ -56,7 +61,12 @@ function App() {
               Become a member of SNT and help us preserve the skate plaza for future generations.
             </p>
             <div className="text-center">
-              <button className="btn-primary">Become a Member</button>
+              <button 
+                className="btn-primary"
+                onClick={() => window.open(SOCIAL_LINKS.joinForm, '_blank')}
+              >
+                Únete a la asociación
+              </button>
             </div>
           </div>
         </section>

@@ -59,15 +59,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
             onClick={() => setSelectedImage(image)}
           >
             <div className="relative overflow-hidden rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300">
-              <div className="aspect-[4/3] md:aspect-auto bg-black/50 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <ZoomIn className="h-8 w-8 text-white/50" />
-                  </div>
-                  <p className="text-white/50 text-sm">Image Placeholder</p>
-                  <p className="text-white/30 text-xs mt-2">{image.alt}</p>
-                </div>
-              </div>
+              <img src={image.src} alt={image.alt} className="w-full h-auto object-cover" loading="lazy" />
               
               {/* Overlay */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
@@ -92,18 +84,9 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
           <DialogContent className="bg-black border-white/10 max-w-4xl max-h-[90vh] overflow-hidden">
             {selectedImage && (
               <div className="relative">
-                <button
-                  onClick={() => setSelectedImage(null)}
-                  className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-                <div className="aspect-[4/3] bg-white/5 rounded-lg flex items-center justify-center">
-                  <div className="text-center p-12">
-                    <ZoomIn className="h-16 w-16 text-white/30 mx-auto mb-4" />
-                    <p className="text-white/30">Full size image would appear here</p>
-                    <p className="text-white/20 text-sm mt-2">{selectedImage.alt}</p>
-                  </div>
+
+                <div className="relative w-full h-[80vh] flex items-center justify-center bg-black rounded-sm overflow-hidden">
+                  <img src={selectedImage.src} alt={selectedImage.alt} className="max-w-full max-h-full object-contain" />
                 </div>
                 {selectedImage.caption && (
                   <div className="mt-4 text-center">
@@ -136,15 +119,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
           onClick={() => setSelectedImage(image)}
         >
           <div className="relative overflow-hidden rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300 lift-hover">
-            <div className="aspect-[4/3] bg-black/50 flex items-center justify-center">
-              <div className="text-center p-8">
-                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <ZoomIn className="h-8 w-8 text-white/50" />
-                </div>
-                <p className="text-white/50 text-sm">Image Placeholder</p>
-                <p className="text-white/30 text-xs mt-2">{image.alt}</p>
-              </div>
-            </div>
+            <img src={image.src} alt={image.alt} className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
             
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
@@ -169,18 +144,9 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
         <DialogContent className="bg-black border-white/10 max-w-4xl max-h-[90vh] overflow-hidden">
           {selectedImage && (
             <div className="relative">
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2"
-              >
-                <X className="h-4 w-4" />
-              </button>
-              <div className="aspect-[4/3] bg-white/5 rounded-lg flex items-center justify-center">
-                <div className="text-center p-12">
-                  <ZoomIn className="h-16 w-16 text-white/30 mx-auto mb-4" />
-                  <p className="text-white/30">Full size image would appear here</p>
-                  <p className="text-white/20 text-sm mt-2">{selectedImage.alt}</p>
-                </div>
+
+              <div className="relative w-full h-[80vh] flex items-center justify-center bg-black rounded-sm overflow-hidden">
+                <img src={selectedImage.src} alt={selectedImage.alt} className="max-w-full max-h-full object-contain" />
               </div>
               {selectedImage.caption && (
                 <div className="mt-4 text-center">

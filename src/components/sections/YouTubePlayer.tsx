@@ -142,7 +142,7 @@ export const VideoGallery: React.FC<VideoGalleryProps> = ({ videos }) => {
           className="space-y-3"
         >
           <YouTubePlayer
-            videoId={video.id}
+            videoId={video.videoId || video.id}
             title={video.title}
             showControls={true}
           />
