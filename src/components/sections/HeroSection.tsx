@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ArrowDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import SectionMarquee from '@/components/common/SectionMarquee';
 import { SOCIAL_LINKS } from '@/constants';
 

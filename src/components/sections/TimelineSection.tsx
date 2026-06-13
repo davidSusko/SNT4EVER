@@ -92,7 +92,7 @@ const TimelineSection = () => {
   }, []);
   console.log('Active Year:', activeYear);  
   return (
-    <section className="bg-black" id="story">
+    <section className="scroll-mt-14 md:scroll-mt-24 bg-black" id="story">
       <SectionMarquee 
         text="Our History" 
         className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
@@ -120,7 +120,7 @@ const TimelineSection = () => {
           {/* Timeline Stepper */}
           <motion.div
             variants={itemVariants}
-            className="mb-16"
+            className="mb-16 sticky top-14 md:top-24 z-40"
           >
             <TimelineStepper 
               years={timelineStepperData}

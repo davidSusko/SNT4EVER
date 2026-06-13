@@ -111,7 +111,7 @@ const NewsEvents: React.FC = () => {
   };
 
   return (
-    <section className="bg-black" id="news">
+    <section className="scroll-mt-14 md:scroll-mt-24 bg-black" id="news">
       <SectionMarquee 
         text="News & Events" 
         className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
