@@ -17,7 +17,7 @@ function App() {
         <TimelineSection />
         
         {/* Additional sections can be added here */}
-        <section id="archive" className="bg-black">
+        <section id="archive" className="scroll-mt-14 md:scroll-mt-24 bg-black">
           <SectionMarquee 
             text="Archive" 
             className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
@@ -52,7 +52,7 @@ function App() {
 
         <NewsEvents />
 
-        <section id="join" className="section-padding bg-black">
+        <section id="join" className="scroll-mt-14 md:scroll-mt-24 section-padding bg-black">
           <div className="container-snt">
             <h2 className="text-4xl md:text-5xl font-bold text-yellow mb-8 text-center">
               Join Us!
