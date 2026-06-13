@@ -31,7 +31,7 @@ function App() {
             </p>
             
             {/* Image Gallery */}
-            <div className="mb-16">
+            <div className="mb-16 min-h-[500px]">
               <h3 className="text-2xl font-bold text-white mb-8">Photo Archive</h3>
               <ImageGallery 
                 images={ARCHIVE_IMAGES}

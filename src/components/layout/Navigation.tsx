@@ -9,10 +9,18 @@ import logo from '@/assets/images/ICON-SNT-HEADER.png';
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showProjectLink, setShowProjectLink] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      const storyElement = document.getElementById('story');
+      if (storyElement) {
+        const rect = storyElement.getBoundingClientRect();
+        // Show "The project" link as soon as we enter "Our story" (when its top crosses the lower-middle of the screen)
+        setShowProjectLink(rect.top <= window.innerHeight * 0.6);
+      }
     };
     window.addEventListener('scroll', handleScroll);
     handleScroll();
@@ -37,6 +45,54 @@ const Navigation = () => {
 
   const marqueeText = getMarqueeText();
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      
+      if (isOpen) {
+        setIsOpen(false);
+      }
+      
+      const scrollToTarget = () => {
+        const target = document.querySelector(href) as HTMLElement;
+        if (!target) return;
+        
+        const headerOffset = window.innerWidth >= 768 ? 96 : 56;
+        
+        // Native scrollIntoView handles standard cases and some layout shifts
+        target.scrollIntoView({ behavior: 'smooth' });
+
+        // Fallback observer: continuously adjust scroll position for 800ms
+        // This guarantees we arrive at the right spot even if heavy images/animations 
+        // cause massive layout shifts during the scroll.
+        let attempts = 0;
+        const checkInterval = setInterval(() => {
+          const rect = target.getBoundingClientRect();
+          // If we are more than 5px away from the desired offset, adjust
+          if (Math.abs(rect.top - headerOffset) > 5) {
+            window.scrollBy({ top: rect.top - headerOffset, behavior: 'auto' });
+          }
+          
+          attempts++;
+          if (attempts > 16) { // 16 * 50ms = 800ms (duration of smooth scroll)
+            clearInterval(checkInterval);
+          }
+        }, 50);
+
+        // Update URL
+        if (window.location.hash !== href) {
+          window.history.pushState(null, '', href);
+        }
+      };
+
+      if (isOpen) {
+        setTimeout(scrollToTarget, 300);
+      } else {
+        scrollToTarget();
+      }
+    }
+  };
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 md:bg-black ${isScrolled ? 'md:bg-opacity-100' : 'md:bg-opacity-75'} bg-yellow font-mono`}>
       <nav className="container-snt h-24 hidden md:flex items-center justify-between">
@@ -49,15 +105,27 @@ const Navigation = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6 text-sm">
-          {NAVIGATION_ITEMS.map((item) => (
-            <a
-              key={item.id}
-              href={item.href}
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
+          {NAVIGATION_ITEMS.map((item) => {
+            // Hide "The project" on desktop if we haven't scrolled past "Our story"
+            if (item.id === 'hero' && !showProjectLink) {
+              return null;
+            }
+            
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                className={`${
+                  activeSection === item.id
+                    ? 'text-yellow font-bold hover:text-yellow/80'
+                    : 'text-white hover:text-gray-300'
+                } transition-colors cursor-pointer`}
+                onClick={(e) => handleNavClick(e, item.href)}
+              >
+                {item.label}
+              </a>
+            );
+          })}
           <a href="#cart" className="text-white hover:text-gray-300 ml-2">
             <ShoppingCart className="h-5 w-5" />
           </a>
@@ -84,19 +152,23 @@ const Navigation = () => {
                 <Plus className="h-8 w-8" strokeWidth={3} />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-black border-white/10 text-white">
+            <SheetContent 
+              side="right" 
+              className="bg-black border-white/10 text-white"
+              onCloseAutoFocus={(e) => e.preventDefault()}
+            >
               <div className="flex flex-col space-y-6 mt-8">
                 {NAVIGATION_ITEMS.map((item) => (
                   <a
                     key={item.id}
                     href={item.href}
-                    className={`text-4xl font-medium transition-all duration-300 relative ${item.isSpecial
+                    className={`text-4xl font-medium transition-all duration-300 relative cursor-pointer ${item.isSpecial
                       ? 'bg-yellow text-black px-3 py-2 rounded-lg text-center'
                       : activeSection === item.id
                         ? 'text-yellow font-semibold'
                         : 'text-white hover:text-yellow'
                       }`}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => handleNavClick(e, item.href)}
                   >
                     {/* Active indicator */}
                     {activeSection === item.id && !item.isSpecial && (

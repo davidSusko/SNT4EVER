@@ -59,7 +59,7 @@ export const ASSET_PATHS: AssetPaths = {
 };
 
 export const NAVIGATION_ITEMS: NavigationItem[] = [
-  { label: 'The plans', href: '#plans', id: 'plans' },
+  { label: 'The project', href: '#hero', id: 'hero' },
   { label: 'Our story', href: '#story', id: 'story' },
   { label: 'Archive', href: '#archive', id: 'archive' },
   { label: 'News/Events', href: '#news', id: 'news' },

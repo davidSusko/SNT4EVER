@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { X, ZoomIn } from 'lucide-react';
+import { ZoomIn } from 'lucide-react';
 import type { GalleryImage, ImageGalleryProps } from '@/types';
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ 

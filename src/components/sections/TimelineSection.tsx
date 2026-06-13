@@ -120,7 +120,7 @@ const TimelineSection = () => {
           {/* Timeline Stepper */}
           <motion.div
             variants={itemVariants}
-            className="mb-16"
+            className="mb-16 sticky top-14 md:top-24 z-40"
           >
             <TimelineStepper 
               years={timelineStepperData}
