@@ -3,8 +3,10 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import SectionMarquee from '@/components/common/SectionMarquee';
 import { SOCIAL_LINKS } from '@/constants';
+import { useTranslation } from "react-i18next";
 
 const HeroSection = () => {
+  const { t } = useTranslation();
   return (
     <section id="hero" className="min-h-screen flex flex-col justify-center items-center pt-24 md:pt-40 relative overflow-hidden bg-black">
       {/* Animated Marquee */}
@@ -20,8 +22,7 @@ const HeroSection = () => {
         >
           {/* Mission Statement */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-bold text-white mb-12 leading-[1.1] md:leading-[1.1] lg:leading-[1.1] text-left tracking-tight">
-            SNT4EVER es una asociación formada por skaters de Barcelona que han dinamizado el espacio de la estación de Sants de manera totalmente independiente y que ahora se constituye como asociación entre el ayuntamiento, los vecinos y los patinadores de la plaza, para <span className="text-yellow">salvar una plaza mítica dentro del mundo del skateboarding e iniciar el diálogo</span> entre el ayuntamiento y los skaters. Además de promover la cultura urbana, en concreto la del skateboarding, entre las diferentes asociaciones del barrio, escuelas y todo el que esté interesado en colaborar con nosotros.
-          </h1>
+            {t('jsx_snt4ever_es_una_asociaci_n_for')}<span className="text-yellow">{t('jsx_salvar_una_plaza_m_tica_dentro')}</span> {t('jsx_entre_el_ayuntamiento_y_los_sk')}</h1>
 
           {/* Call to Action */}
           <motion.div
@@ -35,8 +36,7 @@ const HeroSection = () => {
               className="btn-primary group"
               onClick={() => window.open(SOCIAL_LINKS.changeOrg, '_blank')}
             >
-              Firma la petición
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              {t('jsx_firma_la_petici_n')}<ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
 
             <Button 
@@ -45,8 +45,7 @@ const HeroSection = () => {
               className="btn-secondary"
               onClick={() => window.open(SOCIAL_LINKS.joinForm, '_blank')}
             >
-              Únete a la asociación
-            </Button>
+              {t('jsx__nete_a_la_asociaci_n')}</Button>
           </motion.div>
 
           {/* Additional Info */}
@@ -57,8 +56,7 @@ const HeroSection = () => {
             className="mt-16 text-muted-foreground"
           >
             <p className="text-sm">
-              Desde 1983 defendiendo el skate en Barcelona • Since 1983 defending skate in Barcelona
-            </p>
+              {t('jsx_desde_1983_defendiendo_el_skat')}</p>
           </motion.div>
         </motion.div>
       </div>

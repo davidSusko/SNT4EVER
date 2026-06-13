@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, MapPin, ExternalLink } from 'lucide-react';
 import SectionMarquee from '@/components/common/SectionMarquee';
+import { useTranslation } from "react-i18next";
 
 interface NewsItem {
   id: string;
@@ -17,6 +18,7 @@ interface NewsItem {
 }
 
 const NewsEvents: React.FC = () => {
+  const { t } = useTranslation();
   const newsItems: NewsItem[] = [
     {
       id: '1',
@@ -129,11 +131,9 @@ const NewsEvents: React.FC = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-yellow">
-              News & Events
-            </h2>
+              {t('jsx_news_events')}</h2>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Stay updated with the latest happenings, events, and news from SNT and the skate community.
-            </p>
+              {t('jsx_stay_updated_with_the_latest_h')}</p>
           </motion.div>
 
           {/* Filter Tabs */}
@@ -142,14 +142,11 @@ const NewsEvents: React.FC = () => {
             className="flex justify-center gap-4 mb-12"
           >
             <Button variant="outline" className="btn-secondary">
-              All
-            </Button>
+              {t('jsx_all')}</Button>
             <Button variant="ghost" className="text-muted-foreground hover:text-yellow">
-              News
-            </Button>
+              {t('jsx_news')}</Button>
             <Button variant="ghost" className="text-muted-foreground hover:text-yellow">
-              Events
-            </Button>
+              {t('jsx_events')}</Button>
           </motion.div>
 
           {/* News Grid */}
@@ -173,7 +170,7 @@ const NewsEvents: React.FC = () => {
                             <ExternalLink className="h-8 w-8 text-white/50" />
                           )}
                         </div>
-                        <p className="text-white/50 text-sm">Image</p>
+                        <p className="text-white/50 text-sm">{t('jsx_image')}</p>
                       </div>
                     </div>
                   </div>
@@ -227,8 +224,7 @@ const NewsEvents: React.FC = () => {
             className="text-center mt-12"
           >
             <Button variant="outline" size="lg" className="btn-secondary">
-              Load More News
-            </Button>
+              {t('jsx_load_more_news')}</Button>
           </motion.div>
 
           {/* Newsletter Signup */}
@@ -237,11 +233,9 @@ const NewsEvents: React.FC = () => {
             className="mt-16 text-center p-8 bg-white/5 rounded-lg border border-white/10"
           >
             <h3 className="text-2xl font-bold text-yellow mb-4">
-              Stay Connected
-            </h3>
+              {t('jsx_stay_connected')}</h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Subscribe to our newsletter for weekly updates on events, news, and ways to support the skate plaza.
-            </p>
+              {t('jsx_subscribe_to_our_newsletter_fo')}</p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
@@ -249,8 +243,7 @@ const NewsEvents: React.FC = () => {
                 className="flex-1 px-4 py-3 bg-black/50 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-yellow transition-colors"
               />
               <Button className="btn-primary">
-                Subscribe
-              </Button>
+                {t('jsx_subscribe')}</Button>
             </div>
           </motion.div>
         </motion.div>

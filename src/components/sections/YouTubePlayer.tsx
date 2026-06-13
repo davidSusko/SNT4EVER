@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Volume2, VolumeX } from 'lucide-react';
 import type { VideoGalleryProps } from '@/types';
+import { useTranslation } from "react-i18next";
 
 interface YouTubePlayerProps {
   videoId: string;
@@ -22,6 +23,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   showControls = true,
   className = ''
 }) => {
+  const { t } = useTranslation();
   const [isPlaying, setIsPlaying] = useState(!autoplay);
   const [isMuted, setIsMuted] = useState(muted);
 
@@ -110,8 +112,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
                   {title || 'Watch Video'}
                 </p>
                 <p className="text-white/60 text-sm">
-                  Click to play • YouTube
-                </p>
+                  {t('jsx_click_to_play_youtube')}</p>
               </div>
             </div>
           </div>
@@ -121,8 +122,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
           
           {/* Video Info Badge */}
           <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-xs">
-            YouTube
-          </div>
+            {t('jsx_youtube')}</div>
         </div>
       )}
     </div>

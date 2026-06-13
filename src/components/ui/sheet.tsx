@@ -4,6 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { useTranslation } from "react-i18next";
 
 const Sheet = SheetPrimitive.Root
 
@@ -54,7 +55,9 @@ interface SheetContentProps
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   SheetContentProps
->(({ side = "right", className, children, ...props }, ref) => (
+>(({ side = "right", className, children, ...props }, ref) => {
+  const { t } = useTranslation();
+  return (
   <SheetPortal>
     <SheetOverlay />
     <SheetPrimitive.Content
@@ -64,12 +67,13 @@ const SheetContent = React.forwardRef<
     >
       <SheetPrimitive.Close className="absolute right-0 top-0 flex items-center justify-center h-14 w-14 bg-black text-yellow hover:text-white transition-colors focus:outline-none disabled:pointer-events-none">
         <X className="h-8 w-8" strokeWidth={3} />
-        <span className="sr-only">Close</span>
+        <span className="sr-only">{t('jsx_close')}</span>
       </SheetPrimitive.Close>
       {children}
     </SheetPrimitive.Content>
   </SheetPortal>
-))
+  );
+})
 SheetContent.displayName = SheetPrimitive.Content.displayName
 
 const SheetHeader = ({

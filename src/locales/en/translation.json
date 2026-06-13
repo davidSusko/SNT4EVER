@@ -1,0 +1,123 @@
+{
+  "nav": {
+    "hero": "The project",
+    "story": "Our story",
+    "archive": "Archive",
+    "news": "News & Events",
+    "docs": "Docs",
+    "join": "Join us!",
+    "contact": "Contact"
+  },
+  "jsx_archive": "Archive",
+  "jsx_explore_our_collection_of_hist": "Explore our collection of historical photos, videos, and documents that tell the story of Sants Skate Plaza.",
+  "jsx_photo_archive": "Photo Archive",
+  "jsx_video_archive": "Video Archive",
+  "jsx_join_us": "Join Us!",
+  "jsx_become_a_member_of_snt_and_hel": "Become a member of SNT and help us preserve the skate plaza for future generations.",
+  "jsx__nete_a_la_asociaci_n": "Join the association",
+  "jsx_contact": "Contact",
+  "jsx_get_in_touch_with_us_for_colla": "Get in touch with us for collaborations, donations, or any questions about the project.",
+  "jsx_next": "Next →",
+  "jsx_no_timeline_events_available": "No timeline events available",
+  "jsx_click_any_year_to_jump_to_that": "Click any year to jump to that timeline section",
+  "jsx_collaborators": "Collaborators",
+  "jsx_info_snt4ever_com": "info@snt4ever.com",
+  "jsx_location": "Location",
+  "jsx_sants_skate_plaza": "Sants Skate Plaza",
+  "jsx_barcelona_spain": "Barcelona, Spain",
+  "jsx_social": "Social",
+  "jsx__snt4ever": "@snt4ever",
+  "jsx_snt4ever_all_rights_reserved": "SNT4EVER. All rights reserved.",
+  "jsx_privacy_policy": "Privacy Policy",
+  "jsx_terms_of_service": "Terms of Service",
+  "jsx_cookies": "Cookies",
+  "jsx_made_with_in_barcelona_spain": "Made with ❤️ in Barcelona, Spain",
+  "jsx_snt4ever_es_una_asociaci_n_for": "SNT4EVER is an association formed by skateboarders from Barcelona who have revitalized the Sants station space entirely independently. Now established as an association among the city council, neighbors, and plaza skaters, aiming to ",
+  "jsx_salvar_una_plaza_m_tica_dentro": "save a mythical plaza in the skateboarding world and initiate a dialogue",
+  "jsx_entre_el_ayuntamiento_y_los_sk": "between the city council and skateboarders. Also promoting urban culture, specifically skateboarding, among local neighborhood associations, schools, and anyone interested in collaborating with us.",
+  "jsx_firma_la_petici_n": "Sign the petition",
+  "jsx_desde_1983_defendiendo_el_skat": "Desde 1983 defendiendo el skate en Barcelona • Since 1983 defending skate in Barcelona",
+  "jsx_news_events": "News & Events",
+  "jsx_stay_updated_with_the_latest_h": "Stay updated with the latest happenings, events, and news from SNT and the skate community.",
+  "jsx_all": "All",
+  "jsx_news": "News",
+  "jsx_events": "Events",
+  "jsx_image": "Image",
+  "jsx_load_more_news": "Load More News",
+  "jsx_stay_connected": "Stay Connected",
+  "jsx_subscribe_to_our_newsletter_fo": "Subscribe to our newsletter for weekly updates on events, news, and ways to support the skate plaza.",
+  "jsx_subscribe": "Subscribe",
+  "jsx_nuestra_historia": "Our History",
+  "jsx_desde_la_visi_n_arquitect_nica": "From the architectural vision to a cultural milestone, follow the journey of the Plaça dels Països Catalans and the community fighting to preserve it.",
+  "jsx_view_archive": "View Archive",
+  "jsx_click_to_play_youtube": "Click to play • YouTube",
+  "jsx_youtube": "YouTube",
+  "jsx_close": "Close",
+  "timeline": {
+    "1983": {
+      "title": "The Birth of the \"Plaza Dura\"",
+      "content": "Designed by architects Albert Viaplana and Helio Piñón, the plaza represents a break from traditional urbanism. Unable to plant trees on the railway slab, a mineral surface of granite and metal was created. In 1983 it won the FAD Architecture Prize, establishing itself as an international benchmark of modern architecture."
+    },
+    "1985": {
+      "title": "The Discovery",
+      "content": "While Barcelona was preparing for the Olympic Games, early local skaters discovered that the plaza's polished granite and abstract shapes were perfect for skating. Designed as a transit space, it became a laboratory for tricks, marking the beginning of the original granite benches' use.",
+      "events": [
+        "Appropriation of the architectural space",
+        "Original use of granite benches"
+      ]
+    },
+    "1997": {
+      "title": "Video Effort",
+      "content": "Footage from one of the independent skate videos of the era showing the high level of skating at this plaza in the 90s, proving that its vibrant life dates back many generations."
+    },
+    "2000": {
+      "title": "The Golden Era",
+      "content": "Sants became the world epicenter of skateboarding. Skaters worldwide traveled to Barcelona (the \"Mecca of skate\") making Sants a mandatory stop. Natural wear of the granite and accidental breakages created unique obstacles like the \"Up-Ledge\", becoming legendary in the global scene.",
+      "events": [
+        "Features in international brand videos",
+        "Global destination for professional skaters",
+        "Creation of the legendary \"Up-Ledge\"",
+        "Consolidated as an iconic global spot"
+      ]
+    },
+    "2012": {
+      "title": "Deterioration and Institutional Neglect",
+      "content": "Construction for the AVE train degraded the environment. Concrete patches were applied, and original elements were removed. Given the lack of maintenance by the City Council or Adif, local skaters informally began caring for the space, cleaning and repairing what they could."
+    },
+    "2018": {
+      "title": "DIY Maintenance",
+      "content": "Sants locals brought cement, putty, and tools to fix the destroyed granite ledges. Benches that were out of use were recovered. The spot was no longer just a place to skate; it became a self-managed space by the local community.",
+      "events": [
+        "Repairs using their own cement and tools",
+        "Informal cleaning and maintenance",
+        "Building a self-managed community"
+      ]
+    },
+    "2021": {
+      "title": "The Birth of SNT4EVER",
+      "content": "Seeing that the threat of the plaza's destruction for the City Council's new urban plan was imminent, locals organized. The SNT4EVER movement officially was born as a platform to give voice to skaters, protect the architectural and cultural heritage of the plaza, and dialogue with institutions.",
+      "events": [
+        "Official creation of the association",
+        "Beginning of awareness campaigns",
+        "First formal contacts with the City Council"
+      ]
+    },
+    "2022": {
+      "title": "Documenting the Legacy",
+      "content": "The photographic and documentary archive project begins. Decades of visual material are collected to demonstrate the plaza's cultural value. SNT4EVER starts gaining visibility in the media and social networks as defenders of public space."
+    },
+    "2024": {
+      "title": "Remodeling and Commitment",
+      "content": "Construction of the new station begins. After intense negotiations, SNT4EVER manages to have the final architectural project include a \"Skate Plaza\" that respects the materials and layout of the original plaza, proving that dialogue between skaters and institutions is possible and necessary.",
+      "events": [
+        "Agreement with the City Council and architects",
+        "Integration of skateboarding in the new urban design",
+        "Preservation of key elements (granite and metal)"
+      ]
+    },
+    "2018_2": {
+      "title": "Creation of the First Replica Benches",
+      "content": "At this point, seeing that no matter how much we tried to fix what little was left they continued destroying the benches, we decided we wanted the plaza to last forever. We documented and drew up plans to find a granite manufacturer and metalworker to rebuild the plaza benches. To finance this, we organized the first DIY championship in all of Spain. Sponsored by the most iconic skate brands, we built the first bench and the entire SNT4EVER movement began to consolidate and make noise."
+    }
+  }
+}

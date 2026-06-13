@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 interface TimelineYear {
   year: number;
@@ -20,7 +21,12 @@ interface TimelineStepperProps {
   onYearChange?: (year: number) => void;
 }
 
-const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperProps) => {
+const TimelineStepper: React.FC<TimelineStepperProps> = ({ 
+  years, 
+  activeYear, 
+  onYearChange 
+}) => {
+  const { t } = useTranslation();
 
   const handleYearClick = (year: number) => {
     onYearChange?.(year);
@@ -65,7 +71,7 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
                           value={yearData.year.toString()}
                           className="focus:bg-yellow focus:text-black cursor-pointer pl-3"
                         >
-                          {yearData.year} - {yearData.title}
+                          {yearData.year} - {t(`timeline.${yearData.year}.title`, { defaultValue: yearData.title })}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -79,8 +85,7 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
                     }}
                     className="bg-yellow text-black hover:bg-yellow/90 px-4 h-12"
                   >
-                    Next →
-                  </Button>
+                    {t('jsx_next')}</Button>
                 </div>
 
                 {/* Desktop year indicators */}
@@ -130,7 +135,7 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
                           value={yearData.year.toString()}
                           className="focus:bg-yellow focus:text-black cursor-pointer text-sm pl-2"
                         >
-                          {yearData.year} - {yearData.title}
+                          {yearData.year} - {t(`timeline.${yearData.year}.title`, { defaultValue: yearData.title })}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -180,7 +185,7 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
             </>
           ) : (
             <div className="text-center text-white/40 py-8">
-              <p className="text-sm">No timeline events available</p>
+              <p className="text-sm">{t('jsx_no_timeline_events_available')}</p>
             </div>
           )}
 
@@ -190,8 +195,7 @@ const TimelineStepper = ({ years, activeYear, onYearChange }: TimelineStepperPro
         {/* Navigation hint - only show on desktop */}
         <div className="hidden md:block mt-4 text-center">
           <p className="text-xs text-white/40">
-            Click any year to jump to that timeline section
-          </p>
+            {t('jsx_click_any_year_to_jump_to_that')}</p>
         </div>
       </div>
     </div>
