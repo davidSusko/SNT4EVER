@@ -7,6 +7,7 @@ import NewsEvents from './components/sections/NewsEvents';
 import SectionMarquee from '@/components/common/SectionMarquee';
 import DocsSection from '@/components/sections/DocsSection';
 import Footer from './components/layout/Footer';
+import joinUsImg from '@/assets/images/join-us-illustration.png';
 import { ARCHIVE_IMAGES, ARCHIVE_VIDEOS, SOCIAL_LINKS } from '@/constants';
 import { useTranslation } from "react-i18next";
 
@@ -56,18 +57,41 @@ function App() {
 
         <DocsSection />
 
-        <section id="join" className="scroll-mt-14 md:scroll-mt-24 section-padding bg-black">
-          <div className="container-snt">
-            <h2 className="text-4xl md:text-5xl font-bold text-yellow mb-8 text-center">
-              {t('jsx_join_us')}</h2>
-            <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-8">
-              {t('jsx_become_a_member_of_snt_and_hel')}</p>
-            <div className="text-center">
-              <button 
-                className="btn-primary"
-                onClick={() => window.open(SOCIAL_LINKS.joinForm, '_blank')}
-              >
-                {t('jsx__nete_a_la_asociaci_n')}</button>
+        <section id="join" className="scroll-mt-14 md:scroll-mt-24 bg-black">
+          <SectionMarquee 
+            text="Join Us!" 
+            className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
+          />
+          <div className="container-snt pb-12 md:pb-24 pt-16 md:pt-32">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-12 items-center">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold text-yellow mb-8 text-left">
+                  {t('jsx_join_us')}</h2>
+                <p className="text-xl text-muted-foreground text-left mb-8">
+                  {t('jsx_become_a_member_of_snt_and_hel')}</p>
+                <div className="hidden md:block text-left">
+                  <button 
+                    className="btn-primary"
+                    onClick={() => window.open(SOCIAL_LINKS.joinForm, '_blank')}
+                  >
+                    {t('jsx__nete_a_la_asociaci_n')}</button>
+                </div>
+              </div>
+              <div className="flex flex-col items-center md:items-end w-full">
+                <button 
+                  onClick={() => window.open(SOCIAL_LINKS.joinForm, '_blank')}
+                  className="hover:opacity-80 transition-opacity focus:outline-none cursor-pointer w-full"
+                >
+                  <img src={joinUsImg} alt="Join Us" className="w-full h-auto max-h-[500px] object-contain drop-shadow-2xl mx-auto" />
+                </button>
+                <div className="md:hidden w-full mt-8">
+                  <button 
+                    className="btn-primary w-full"
+                    onClick={() => window.open(SOCIAL_LINKS.joinForm, '_blank')}
+                  >
+                    {t('jsx__nete_a_la_asociaci_n')}</button>
+                </div>
+              </div>
             </div>
           </div>
         </section>

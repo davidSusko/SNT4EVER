@@ -34,7 +34,7 @@ const DocsSection: React.FC = () => {
         text={t('nav.docs')} 
         className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
       />
-      <div className="container-snt pb-12 md:pb-24">
+      <div className="container-snt pb-12 md:pb-24 md:pt-16">
         <h2 className="text-4xl font-bold text-yellow mb-8 text-left md:hidden pt-8">
           {t('nav.docs')}
         </h2>
