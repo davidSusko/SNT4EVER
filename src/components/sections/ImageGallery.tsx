@@ -3,13 +3,18 @@ import { motion } from 'framer-motion';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { ZoomIn } from 'lucide-react';
 import type { GalleryImage, ImageGalleryProps } from '@/types';
+import { useTranslation } from "react-i18next";
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ 
   images, 
   layout = 'grid', 
   columns = 3 
 }) => {
+  const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const displayedImages = showAll ? images : images.slice(0, 6);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -49,7 +54,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
   if (layout === 'masonry') {
     return (
       <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-        {images.map((image) => (
+        {displayedImages.map((image) => (
           <motion.div
             key={image.id}
             variants={itemVariants}
@@ -100,6 +105,17 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
             )}
           </DialogContent>
         </Dialog>
+
+        {!showAll && images.length > 6 && (
+          <div className="w-full flex justify-center mt-8">
+            <button
+              onClick={() => setShowAll(true)}
+              className="btn-secondary"
+            >
+              {t('jsx_view_more')}
+            </button>
+          </div>
+        )}
       </div>
     );
   }
@@ -111,7 +127,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
       animate="visible"
       className={getGridClasses()}
     >
-      {images.map((image) => (
+      {displayedImages.map((image) => (
         <motion.div
           key={image.id}
           variants={itemVariants}
@@ -160,6 +176,17 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
           )}
         </DialogContent>
       </Dialog>
+
+      {!showAll && images.length > 6 && (
+        <div className="col-span-full flex justify-center mt-8">
+          <button
+            onClick={() => setShowAll(true)}
+            className="btn-secondary"
+          >
+            {t('jsx_view_more')}
+          </button>
+        </div>
+      )}
     </motion.div>
   );
 };

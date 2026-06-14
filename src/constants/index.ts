@@ -61,8 +61,8 @@ export const ASSET_PATHS: AssetPaths = {
 export const NAVIGATION_ITEMS: NavigationItem[] = [
   { label: 'The project', href: '#hero', id: 'hero' },
   { label: 'Our story', href: '#story', id: 'story' },
-  { label: 'Archive', href: '#archive', id: 'archive' },
   { label: 'News/Events', href: '#news', id: 'news' },
+  { label: 'Archive', href: '#archive', id: 'archive' },
   { label: 'Docs', href: '#docs', id: 'docs' },
   { label: 'Join us!', href: '#join', id: 'join', isSpecial: true },
   { label: 'Contact', href: '#contact', id: 'contact' },
@@ -213,3 +213,22 @@ export const CONTACT_INFO = {
   location: 'Sants Skate Plaza, Barcelona',
   phone: '+34 XXX XXX XXX',
 };
+
+// Replace these URLs with your actual Instagram post URLs
+export const INSTAGRAM_POSTS = [
+
+  "https://www.instagram.com/p/DZUaPw2CE3_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/reel/DZDI5XVs6MS/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/reel/DYeiuqWIA_U/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+
+  "https://www.instagram.com/reel/DYZGKVIolAU/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/reel/DYRaj9ZoJpc/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/p/DXL9iqsiB3g/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/reel/DWyWAa8AGR3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/p/DWlbTOBCIzE/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/reel/DWitFNwjJXH/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/reel/DWYhdEQiM1Q/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/reel/DV1Ux3bDEM1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/p/DU3HWySCNLK/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/p/DUantN5jEUn/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+];

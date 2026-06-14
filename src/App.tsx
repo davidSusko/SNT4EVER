@@ -19,6 +19,8 @@ function App() {
         <HeroSection />
         <TimelineSection />
         
+        <NewsEvents />
+
         {/* Additional sections can be added here */}
         <section id="archive" className="scroll-mt-14 md:scroll-mt-24 bg-black">
           <SectionMarquee 
@@ -51,8 +53,6 @@ function App() {
           </div>
         </section>
 
-        <NewsEvents />
-
         <section id="join" className="scroll-mt-14 md:scroll-mt-24 section-padding bg-black">
           <div className="container-snt">
             <h2 className="text-4xl md:text-5xl font-bold text-yellow mb-8 text-center">
@@ -69,12 +69,61 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="section-padding bg-gray-950">
+        <section id="contact" className="scroll-mt-14 md:scroll-mt-24 bg-black">
+          <SectionMarquee 
+            text={t('nav.contact')} 
+            className="w-full bg-yellow py-1 md:py-2 mb-4 md:mb-12 mt-12 md:flex items-center overflow-hidden" 
+          />
           <div className="container-snt">
-            <h2 className="text-4xl md:text-5xl font-bold text-yellow mb-8 text-center">
-              {t('jsx_contact')}</h2>
-            <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto">
-              {t('jsx_get_in_touch_with_us_for_colla')}</p>
+            <div className="flex flex-col space-y-16 pb-12 md:pb-24 pt-4 md:pt-12">
+              {/* Write us block */}
+              <div>
+                <h3 className="text-3xl md:text-5xl font-bold text-yellow mb-2 tracking-tight">
+                  {t('jsx_write_us')}
+                </h3>
+                <a 
+                  href="mailto:sntfor4ever@gmail.com" 
+                  className="text-2xl md:text-4xl text-white border-b border-white/30 pb-1 hover:border-yellow transition-colors inline-block font-bold tracking-tight mt-2"
+                >
+                  sntfor4ever@gmail.com
+                </a>
+              </div>
+
+              {/* Follow us block */}
+              <div>
+                <h3 className="text-3xl md:text-5xl font-bold text-yellow mb-2 tracking-tight">
+                  {t('jsx_follow_us')}
+                </h3>
+                <div className="flex flex-wrap gap-x-2 gap-y-4 text-2xl md:text-4xl text-white font-bold tracking-tight mt-2">
+                  <a 
+                    href="https://instagram.com/snt_4_ever" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="border-b border-white/30 pb-1 hover:border-yellow transition-colors"
+                  >
+                    Instagram
+                  </a>
+                  <span>, </span>
+                  <a 
+                    href="https://www.youtube.com/channel/UCm_p5i8W7lzInpSbE1FVP7w" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="border-b border-white/30 pb-1 hover:border-yellow transition-colors"
+                  >
+                    Youtube
+                  </a>
+                  <span>, </span>
+                  <a 
+                    href="https://vimeo.com/user53492644" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="border-b border-white/30 pb-1 hover:border-yellow transition-colors"
+                  >
+                    Vimeo
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>

@@ -129,11 +129,18 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   );
 };
 
-// Video Gallery Component
+// VideoGallery Component
 export const VideoGallery: React.FC<VideoGalleryProps> = ({ videos }) => {
+  const { t } = useTranslation();
+  const [showAll, setShowAll] = useState(false);
+
+  const sortedVideos = [...videos].sort((a, b) => (b.year || 0) - (a.year || 0));
+  const displayedVideos = showAll ? sortedVideos : sortedVideos.slice(0, 6);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {videos.map((video) => (
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {displayedVideos.map((video) => (
         <motion.div
           key={video.id}
           initial={{ opacity: 0, y: 20 }}
@@ -154,6 +161,18 @@ export const VideoGallery: React.FC<VideoGalleryProps> = ({ videos }) => {
           </div>
         </motion.div>
       ))}
+      </div>
+      
+      {!showAll && videos.length > 6 && (
+        <div className="w-full flex justify-center mt-8">
+          <button
+            onClick={() => setShowAll(true)}
+            className="btn-secondary"
+          >
+            {t('jsx_view_more')}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
