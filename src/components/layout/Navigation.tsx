@@ -98,7 +98,7 @@ const Navigation = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 md:bg-black ${isScrolled ? 'md:bg-opacity-100' : 'md:bg-opacity-75'} bg-yellow font-mono`}>
-      <nav className="container-snt h-24 hidden md:flex items-center justify-between">
+      <nav className="w-full px-12 h-24 hidden md:flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
           <a href="/" className="flex items-center">

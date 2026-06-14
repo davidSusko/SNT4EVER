@@ -53,6 +53,9 @@ importers:
       react-icons:
         specifier: ^5.5.0
         version: 5.6.0(react@19.2.7)
+      react-social-media-embed:
+        specifier: ^2.5.18
+        version: 2.5.18(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       tailwind-merge:
         specifier: ^3.4.0
         version: 3.6.0
@@ -808,6 +811,9 @@ packages:
   '@types/react@19.2.16':
     resolution: {integrity: sha512-esJiCAnl0kfpNdE69f3So4WJUXy95dLZydX0KwK46riIHDzHM7O9Vtf9xCHW0PXIqvgqNrswl522kA/5yx+F4w==}
 
+  '@types/youtube-player@5.5.11':
+    resolution: {integrity: sha512-pM41CDBqJqBmTeJWnF7NOGz82IQoYOhqzMYXv5vKCXBqGiYSLldxMtpCk6KAEtADTy49S45AriYaCaZyeUX38Q==}
+
   '@typescript-eslint/eslint-plugin@8.60.1':
     resolution: {integrity: sha512-JQ4S5GB0tfjO8BuJ4fcX+HodkzJjYBV+7OJ+wLygaX7OGQ7FudyHL4NSCA6ob+w3Yn+5MkKIozOwQhXeM7opVg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -982,6 +988,9 @@ packages:
   class-variance-authority@0.7.1:
     resolution: {integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==}
 
+  classnames@2.5.1:
+    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
+
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
@@ -1027,6 +1036,14 @@ packages:
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
+
+  debug@2.6.9:
+    resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -1453,6 +1470,9 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
+  load-script@1.0.0:
+    resolution: {integrity: sha512-kPEjMFtZvwL9TaZo0uZ2ml+Ye9HUMmPwbYRJ324qF9tqMejwykJ5ggTyvzmrbBeapCAbk98BSbTeovHEEP1uCA==}
+
   locate-path@5.0.0:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}
     engines: {node: '>=8'}
@@ -1463,6 +1483,10 @@ packages:
 
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+
+  loose-envify@1.4.0:
+    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
+    hasBin: true
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
@@ -1499,6 +1523,9 @@ packages:
 
   motion-utils@12.39.0:
     resolution: {integrity: sha512-8nadJAJjTtqRkmRF36FoJTrywK9nnFmnPwnSMyxaOCU7GDjN9RTMJIxx9De8ErM+vpPhMccr/6fo5WciyQLnMQ==}
+
+  ms@2.0.0:
+    resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
 
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
@@ -1650,6 +1677,9 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
+  prop-types@15.8.1:
+    resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
+
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
@@ -1661,6 +1691,12 @@ packages:
     resolution: {integrity: sha512-t0BRVXvbiE/o20Hfw669rLbMCDWtYZLvmJigy2f0MxsXF+71pxhR3xOkspmsO8h3ZlNzyibAmtCa3l4lYKk6gQ==}
     peerDependencies:
       react: ^19.2.7
+
+  react-html-props@2.1.1:
+    resolution: {integrity: sha512-tM+YCYlr90m3JontKUAa+gNVU2zkyprlCS7OQ9aa3z2MfyJjAioJzrSmi1Vef/+UCTE6CQlPqLX4ebdLIJDKxw==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0
 
   react-i18next@17.0.8:
     resolution: {integrity: sha512-0ooKbGLU8JXhe1zwpQUWIeXSgLPOfwJmgheWRIUpcoA0CpyabpGhayjdG+/eA5esC1AQ8h2jWpXjJfzQzeDOCw==}
@@ -1682,6 +1718,9 @@ packages:
     resolution: {integrity: sha512-RH93p5ki6LfOiIt0UtDyNg/cee+HLVR6cHHtW3wALfo+eOHTp8RnU2kRkI6E+H19zMIs03DyxUG/GfZMOGvmiA==}
     peerDependencies:
       react: '*'
+
+  react-is@16.13.1:
+    resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
   react-refresh@0.18.0:
     resolution: {integrity: sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw==}
@@ -1707,6 +1746,12 @@ packages:
       '@types/react':
         optional: true
 
+  react-social-media-embed@2.5.18:
+    resolution: {integrity: sha512-+PkzLRGAwnySkxKajaiK5VD+EjOhlFsh/vjNxgHsDfKBTseDpFxPrMXXQWkk6BRCwFBNVWX+V1HZ9AU0y54Wgw==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0
+
   react-style-singleton@2.2.3:
     resolution: {integrity: sha512-b6jSvxvVnyptAiLjbkWLE/lOnR4lfTtDAl+eUC7RZy+QQWc6wRzIV2CE6xBuMmDxc2qIihtDCZD5NPOFl7fRBQ==}
     engines: {node: '>=10'}
@@ -1716,6 +1761,25 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  react-sub-unsub@2.2.8:
+    resolution: {integrity: sha512-o3tmiOOZPdQUCmRhkdCHXRFLOHnCwdz/N3QZ1JQ14fQGA2HysKMF0kWu56ERnQUCK7wYVCQzI8pFbnivAYNQ+A==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0
+
+  react-twitter-embed@4.0.4:
+    resolution: {integrity: sha512-2JIL7qF+U62zRzpsh6SZDXNI3hRNVYf5vOZ1WRcMvwKouw+xC00PuFaD0aEp2wlyGaZ+f4x2VvX+uDadFQ3HVA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+
+  react-youtube@10.1.0:
+    resolution: {integrity: sha512-ZfGtcVpk0SSZtWCSTYOQKhfx5/1cfyEW1JN/mugGNfAxT3rmVJeMbGpA9+e78yG21ls5nc/5uZJETE3cm3knBg==}
+    engines: {node: '>= 14.x'}
+    peerDependencies:
+      react: '>=0.14.1'
 
   react@19.2.7:
     resolution: {integrity: sha512-HNe9WslTbXmFK8o8cmwgAeJFSBvt1bPdHCVKtaaV+WlAN36mpT4hcRpwbf3fY56ar2oIXzsBpOAiIRHAdY0OlQ==}
@@ -1752,6 +1816,9 @@ packages:
   scheduler@0.27.0:
     resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
 
+  scriptjs@2.5.9:
+    resolution: {integrity: sha512-qGVDoreyYiP1pkQnbnFAUIS5AjenNwwQBdl7zeos9etl+hYKWahjRTfzAZZYBv5xNHx7vNKCmaLDQZ6Fr2AEXg==}
+
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
@@ -1768,6 +1835,9 @@ packages:
   shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
+
+  sister@3.0.2:
+    resolution: {integrity: sha512-p19rtTs+NksBRKW9qn0UhZ8/TUI9BPw9lmtHny+Y3TinWlOa9jWh9xB0AtPSdmOy49NJJJSSe0Ey4C7h0TrcYA==}
 
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
@@ -1988,6 +2058,9 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  youtube-player@5.5.2:
+    resolution: {integrity: sha512-ZGtsemSpXnDky2AUYWgxjaopgB+shFHgXVpiJFeNB5nWEugpW1KWYDaHKuLqh2b67r24GtP6HoSW5swvf0fFIQ==}
 
   zod-validation-error@4.0.2:
     resolution: {integrity: sha512-Q6/nZLe6jxuU80qb/4uJ4t5v2VEZ44lzQjPDhYJNztRQ4wyWc6VF3D3Kb/fAuPetZQnhS3hnajCf9CsWesghLQ==}
@@ -2666,6 +2739,8 @@ snapshots:
     dependencies:
       csstype: 3.2.3
 
+  '@types/youtube-player@5.5.11': {}
+
   '@typescript-eslint/eslint-plugin@8.60.1(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
@@ -2876,6 +2951,8 @@ snapshots:
     dependencies:
       clsx: 2.1.1
 
+  classnames@2.5.1: {}
+
   clsx@2.1.1: {}
 
   code-block-writer@13.0.3: {}
@@ -2907,6 +2984,10 @@ snapshots:
   cssesc@3.0.0: {}
 
   csstype@3.2.3: {}
+
+  debug@2.6.9:
+    dependencies:
+      ms: 2.0.0
 
   debug@4.4.3:
     dependencies:
@@ -3284,6 +3365,8 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
+  load-script@1.0.0: {}
+
   locate-path@5.0.0:
     dependencies:
       p-locate: 4.1.0
@@ -3293,6 +3376,10 @@ snapshots:
       p-locate: 5.0.0
 
   lodash.merge@4.6.2: {}
+
+  loose-envify@1.4.0:
+    dependencies:
+      js-tokens: 4.0.0
 
   lru-cache@5.1.1:
     dependencies:
@@ -3328,6 +3415,8 @@ snapshots:
       motion-utils: 12.39.0
 
   motion-utils@12.39.0: {}
+
+  ms@2.0.0: {}
 
   ms@2.1.3: {}
 
@@ -3443,6 +3532,12 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
+  prop-types@15.8.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      react-is: 16.13.1
+
   punycode@2.3.1: {}
 
   queue-microtask@1.2.3: {}
@@ -3451,6 +3546,11 @@ snapshots:
     dependencies:
       react: 19.2.7
       scheduler: 0.27.0
+
+  react-html-props@2.1.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
+    dependencies:
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
 
   react-i18next@17.0.8(i18next@26.3.1(typescript@5.9.3))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@5.9.3):
     dependencies:
@@ -3466,6 +3566,8 @@ snapshots:
   react-icons@5.6.0(react@19.2.7):
     dependencies:
       react: 19.2.7
+
+  react-is@16.13.1: {}
 
   react-refresh@0.18.0: {}
 
@@ -3488,6 +3590,19 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.16
 
+  react-social-media-embed@2.5.18(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
+    dependencies:
+      '@types/youtube-player': 5.5.11
+      classnames: 2.5.1
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
+      react-html-props: 2.1.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-sub-unsub: 2.2.8(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-twitter-embed: 4.0.4(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-youtube: 10.1.0(react@19.2.7)
+    transitivePeerDependencies:
+      - supports-color
+
   react-style-singleton@2.2.3(@types/react@19.2.16)(react@19.2.7):
     dependencies:
       get-nonce: 1.0.1
@@ -3495,6 +3610,26 @@ snapshots:
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 19.2.16
+
+  react-sub-unsub@2.2.8(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
+    dependencies:
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
+
+  react-twitter-embed@4.0.4(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
+    dependencies:
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
+      scriptjs: 2.5.9
+
+  react-youtube@10.1.0(react@19.2.7):
+    dependencies:
+      fast-deep-equal: 3.1.3
+      prop-types: 15.8.1
+      react: 19.2.7
+      youtube-player: 5.5.2
+    transitivePeerDependencies:
+      - supports-color
 
   react@19.2.7: {}
 
@@ -3544,6 +3679,8 @@ snapshots:
 
   scheduler@0.27.0: {}
 
+  scriptjs@2.5.9: {}
+
   semver@6.3.1: {}
 
   semver@7.8.1: {}
@@ -3553,6 +3690,8 @@ snapshots:
       shebang-regex: 3.0.0
 
   shebang-regex@3.0.0: {}
+
+  sister@3.0.2: {}
 
   slash@3.0.0: {}
 
@@ -3745,6 +3884,14 @@ snapshots:
   yn@3.1.1: {}
 
   yocto-queue@0.1.0: {}
+
+  youtube-player@5.5.2:
+    dependencies:
+      debug: 2.6.9
+      load-script: 1.0.0
+      sister: 3.0.2
+    transitivePeerDependencies:
+      - supports-color
 
   zod-validation-error@4.0.2(zod@4.4.3):
     dependencies:
