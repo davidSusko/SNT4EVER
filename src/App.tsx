@@ -5,6 +5,7 @@ import ImageGallery from './components/sections/ImageGallery';
 import { VideoGallery } from './components/sections/YouTubePlayer';
 import NewsEvents from './components/sections/NewsEvents';
 import SectionMarquee from '@/components/common/SectionMarquee';
+import DocsSection from '@/components/sections/DocsSection';
 import Footer from './components/layout/Footer';
 import { ARCHIVE_IMAGES, ARCHIVE_VIDEOS, SOCIAL_LINKS } from '@/constants';
 import { useTranslation } from "react-i18next";
@@ -53,6 +54,8 @@ function App() {
           </div>
         </section>
 
+        <DocsSection />
+
         <section id="join" className="scroll-mt-14 md:scroll-mt-24 section-padding bg-black">
           <div className="container-snt">
             <h2 className="text-4xl md:text-5xl font-bold text-yellow mb-8 text-center">
@@ -72,9 +75,12 @@ function App() {
         <section id="contact" className="scroll-mt-14 md:scroll-mt-24 bg-black">
           <SectionMarquee 
             text={t('nav.contact')} 
-            className="w-full bg-yellow py-1 md:py-2 mb-4 md:mb-12 mt-12 md:flex items-center overflow-hidden" 
+            className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
           />
           <div className="container-snt">
+            <h2 className="text-4xl font-bold text-yellow mb-4 text-left md:hidden pt-8">
+              {t('nav.contact')}
+            </h2>
             <div className="flex flex-col space-y-16 pb-12 md:pb-24 pt-4 md:pt-12">
               {/* Write us block */}
               <div>

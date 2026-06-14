@@ -1,9 +1,9 @@
 {
   "nav": {
     "hero": "El projecte",
-    "story": "La nostra història",
+    "story": "Història",
     "archive": "Arxiu",
-    "news": "Notícies i Esdeveniments",
+    "news": "Notícies",
     "docs": "Documents",
     "join": "Uneix-te!",
     "contact": "Contacte"
@@ -21,6 +21,10 @@
   "jsx_no_timeline_events_available": "No hi ha esdeveniments disponibles",
   "jsx_click_any_year_to_jump_to_that": "Fes clic a qualsevol any per saltar a aquesta secció de la línia del temps",
   "jsx_collaborators": "Col·laboradors",
+  "jsx_key_moments": "Moments Clau",
+  "docs_save_snt_desc": "Document inicial de l'associació on s'explica què és l'associació, els beneficis de l'skate a Barcelona, la història de la plaça i altres exemples europeus de referència.",
+  "docs_gent_de_placa_desc": "Document que mostra la varietat d'usuaris que es poden trobar a la plaça.",
+  "docs_show_more": "Mostra'n més",
   "jsx_info_snt4ever_com": "info@snt4ever.com",
   "jsx_location": "Ubicació",
   "jsx_sants_skate_plaza": "Sants Skate Plaza",
@@ -36,7 +40,7 @@
   "jsx_salvar_una_plaza_m_tica_dentro": "salvar una plaça mítica dins el món de l'skateboarding i iniciar el diàleg",
   "jsx_entre_el_ayuntamiento_y_los_sk": "entre l'ajuntament i els skaters. A més de promoure la cultura urbana, en concret la de l'skateboarding, entre les diferents associacions del barri, escoles i tothom qui estigui interessat a col·laborar amb nosaltres.",
   "jsx_firma_la_petici_n": "Signa la petició",
-  "jsx_desde_1983_defendiendo_el_skat": "Des de 1983 defensant l'skate a Barcelona • Since 1983 defending skate in Barcelona",
+  "jsx_desde_1983_defendiendo_el_skat": "Des de 1983 defensant l'skate a Barcelona",
   "jsx_news_events": "Notícies i Esdeveniments",
   "jsx_stay_updated_with_the_latest_h": "Estigues al dia de les últimes novetats, esdeveniments i notícies de SNT i la comunitat de skate.",
   "jsx_all": "Tot",

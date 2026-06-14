@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 const TimelineSection = () => {
   const { t } = useTranslation();
-  const [activeYear, setActiveYear] = useState<number|null>(null);
+  const [activeYear, setActiveYear] = useState<number | null>(null);
   const [visibleYears, setVisibleYears] = useState<Set<number>>(new Set([1983]));
 
   const timelineEvents = TIMELINE_EVENTS;
@@ -40,28 +40,28 @@ const TimelineSection = () => {
       const eventElements = document.querySelectorAll('[data-timeline-year]');
       let closestYear: number | null = null;
       let closestDistance = Infinity;
-      
+
       eventElements.forEach((element) => {
         const rect = element.getBoundingClientRect();
         const year = parseInt(element.getAttribute('data-timeline-year') || '0');
-        
+
         // Mark year as visible if it's in viewport
         if (rect.top < window.innerHeight && rect.bottom > 0) {
           console.log(`Marking year ${year} as visible`);
           setVisibleYears(prev => new Set(prev).add(year));
-          
+
           // Find the closest year to the center
           const elementCenter = rect.top + rect.height / 2;
           const windowCenter = window.innerHeight / 2;
           const distance = Math.abs(elementCenter - windowCenter);
-          
+
           if (distance < closestDistance) {
             closestDistance = distance;
             closestYear = year;
           }
         }
       });
-      
+
       // Set the closest year as active if it's within a reasonable range
       if (closestYear && closestDistance < window.innerHeight / 2) {
         console.log(`Setting active year to ${closestYear} (distance: ${closestDistance})`);
@@ -83,20 +83,20 @@ const TimelineSection = () => {
       acc.push({
         year,
         title: event.title,
-        subtitle: event.type === 'gallery' ? `${event.images?.length || 0} photos` : 
-                   event.type === 'video' ? 'Video content' : 
-                   event.type === 'events' ? `${event.events?.length || 0} events` : 
-                   'Historical content',
+        subtitle: event.type === 'gallery' ? `${event.images?.length || 0} photos` :
+          event.type === 'video' ? 'Video content' :
+            event.type === 'events' ? `${event.events?.length || 0} events` :
+              'Historical content',
         isComplete: visibleYears.has(year)
       });
     }
     return acc;
   }, []);
-  console.log('Active Year:', activeYear);  
+  console.log('Active Year:', activeYear);
   return (
     <section className="scroll-mt-14 md:scroll-mt-24 bg-black" id="story">
-      <SectionMarquee 
-        text="Our History" 
+      <SectionMarquee
+        text="Our History"
         className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
       />
       <div className="container-snt pt-24 pb-24">
@@ -109,7 +109,7 @@ const TimelineSection = () => {
           {/* Section Header */}
           <motion.div
             variants={itemVariants}
-            className="text-center mb-20"
+            className="text-left md:text-center mb-20"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-yellow">
               {t('jsx_nuestra_historia')}</h2>
@@ -122,7 +122,7 @@ const TimelineSection = () => {
             variants={itemVariants}
             className="mb-16 sticky top-14 md:top-24 z-40"
           >
-            <TimelineStepper 
+            <TimelineStepper
               years={timelineStepperData}
               activeYear={activeYear}
               onYearChange={setActiveYear}
@@ -136,25 +136,23 @@ const TimelineSection = () => {
                 key={event.year}
                 data-timeline-year={event.year}
                 variants={itemVariants}
-                className={`flex flex-col lg:flex-row gap-12 items-center ${
-                  index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                }`}
+                className={`flex flex-col lg:flex-row gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+                  }`}
               >
                 {/* Year Display */}
                 <div className="lg:w-1/4">
                   <div className="text-center lg:text-right">
                     <motion.span
-                      className={`text-6xl md:text-7xl lg:text-8xl font-bold transition-colors duration-500 ${
-                        activeYear === parseInt(event.year) 
-                          ? 'text-yellow animate-year-glow' 
+                      className={`text-6xl md:text-7xl lg:text-8xl font-bold transition-colors duration-500 ${activeYear === parseInt(event.year)
+                          ? 'text-yellow animate-year-glow'
                           : 'text-yellow/20'
-                      }`}
+                        }`}
                       initial={{ opacity: 0.6, scale: 0.8 }}
-                      animate={{ 
+                      animate={{
                         opacity: activeYear === parseInt(event.year) ? 1 : 0.6,
                         scale: activeYear === parseInt(event.year) ? 1 : 0.8
                       }}
-                      transition={{ 
+                      transition={{
                         duration: 0.3,
                         ease: "easeInOut"
                       }}
@@ -189,13 +187,13 @@ const TimelineSection = () => {
                       {/* Video Content */}
                       {event.videoId && (
                         <div className="aspect-video mb-8 rounded-lg overflow-hidden bg-black/50">
-                          <iframe 
-                            width="100%" 
-                            height="100%" 
-                            src={`https://www.youtube.com/embed/${event.videoId}`} 
-                            title="YouTube video player" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            referrerPolicy="strict-origin-when-cross-origin" 
+                          <iframe
+                            width="100%"
+                            height="100%"
+                            src={`https://www.youtube.com/embed/${event.videoId}`}
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen></iframe>
                         </div>
                       )}

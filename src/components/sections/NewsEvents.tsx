@@ -29,11 +29,11 @@ const NewsEvents: React.FC = () => {
 
   return (
     <section className="scroll-mt-14 md:scroll-mt-24 bg-black" id="news">
-      <SectionMarquee 
-        text={t('nav.news')} 
+      <SectionMarquee
+        text={t('nav.news')}
         className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
       />
-      <div className="container-snt pt-24 pb-24">
+      <div className="container-snt pt-24 pb-5">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -43,7 +43,7 @@ const NewsEvents: React.FC = () => {
           {/* Section Header */}
           <motion.div
             variants={itemVariants}
-            className="text-center mb-16"
+            className="text-center mb-4"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-yellow">
               {t('jsx_news_events')}

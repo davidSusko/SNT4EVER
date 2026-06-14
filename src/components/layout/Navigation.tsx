@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ShoppingCart, Plus, ArrowDown } from 'lucide-react';
+import { Plus, ArrowDown } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Marquee from '@/components/common/Marquee';
 import { NAVIGATION_ITEMS } from '@/constants';
@@ -9,7 +9,7 @@ import logo from '@/assets/images/ICON-SNT-HEADER.png';
 import { LanguageSelector } from '@/components/common/LanguageSelector';
 
 const Navigation = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showProjectLink, setShowProjectLink] = useState(false);
@@ -17,7 +17,7 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
+
       const storyElement = document.getElementById('story');
       if (storyElement) {
         const rect = storyElement.getBoundingClientRect();
@@ -41,6 +41,12 @@ const Navigation = () => {
         return 'Archive';
       case 'news':
         return 'News & Events';
+      case 'docs':
+        return 'Documents';
+      case 'join':
+        return 'Join Us!';
+      case 'contact':
+        return 'Contact';
       default:
         return 'The Project';
     }
@@ -51,17 +57,17 @@ const Navigation = () => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
       e.preventDefault();
-      
+
       if (isOpen) {
         setIsOpen(false);
       }
-      
+
       const scrollToTarget = () => {
         const target = document.querySelector(href) as HTMLElement;
         if (!target) return;
-        
+
         const headerOffset = window.innerWidth >= 768 ? 96 : 56;
-        
+
         // Native scrollIntoView handles standard cases and some layout shifts
         target.scrollIntoView({ behavior: 'smooth' });
 
@@ -75,7 +81,7 @@ const Navigation = () => {
           if (Math.abs(rect.top - headerOffset) > 5) {
             window.scrollBy({ top: rect.top - headerOffset, behavior: 'auto' });
           }
-          
+
           attempts++;
           if (attempts > 16) { // 16 * 50ms = 800ms (duration of smooth scroll)
             clearInterval(checkInterval);
@@ -113,16 +119,15 @@ const Navigation = () => {
             if (item.id === 'hero' && !showProjectLink) {
               return null;
             }
-            
+
             return (
               <a
                 key={item.id}
                 href={item.href}
-                className={`${
-                  activeSection === item.id
-                    ? 'text-yellow font-bold hover:text-yellow/80'
-                    : 'text-white hover:text-gray-300'
-                } transition-colors cursor-pointer`}
+                className={`${activeSection === item.id
+                  ? 'text-yellow font-bold hover:text-yellow/80'
+                  : 'text-white hover:text-gray-300'
+                  } transition-colors cursor-pointer whitespace-nowrap`}
                 onClick={(e) => handleNavClick(e, item.href)}
               >
                 {t(`nav.${item.id}`)}
@@ -130,9 +135,6 @@ const Navigation = () => {
             );
           })}
           <LanguageSelector />
-          <a href="#cart" className="text-white hover:text-gray-300 ml-2">
-            <ShoppingCart className="h-5 w-5" />
-          </a>
         </div>
       </nav>
 
@@ -156,13 +158,13 @@ const Navigation = () => {
                 <Plus className="h-8 w-8" strokeWidth={3} />
               </button>
             </SheetTrigger>
-            <SheetContent 
-              side="right" 
-              className="bg-black border-white/10 text-white"
+            <SheetContent
+              side="right"
+              className="bg-black border-white/10 text-white flex flex-col h-full"
               onCloseAutoFocus={(e) => e.preventDefault()}
             >
               <div className="flex flex-col space-y-6 mt-8">
-                {NAVIGATION_ITEMS.map((item) => (
+                {[...NAVIGATION_ITEMS].sort((a, b) => (a.isSpecial ? 1 : 0) - (b.isSpecial ? 1 : 0)).map((item) => (
                   <a
                     key={item.id}
                     href={item.href}
@@ -183,8 +185,27 @@ const Navigation = () => {
                 ))}
               </div>
 
-              <div className="mt-8 flex justify-center border-t border-white/10 pt-4">
-                <LanguageSelector />
+              <div className="mt-auto flex justify-center items-center gap-4 pb-2 text-sm font-sans">
+                <button
+                  onClick={() => i18n.changeLanguage('ca')}
+                  className={`transition-colors ${i18n.language?.startsWith('ca') ? 'text-yellow font-bold' : 'text-gray-400 hover:text-white'}`}
+                >
+                  Català
+                </button>
+                <span className="text-gray-600">-</span>
+                <button
+                  onClick={() => i18n.changeLanguage('es')}
+                  className={`transition-colors ${i18n.language?.startsWith('es') ? 'text-yellow font-bold' : 'text-gray-400 hover:text-white'}`}
+                >
+                  Español
+                </button>
+                <span className="text-gray-600">-</span>
+                <button
+                  onClick={() => i18n.changeLanguage('en')}
+                  className={`transition-colors ${i18n.language?.startsWith('en') ? 'text-yellow font-bold' : 'text-gray-400 hover:text-white'}`}
+                >
+                  English
+                </button>
               </div>
             </SheetContent>
           </Sheet>
