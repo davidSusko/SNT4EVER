@@ -95,7 +95,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-black border-t border-white/10 font-mono">
+    <footer className="bg-neutral-900 border-t border-white/10 font-mono">
       <div className="w-full px-6 md:px-12 lg:px-12 py-16">
         <motion.div
           initial="hidden"
