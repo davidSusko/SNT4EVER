@@ -24,7 +24,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   className = ''
 }) => {
   const { t } = useTranslation();
-  const [isPlaying, setIsPlaying] = useState(!autoplay);
+  const [isPlaying, setIsPlaying] = useState(autoplay);
   const [isMuted, setIsMuted] = useState(muted);
 
 
@@ -47,7 +47,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
       modestbranding: '1',
       fs: showControls ? '1' : '0',
       controls: showControls ? '1' : '0',
-      autoplay: autoplay ? '1' : '0',
+      autoplay: isPlaying ? '1' : '0', // Siempre autoplay cuando isPlaying es true (cuando montamos el iframe tras clickar)
       mute: muted ? '1' : '0',
       playsinline: '1',
       loop: '0',
