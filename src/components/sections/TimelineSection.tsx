@@ -47,7 +47,6 @@ const TimelineSection = () => {
 
         // Mark year as visible if it's in viewport
         if (rect.top < window.innerHeight && rect.bottom > 0) {
-          console.log(`Marking year ${year} as visible`);
           setVisibleYears(prev => new Set(prev).add(year));
 
           // Find the closest year to the center
@@ -64,7 +63,6 @@ const TimelineSection = () => {
 
       // Set the closest year as active if it's within a reasonable range
       if (closestYear && closestDistance < window.innerHeight / 2) {
-        console.log(`Setting active year to ${closestYear} (distance: ${closestDistance})`);
         setActiveYear(closestYear);
       } else if (closestYear === null) {
         // Only set to null if no elements are visible at all
@@ -92,11 +90,10 @@ const TimelineSection = () => {
     }
     return acc;
   }, []);
-  console.log('Active Year:', activeYear);
   return (
     <section className="scroll-mt-14 md:scroll-mt-24 bg-black" id="story">
       <SectionMarquee
-        text="Our History"
+        text={t('jsx_nuestra_historia')}
         className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
       />
       <div className="container-snt pt-24 pb-24">
@@ -133,7 +130,7 @@ const TimelineSection = () => {
           <div className="space-y-24">
             {timelineEvents.map((event, index) => (
               <motion.div
-                key={event.year}
+                key={`${event.year}-${index}`}
                 data-timeline-year={event.year}
                 variants={itemVariants}
                 className={`flex flex-col lg:flex-row gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''

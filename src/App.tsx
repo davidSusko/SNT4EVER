@@ -10,10 +10,31 @@ import Footer from './components/layout/Footer';
 import joinUsImg from '@/assets/images/join-us-illustration.png';
 import { ARCHIVE_IMAGES, ARCHIVE_VIDEOS, SOCIAL_LINKS } from '@/constants';
 import { useTranslation } from "react-i18next";
+import { AdminInstagram } from './pages/AdminInstagram';
 
 
 function App() {
   const { t } = useTranslation();
+
+  const base = import.meta.env.BASE_URL;
+  const path = window.location.pathname;
+  
+  // Normalizar las rutas (quitar barras finales para comparar fácilmente)
+  const normalizedPath = path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
+  const normalizedBase = base.endsWith('/') && base.length > 1 ? base.slice(0, -1) : base;
+  
+  const adminPath = normalizedBase === '/' ? '/admin' : `${normalizedBase}/admin`;
+  
+  // Ruta Admin
+  if (normalizedPath === adminPath) {
+    return <AdminInstagram />;
+  }
+
+  // Si la ruta no es la base (home) ni admin, redirigir visualmente a home
+  if (normalizedPath !== normalizedBase) {
+    window.history.replaceState(null, '', base);
+  }
+
   return (
     <div className="min-h-screen bg-black text-white">
       <Navigation />
@@ -26,7 +47,7 @@ function App() {
         {/* Additional sections can be added here */}
         <section id="archive" className="scroll-mt-14 md:scroll-mt-24 bg-black">
           <SectionMarquee 
-            text="Archive" 
+            text={t('nav.archive')} 
             className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
           />
           <div className="container-snt pt-24 pb-24">
@@ -59,7 +80,7 @@ function App() {
 
         <section id="join" className="scroll-mt-14 md:scroll-mt-24 bg-black">
           <SectionMarquee 
-            text="Join Us!" 
+            text={t('nav.join')} 
             className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
           />
           <div className="container-snt pb-12 md:pb-24 pt-16 md:pt-32">
