@@ -10,7 +10,7 @@ const HeroSection = () => {
   return (
     <section id="hero" className="min-h-screen flex flex-col justify-center items-center pt-24 md:pt-40 relative overflow-hidden bg-black">
       {/* Animated Marquee */}
-      <SectionMarquee text="The project" />
+      <SectionMarquee text={t('nav.hero')} />
 
       {/* Main Content */}
       <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-12 text-center z-10">

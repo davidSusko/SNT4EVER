@@ -3,10 +3,11 @@ import { motion } from 'framer-motion';
 import { InstagramEmbed } from 'react-social-media-embed';
 import { useTranslation } from "react-i18next";
 import SectionMarquee from '@/components/common/SectionMarquee';
-import { INSTAGRAM_POSTS } from '@/constants';
+import { useInstagramPostsSupabase } from '@/hooks/useInstagramPostsSupabase';
 
 const NewsEvents: React.FC = () => {
   const { t } = useTranslation();
+  const { posts, loading, error } = useInstagramPostsSupabase();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -55,26 +56,40 @@ const NewsEvents: React.FC = () => {
 
           {/* Instagram Slider */}
           <div className="flex overflow-x-auto overflow-y-hidden gap-4 md:gap-6 snap-x snap-mandatory pb-8 pt-4 px-4 w-full">
-            {INSTAGRAM_POSTS.map((url, index) => (
-              <motion.div
-                key={url + index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "50px" }}
-                transition={{ duration: 0.4 }}
-                className="flex-shrink-0 snap-center"
-                style={{ zoom: 0.85 }}
-              >
-                <div className="card-dark border border-white/10 transition-all duration-300 h-full p-2 rounded-xl bg-black/50 shadow-lg">
-                  <div className="w-full rounded-lg overflow-hidden flex justify-center bg-white" style={{ minWidth: 328 }}>
-                    <InstagramEmbed url={url} width={328} />
+            {loading ? (
+              <div className="w-full flex justify-center items-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow"></div>
+              </div>
+            ) : error ? (
+              <div className="w-full text-center py-12 text-red-500">
+                Error: {error}
+              </div>
+            ) : posts.length === 0 ? (
+              <div className="w-full text-center py-12 text-muted-foreground">
+                {t('jsx_no_news_available', { defaultValue: 'No hay noticias disponibles.' })}
+              </div>
+            ) : (
+              posts.map((post) => (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "50px" }}
+                  transition={{ duration: 0.4 }}
+                  className="flex-shrink-0 snap-center"
+                  style={{ zoom: 0.85 }}
+                >
+                  <div className="card-dark border border-white/10 transition-all duration-300 h-full p-2 rounded-xl bg-black/50 shadow-lg">
+                    <div className="w-full rounded-lg overflow-hidden flex justify-center bg-white" style={{ minWidth: 328 }}>
+                      <InstagramEmbed url={post.url} width={328} />
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))
+            )}
           </div>
 
-          {/* Newsletter Signup (Optional, kept from before) */}
+          {/* Newsletter Signup (Optional, kept from before)
           <motion.div
             variants={itemVariants}
             className="mt-16 text-center p-8 bg-white/5 rounded-lg border border-white/10"
@@ -96,6 +111,7 @@ const NewsEvents: React.FC = () => {
               </button>
             </div>
           </motion.div>
+          */}
         </motion.div>
       </div>
     </section>
