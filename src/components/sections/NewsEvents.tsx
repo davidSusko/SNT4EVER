@@ -34,7 +34,7 @@ const NewsEvents: React.FC = () => {
         text={t('nav.news')}
         className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
       />
-      <div className="container-snt pt-24 pb-5">
+      <div className="container-snt pt-6 md:pt-24 pb-5">
         <motion.div
           initial="hidden"
           whileInView="visible"

@@ -73,6 +73,7 @@ const TimelineSection = () => {
       const eventElements = document.querySelectorAll('[data-timeline-year]');
       let closestYear: number | null = null;
       let closestDistance = Infinity;
+      const windowTarget = window.innerHeight * 0.4;
 
       eventElements.forEach((element) => {
         const rect = element.getBoundingClientRect();
@@ -82,23 +83,22 @@ const TimelineSection = () => {
         if (rect.top < window.innerHeight && rect.bottom > 0) {
           setVisibleYears(prev => new Set(prev).add(year));
 
-          // Find the closest year to the center
-          const elementCenter = rect.top + rect.height / 2;
-          const windowCenter = window.innerHeight / 2;
-          const distance = Math.abs(elementCenter - windowCenter);
-
-          if (distance < closestDistance) {
-            closestDistance = distance;
+          if (rect.top <= windowTarget && rect.bottom >= windowTarget) {
             closestYear = year;
+            closestDistance = 0;
+          } else if (closestDistance !== 0) {
+            const distance = rect.top > windowTarget ? rect.top - windowTarget : windowTarget - rect.bottom;
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              closestYear = year;
+            }
           }
         }
       });
 
-      // Set the closest year as active if it's within a reasonable range
-      if (closestYear && closestDistance < window.innerHeight / 2) {
+      if (closestYear !== null) {
         setActiveYear(closestYear);
-      } else if (closestYear === null) {
-        // Only set to null if no elements are visible at all
+      } else {
         setActiveYear(null);
       }
     };
@@ -129,7 +129,7 @@ const TimelineSection = () => {
         text={t('jsx_nuestra_historia')}
         className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
       />
-      <div className="container-snt pt-24 pb-24">
+      <div className="container-snt pt-6 md:pt-24 pb-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -160,7 +160,7 @@ const TimelineSection = () => {
           </motion.div>
 
           {/* Timeline Events */}
-          <div className="space-y-24">
+          <div className="space-y-12 lg:space-y-24">
             {timelineEvents.map((event, index) => (
               <motion.div
                 key={`${event.year}-${index}`}
@@ -202,7 +202,7 @@ const TimelineSection = () => {
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
-                          className="inline-block px-4 py-2 bg-yellow text-black font-bold rounded-full mb-4 md:mb-6 text-sm md:text-base shadow-lg shadow-yellow/20"
+                          className="hidden lg:inline-block px-4 py-2 bg-yellow text-black font-bold rounded-full mb-4 md:mb-6 text-sm md:text-base shadow-lg shadow-yellow/20"
                         >
                           {event.year}
                         </motion.div>

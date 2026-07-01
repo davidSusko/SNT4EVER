@@ -25,6 +25,7 @@ const Footer = () => {
         {
           title: 'DESIGN & WEB 🎨',
           items: [
+            { name: 'ROGER SNT & DAVID SUSKO', handle: 'https://github.com/sanzcortes / https://github.com/davidSusko', role: 'por la creación de la página web' },
             { name: 'MARINA GASOLINA', handle: '@marinagasolina', role: 'por los diseños para el instagram' },
             { name: 'DEBORA NUNES', handle: '@00debnf', role: 'por el diseño de los documentos oficiales y la paciencia' },
             { name: 'AGATHE VERDIER', handle: '@verdieragathe', role: 'por el diseño web' },
@@ -47,7 +48,7 @@ const Footer = () => {
         {
           title: 'PHOTOGRAPHERS 📸',
           items: [
-            { name: 'DAVID SUSKO', handle: '@d___susko', role: 'por las fotos' },
+            { name: 'DAVID SUSKO', handle: '@___susko', role: 'por las fotos' },
             { name: 'ROGER FERRERO', handle: '@rogerferrero', role: 'por las fotos' },
             { name: 'AXEL SERRAT', handle: '@agboton', role: 'por las fotos' },
           ]
@@ -125,14 +126,34 @@ const Footer = () => {
                         <div key={idx} className="text-xs md:text-sm leading-relaxed text-white/80">
                           {item.name && <strong className="text-white font-bold">{item.name} </strong>}
                           {item.handle && (
-                            <a
-                              href={`https://instagram.com/${item.handle.replace('@', '')}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-yellow hover:underline font-bold mr-1"
-                            >
-                              {item.handle}
-                            </a>
+                            <span className="mr-1">
+                              {item.handle.split(/(?: \/ )|(?:\/(?=@))/).map((h, i, arr) => {
+                                const trimmed = h.trim();
+                                const isUrl = trimmed.startsWith('http');
+                                const href = isUrl ? trimmed : `https://instagram.com/${trimmed.replace('@', '')}`;
+
+                                let displayText = trimmed;
+                                if (isUrl && trimmed.includes('github.com/')) {
+                                  displayText = `@${trimmed.split('github.com/')[1].replace(/\/$/, '')}`;
+                                } else if (!isUrl && !trimmed.startsWith('@')) {
+                                  displayText = `@${trimmed}`;
+                                }
+
+                                return (
+                                  <span key={i}>
+                                    <a
+                                      href={href}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-yellow hover:underline font-bold"
+                                    >
+                                      {displayText}
+                                    </a>
+                                    {i < arr.length - 1 && <span className="text-white/80 mx-1">/</span>}
+                                  </span>
+                                );
+                              })}
+                            </span>
                           )}
                           <span>{item.role}</span>
                         </div>
