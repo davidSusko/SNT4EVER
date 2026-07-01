@@ -50,7 +50,7 @@ function App() {
             text={t('nav.archive')} 
             className="hidden w-full bg-yellow py-1 md:py-2 mb-4 mt-24 md:mt-32 md:flex items-center overflow-hidden"
           />
-          <div className="container-snt pt-24 pb-24">
+          <div className="container-snt pt-6 md:pt-24 pb-24">
             <h2 className="text-4xl md:text-5xl font-bold text-yellow mb-8 text-center">
               {t('jsx_archive')}</h2>
             <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-12">

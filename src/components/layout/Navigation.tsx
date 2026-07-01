@@ -34,22 +34,7 @@ const Navigation = () => {
   const activeSection = useScrollSpy(sectionIds, { rootMargin: '-20% 0px -20% 0px' });
 
   const getMarqueeText = () => {
-    switch (activeSection) {
-      case 'story':
-        return 'Our History';
-      case 'archive':
-        return 'Archive';
-      case 'news':
-        return 'News & Events';
-      case 'docs':
-        return 'Documents';
-      case 'join':
-        return 'Join Us!';
-      case 'contact':
-        return 'Contact';
-      default:
-        return 'The Project';
-    }
+    return t(`nav.${activeSection || 'hero'}`);
   };
 
   const marqueeText = getMarqueeText();

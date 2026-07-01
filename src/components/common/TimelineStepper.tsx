@@ -61,7 +61,7 @@ const TimelineStepper: React.FC<TimelineStepperProps> = ({
                     value={(activeYear || years[0]?.year || '').toString()}
                     onValueChange={(val) => handleYearClick(parseInt(val))}
                   >
-                    <SelectTrigger className="flex-1 h-12 bg-black border-2 border-yellow rounded-lg px-4 text-white text-base focus:ring-1 focus:ring-yellow transition-colors">
+                    <SelectTrigger className="flex-1 min-w-0 h-12 bg-black border-2 border-yellow rounded-lg px-4 text-white text-base focus:ring-1 focus:ring-yellow transition-colors [&>span]:truncate">
                       <SelectValue placeholder="Select year" />
                     </SelectTrigger>
                     <SelectContent className="bg-black border-2 border-yellow text-white">
@@ -125,7 +125,7 @@ const TimelineStepper: React.FC<TimelineStepperProps> = ({
                     value={(activeYear || years[0]?.year || '').toString()}
                     onValueChange={(val) => handleYearClick(parseInt(val))}
                   >
-                    <SelectTrigger className="flex-1 h-10 bg-black border-2 border-yellow rounded-lg px-3 text-white text-sm focus:ring-1 focus:ring-yellow transition-colors">
+                    <SelectTrigger className="flex-1 min-w-0 h-10 bg-black border-2 border-yellow rounded-lg px-3 text-white text-sm focus:ring-1 focus:ring-yellow transition-colors [&>span]:truncate">
                       <SelectValue placeholder="Select year" />
                     </SelectTrigger>
                     <SelectContent className="bg-black border-2 border-yellow text-white">
