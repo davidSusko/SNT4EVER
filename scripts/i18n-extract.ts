@@ -1,4 +1,4 @@
-import { Project, SyntaxKind, JsxText, StringLiteral } from 'ts-morph';
+import { Project, SyntaxKind } from 'ts-morph';
 import fs from 'fs';
 import path from 'path';
 
@@ -39,7 +39,7 @@ for (const sourceFile of project.getSourceFiles()) {
       try {
         jsxText.replaceWithText(`{t('${key}')}`);
         modified = true;
-      } catch (e) {
+      } catch {
         console.warn(`Could not replace JSX text in ${sourceFile.getBaseName()}`);
       }
     }

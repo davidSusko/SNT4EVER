@@ -10,7 +10,7 @@ import Footer from './components/layout/Footer';
 import joinUsImg from '@/assets/images/join-us-illustration.png';
 import { ARCHIVE_IMAGES, ARCHIVE_VIDEOS, SOCIAL_LINKS } from '@/constants';
 import { useTranslation } from "react-i18next";
-import { AdminInstagram } from './pages/AdminInstagram';
+import { AdminPage } from './pages/AdminPage';
 
 
 function App() {
@@ -23,11 +23,11 @@ function App() {
   const normalizedPath = path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
   const normalizedBase = base.endsWith('/') && base.length > 1 ? base.slice(0, -1) : base;
   
-  const adminPath = normalizedBase === '/' ? '/admin' : `${normalizedBase}/admin`;
+  const adminPath = normalizedBase === '/' ? '/presi' : `${normalizedBase}/presi`;
   
   // Ruta Admin
   if (normalizedPath === adminPath) {
-    return <AdminInstagram />;
+    return <AdminPage />;
   }
 
   // Si la ruta no es la base (home) ni admin, redirigir visualmente a home

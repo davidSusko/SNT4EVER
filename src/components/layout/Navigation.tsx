@@ -4,7 +4,7 @@ import { Plus, ArrowDown } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Marquee from '@/components/common/Marquee';
 import { NAVIGATION_ITEMS } from '@/constants';
-import { useActiveSection } from '@/hooks';
+import { useScrollSpy } from '@/hooks';
 import logo from '@/assets/images/ICON-SNT-HEADER.png';
 import { LanguageSelector } from '@/components/common/LanguageSelector';
 
@@ -31,7 +31,7 @@ const Navigation = () => {
   }, []);
 
   const sectionIds = ['hero', ...NAVIGATION_ITEMS.map(item => item.id)];
-  const activeSection = useActiveSection(sectionIds);
+  const activeSection = useScrollSpy(sectionIds, { threshold: 0.3, rootMargin: '-20% 0px -20% 0px' });
 
   const getMarqueeText = () => {
     switch (activeSection) {

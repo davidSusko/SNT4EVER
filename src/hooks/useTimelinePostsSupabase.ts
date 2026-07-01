@@ -1,15 +1,23 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 
-export interface InstagramPost {
+export interface TimelinePost {
   id: string;
-  url: string;
+  year: string;
+  title: string;
+  content: string;
+  title_en?: string;
+  content_en?: string;
+  title_ca?: string;
+  content_ca?: string;
+  media_url?: string;
+  media_type?: 'video' | 'image' | 'none';
   created_at: string;
   updated_at: string;
 }
 
-export function useInstagramPostsSupabase() {
-  const [posts, setPosts] = useState<InstagramPost[]>([]);
+export function useTimelinePostsSupabase() {
+  const [posts, setPosts] = useState<TimelinePost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,7 +26,7 @@ export function useInstagramPostsSupabase() {
       setLoading(true);
 
       if (!forceRefresh) {
-        const cached = sessionStorage.getItem('instagram_posts_cache');
+        const cached = sessionStorage.getItem('timeline_posts_cache');
         if (cached) {
           setPosts(JSON.parse(cached));
           setLoading(false);
@@ -27,20 +35,20 @@ export function useInstagramPostsSupabase() {
       }
 
       const { data, error: supabaseError } = await supabase
-        .from('instagram_posts')
+        .from('timeline_posts')
         .select('*')
-        .order('created_at', { ascending: false })
-        .limit(10);
+        .order('year', { ascending: true })
+        .order('created_at', { ascending: true });
 
       if (supabaseError) throw supabaseError;
       
       const fetchedPosts = data || [];
-      sessionStorage.setItem('instagram_posts_cache', JSON.stringify(fetchedPosts));
+      sessionStorage.setItem('timeline_posts_cache', JSON.stringify(fetchedPosts));
       setPosts(fetchedPosts);
       setError(null);
     } catch (err: unknown) {
-      console.error('Error fetching Instagram posts:', err);
-      const errorMessage = err instanceof Error ? err.message : 'Error al cargar los posts de Instagram';
+      console.error('Error fetching Timeline posts:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Error al cargar los posts de Our Story';
       setError(errorMessage);
     } finally {
       setLoading(false);
@@ -52,39 +60,18 @@ export function useInstagramPostsSupabase() {
     void fetchPosts();
   }, [fetchPosts]);
 
-  const addPost = async (url: string) => {
+  const addPost = async (post: Omit<TimelinePost, 'id' | 'created_at' | 'updated_at'>) => {
     try {
-      // Validación básica de URL de Instagram
-      if (!url.includes('instagram.com/p/') && !url.includes('instagram.com/reel/')) {
-        throw new Error('URL de Instagram no válida. Debe ser un enlace a un post (/p/) o reel (/reel/).');
-      }
-      
-      // Si ya tenemos 10 o más posts, eliminamos el más antiguo (el último del array local, ya que están ordenados desc)
-      if (posts.length >= 10) {
-        const oldestPost = posts[posts.length - 1];
-        if (oldestPost) {
-          const { error: deleteError } = await supabase
-            .from('instagram_posts')
-            .delete()
-            .eq('id', oldestPost.id);
-            
-          if (deleteError) {
-            console.error('Error al intentar eliminar el post más antiguo:', deleteError);
-            // No bloqueamos la inserción si falla el borrado, lo intentamos de todas formas
-          }
-        }
-      }
-
       const { error: supabaseError } = await supabase
-        .from('instagram_posts')
-        .insert([{ url }]);
+        .from('timeline_posts')
+        .insert([post]);
 
       if (supabaseError) throw supabaseError;
       
       await fetchPosts(true);
       return { success: true };
     } catch (err: unknown) {
-      console.error('Error adding Instagram post:', err);
+      console.error('Error adding Timeline post:', err);
       const errorMessage = err instanceof Error ? err.message : 'Error al añadir el post';
       return { success: false, error: errorMessage };
     }
@@ -93,7 +80,7 @@ export function useInstagramPostsSupabase() {
   const removePost = async (id: string) => {
     try {
       const { error: supabaseError } = await supabase
-        .from('instagram_posts')
+        .from('timeline_posts')
         .delete()
         .eq('id', id);
 
@@ -102,7 +89,7 @@ export function useInstagramPostsSupabase() {
       await fetchPosts(true);
       return { success: true };
     } catch (err: unknown) {
-      console.error('Error removing Instagram post:', err);
+      console.error('Error removing Timeline post:', err);
       const errorMessage = err instanceof Error ? err.message : 'Error al eliminar el post';
       return { success: false, error: errorMessage };
     }

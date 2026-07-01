@@ -73,20 +73,6 @@
         "Uso original de los bancos de granito"
       ]
     },
-    "1997": {
-      "title": "Video Effort",
-      "content": "Grabaciones de uno de los vídeos de skate independientes de la época que demuestran que ya en los 90 había un gran nivel de patín en esta plaza. Y que la vida en ella procede de muchas generaciones atrás."
-    },
-    "2000": {
-      "title": "La Era Dorada",
-      "content": "Sants se convirtió en el epicentro mundial del skate. Patinadores de todo el mundo viajaban a Barcelona (la \"Mecca del skate\") y Sants era una parada obligatoria. El desgaste natural del granito y roturas accidentales crearon obstáculos únicos como el \"Up-Ledge\", volviéndose legendarios en la escena global.",
-      "events": [
-        "Aparición en vídeos de marcas internacionales",
-        "Destino mundial para skaters profesionales",
-        "Creación del legendario \"Up-Ledge\"",
-        "Consolidación como spot icónico global"
-      ]
-    },
     "2012": {
       "title": "Deterioro y Olvido Institucional",
       "content": "Las obras de la llegada del AVE degradaron el entorno. Se realizaron parches de hormigón y se eliminaron elementos originales. Ante la falta de mantenimiento por parte del Ayuntamiento o Adif, los patinadores locales empezaron a cuidar el espacio de forma informal, limpiando y reparando lo que podían."
@@ -99,32 +85,6 @@
         "Limpieza y mantenimiento informal",
         "Construcción de comunidad autogestionada"
       ]
-    },
-    "2021": {
-      "title": "El Nacimiento de SNT4EVER",
-      "content": "Viendo que la amenaza de destrucción de la plaza para el nuevo plan de urbanismo del Ayuntamiento era inminente, los locales se organizan. Nace oficialmente el movimiento SNT4EVER como una plataforma para dar voz a los skaters, proteger el patrimonio arquitectónico y cultural de la plaza, y dialogar con las instituciones.",
-      "events": [
-        "Creación oficial de la asociación",
-        "Inicio de campañas de concienciación",
-        "Primeros contactos formales con el Ayuntamiento"
-      ]
-    },
-    "2022": {
-      "title": "Documentación del Legado",
-      "content": "Se inicia el proyecto de archivo fotográfico y documental. Se recopilan décadas de material visual para demostrar el valor cultural de la plaza. SNT4EVER comienza a ganar visibilidad en medios de comunicación y redes sociales como defensores del espacio público."
-    },
-    "2024": {
-      "title": "Remodelación y Compromiso",
-      "content": "Empiezan las obras de la nueva estación. Tras intensas negociaciones, SNT4EVER consigue que el proyecto arquitectónico final incluya una \"Skate Plaza\" que respeta los materiales y la disposición de la plaza original, demostrando que el diálogo entre skaters e instituciones es posible y necesario.",
-      "events": [
-        "Acuerdo con el Ayuntamiento y arquitectos",
-        "Integración del skate en el nuevo diseño urbano",
-        "Preservación de elementos clave (granito y metal)"
-      ]
-    },
-    "2018_2": {
-      "title": "Creación de la primera réplica de las mesas",
-      "content": "A partir de este momento, viendo que por mucho que intentábamos arreglar lo poco que quedaba y que seguían destrozando los bancos, decidimos que queríamos que la plaza durase para siempre. Para ello decidimos documentar y hacer planos para buscar a un fabricante de granito y un herrero de metales y rehacer las mesas de la plaza. Para financiarlo montamos el primer campeonato DIY de todo España. Patrocinado por las marcas de skate más icónicas, construimos la primera mesa y todo el movimiento SNT4EVER comenzó a consolidarse y a hacer ruido."
     }
   }
 }
