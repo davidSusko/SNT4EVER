@@ -29,7 +29,7 @@ i18n
       escapeValue: false, // React already safes from xss
     },
     detection: {
-      order: ['navigator', 'htmlTag', 'path', 'subdomain'],
+      order: ['localStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
       caches: ['localStorage', 'cookie'],
     }
   });
