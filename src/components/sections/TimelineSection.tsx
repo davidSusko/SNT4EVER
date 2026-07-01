@@ -8,13 +8,46 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useState, useEffect } from 'react';
 import { TIMELINE_EVENTS } from '@/constants';
 import { useTranslation } from "react-i18next";
+import { useTimelinePostsSupabase } from '@/hooks/useTimelinePostsSupabase';
+import type { TimelineEvent } from '@/types';
 
 const TimelineSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'es';
   const [activeYear, setActiveYear] = useState<number | null>(null);
   const [visibleYears, setVisibleYears] = useState<Set<number>>(new Set([1983]));
 
-  const timelineEvents = TIMELINE_EVENTS;
+  const { posts } = useTimelinePostsSupabase();
+
+  // Mapear los posts dinámicos a la estructura de TimelineEvent
+  const dynamicEvents: TimelineEvent[] = posts.map(post => {
+    let localizedTitle = post.title;
+    let localizedContent = post.content;
+
+    if (currentLang.startsWith('en')) {
+      localizedTitle = post.title_en || post.title;
+      localizedContent = post.content_en || post.content;
+    } else if (currentLang.startsWith('ca')) {
+      localizedTitle = post.title_ca || post.title;
+      localizedContent = post.content_ca || post.content;
+    }
+
+    return {
+      year: post.year,
+      title: localizedTitle,
+      content: localizedContent,
+      type: post.media_type === 'video' ? 'video' : post.media_type === 'image' ? 'gallery' : 'history',
+      videoId: post.media_type === 'video' ? post.media_url : undefined,
+      image: post.media_type === 'image' ? post.media_url : undefined,
+    };
+  });
+
+  // Combinar estáticos y dinámicos, y ordenarlos por año
+  const allEvents = [...TIMELINE_EVENTS, ...dynamicEvents].sort((a, b) => {
+    return parseInt(a.year) - parseInt(b.year);
+  });
+
+  const timelineEvents = allEvents;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -75,7 +108,7 @@ const TimelineSection = () => {
   }, []);
 
   // Prepare timeline stepper data
-  const timelineStepperData = timelineEvents.reduce((acc: any[], event) => {
+  const timelineStepperData = timelineEvents.reduce((acc: { year: number, title: string, subtitle: string, isComplete: boolean }[], event) => {
     const year = parseInt(event.year);
     if (!acc.find(item => item.year === year)) {
       acc.push({

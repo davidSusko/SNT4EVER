@@ -91,26 +91,8 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
       'Uso original de los bancos de granito',
     ]
   },
-  {
-    year: '1997',
-    title: 'Video Effort',
-    content: 'Grabaciones de uno de los vídeos de skate independientes de la época que demuestran que ya en los 90 había un gran nivel de patín en esta plaza. Y que la vida en ella procede de muchas generaciones atrás.',
-    type: 'video',
-    videoId: 'mZctJpnGNyI'
-  },
-  {
-    year: '2000',
-    title: 'La Era Dorada',
-    content: 'Sants se convirtió en el epicentro mundial del skate. Patinadores de todo el mundo viajaban a Barcelona (la "Mecca del skate") y Sants era una parada obligatoria. El desgaste natural del granito y roturas accidentales crearon obstáculos únicos como el "Up-Ledge", volviéndose legendarios en la escena global.',
-    type: 'events',
-    videoId: 'DmaWaH6wXVQ',
-    events: [
-      'Aparición en vídeos de marcas internacionales',
-      'Destino mundial para skaters profesionales',
-      'Creación del legendario "Up-Ledge"',
-      'Consolidación como spot icónico global'
-    ]
-  },
+
+
   {
     year: '2012',
     title: 'Deterioro y Olvido Institucional',
@@ -137,34 +119,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
       'Construcción de comunidad autogestionada'
     ]
   },
-  {
-    year: '2018',
-    title: 'Creación de la primera réplica de las mesas',
-    content: 'Go skateboarding day: Replica de una de las míticas mesas de la plaza construida por los locals.',
-    type: 'events',
-    videoId: 'SYWISRok81g',
-  },
-  {
-    year: '2021',
-    title: 'El Nacimiento de SNT4EVER',
-    content: 'El 4 de enero de 2021 se registra oficialmente la Asociación SNT4EVER. Tras los anuncios de una nueva remodelación integral, el grupo se organiza para negociar con las instituciones y evitar la expulsión del skate. Se recogen miles de firmas y se consigue que el skate sea reconocido como un uso legítimo de la plaza.',
-    type: 'video',
-    videoId: '_LtYmEHNkHQ'
-  },
-  {
-    year: '2022',
-    title: 'Documentación del Legado',
-    content: 'Estreno del documental "En Resumen" que narra la historia de la plaza desde los ojos de quienes la han patinado durante décadas, subrayando su valor como patrimonio inmaterial de Barcelona. Una obra que preserva la memoria colectiva y lucha de la comunidad SNT.',
-    type: 'video',
-    videoId: 'bpNrTu-dQR8'
-  },
-  {
-    year: '2024',
-    title: 'Remodelación y Compromiso',
-    content: 'Febrero 2025: Cierre total de la plaza por las obras de Adif. SNT4EVER logra el compromiso municipal de que la nueva plaza (prevista para 2026) respetará los elementos icónicos. Se inaugura "Skate-Sants" en la Rambla de Sants como alternativa temporal durante las obras.',
-    type: 'video',
-    videoId: 'egDfjgsWVnk'
-  }
+
 ];
 
 export const ARCHIVE_IMAGES: GalleryImage[] = [
