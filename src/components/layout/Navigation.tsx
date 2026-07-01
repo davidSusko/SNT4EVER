@@ -31,7 +31,7 @@ const Navigation = () => {
   }, []);
 
   const sectionIds = ['hero', ...NAVIGATION_ITEMS.map(item => item.id)];
-  const activeSection = useScrollSpy(sectionIds, { threshold: 0.3, rootMargin: '-20% 0px -20% 0px' });
+  const activeSection = useScrollSpy(sectionIds, { rootMargin: '-20% 0px -20% 0px' });
 
   const getMarqueeText = () => {
     switch (activeSection) {
